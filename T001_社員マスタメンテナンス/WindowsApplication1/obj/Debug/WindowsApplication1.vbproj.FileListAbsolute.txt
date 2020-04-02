@@ -1,0 +1,10 @@
+C:\Users\Shinya\documents\visual studio 2013\Projects\WindowsApplication1\WindowsApplication1\bin\Debug\T001.exe.config
+C:\Users\Shinya\documents\visual studio 2013\Projects\WindowsApplication1\WindowsApplication1\bin\Debug\T001.exe
+C:\Users\Shinya\documents\visual studio 2013\Projects\WindowsApplication1\WindowsApplication1\bin\Debug\T001.pdb
+C:\Users\Shinya\documents\visual studio 2013\Projects\WindowsApplication1\WindowsApplication1\bin\Debug\T001.xml
+C:\Users\Shinya\documents\visual studio 2013\Projects\WindowsApplication1\WindowsApplication1\obj\Debug\WindowsApplication1.Resources.resources
+C:\Users\Shinya\documents\visual studio 2013\Projects\WindowsApplication1\WindowsApplication1\obj\Debug\WindowsApplication1.vbproj.GenerateResource.Cache
+C:\Users\Shinya\documents\visual studio 2013\Projects\WindowsApplication1\WindowsApplication1\obj\Debug\T001.exe
+C:\Users\Shinya\documents\visual studio 2013\Projects\WindowsApplication1\WindowsApplication1\obj\Debug\T001.xml
+C:\Users\Shinya\documents\visual studio 2013\Projects\WindowsApplication1\WindowsApplication1\obj\Debug\T001.pdb
+C:\Users\Shinya\documents\visual studio 2013\Projects\WindowsApplication1\WindowsApplication1\obj\Debug\WindowsApplication1.T001.resources
