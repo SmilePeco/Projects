@@ -22,12 +22,13 @@ Partial Class T004
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btnExcelPrint = New System.Windows.Forms.Button()
         Me.btnExcelSave = New System.Windows.Forms.Button()
         Me.btnEnd = New System.Windows.Forms.Button()
-        Me.btn = New System.Windows.Forms.Button()
+        Me.btnClear = New System.Windows.Forms.Button()
         Me.dtpDateTo = New System.Windows.Forms.DateTimePicker()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.dtpDateFrom = New System.Windows.Forms.DateTimePicker()
@@ -38,16 +39,15 @@ Partial Class T004
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
-        Me.btnExcelPrint = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
+        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -55,7 +55,7 @@ Partial Class T004
         Me.GroupBox1.Controls.Add(Me.btnExcelPrint)
         Me.GroupBox1.Controls.Add(Me.btnExcelSave)
         Me.GroupBox1.Controls.Add(Me.btnEnd)
-        Me.GroupBox1.Controls.Add(Me.btn)
+        Me.GroupBox1.Controls.Add(Me.btnClear)
         Me.GroupBox1.Controls.Add(Me.dtpDateTo)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.dtpDateFrom)
@@ -70,6 +70,16 @@ Partial Class T004
         Me.GroupBox1.Size = New System.Drawing.Size(811, 97)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
+        '
+        'btnExcelPrint
+        '
+        Me.btnExcelPrint.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnExcelPrint.Location = New System.Drawing.Point(535, 12)
+        Me.btnExcelPrint.Name = "btnExcelPrint"
+        Me.btnExcelPrint.Size = New System.Drawing.Size(75, 23)
+        Me.btnExcelPrint.TabIndex = 30
+        Me.btnExcelPrint.Text = "印刷"
+        Me.btnExcelPrint.UseVisualStyleBackColor = True
         '
         'btnExcelSave
         '
@@ -91,15 +101,15 @@ Partial Class T004
         Me.btnEnd.Text = "終了"
         Me.btnEnd.UseVisualStyleBackColor = True
         '
-        'btn
+        'btnClear
         '
-        Me.btn.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn.Location = New System.Drawing.Point(631, 13)
-        Me.btn.Name = "btn"
-        Me.btn.Size = New System.Drawing.Size(75, 23)
-        Me.btn.TabIndex = 27
-        Me.btn.Text = "クリア"
-        Me.btn.UseVisualStyleBackColor = True
+        Me.btnClear.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnClear.Location = New System.Drawing.Point(631, 13)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(75, 23)
+        Me.btnClear.TabIndex = 27
+        Me.btnClear.Text = "クリア"
+        Me.btnClear.UseVisualStyleBackColor = True
         '
         'dtpDateTo
         '
@@ -191,6 +201,20 @@ Partial Class T004
         Me.GroupBox5.TabIndex = 1
         Me.GroupBox5.TabStop = False
         '
+        'Chart1
+        '
+        ChartArea1.AxisX.Interval = 1.0R
+        ChartArea1.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea1)
+        Me.Chart1.Dock = System.Windows.Forms.DockStyle.Fill
+        Legend1.Name = "Legend1"
+        Me.Chart1.Legends.Add(Legend1)
+        Me.Chart1.Location = New System.Drawing.Point(3, 15)
+        Me.Chart1.Name = "Chart1"
+        Me.Chart1.Size = New System.Drawing.Size(372, 245)
+        Me.Chart1.TabIndex = 0
+        Me.Chart1.Text = "Chart1"
+        '
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.DataGridView1)
@@ -212,30 +236,6 @@ Partial Class T004
         Me.DataGridView1.Size = New System.Drawing.Size(421, 245)
         Me.DataGridView1.TabIndex = 1
         '
-        'Chart1
-        '
-        ChartArea2.AxisX.Interval = 1.0R
-        ChartArea2.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea2)
-        Me.Chart1.Dock = System.Windows.Forms.DockStyle.Fill
-        Legend2.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend2)
-        Me.Chart1.Location = New System.Drawing.Point(3, 15)
-        Me.Chart1.Name = "Chart1"
-        Me.Chart1.Size = New System.Drawing.Size(372, 245)
-        Me.Chart1.TabIndex = 0
-        Me.Chart1.Text = "Chart1"
-        '
-        'btnExcelPrint
-        '
-        Me.btnExcelPrint.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnExcelPrint.Location = New System.Drawing.Point(535, 12)
-        Me.btnExcelPrint.Name = "btnExcelPrint"
-        Me.btnExcelPrint.Size = New System.Drawing.Size(75, 23)
-        Me.btnExcelPrint.TabIndex = 30
-        Me.btnExcelPrint.Text = "印刷"
-        Me.btnExcelPrint.UseVisualStyleBackColor = True
-        '
         'T004
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -244,14 +244,14 @@ Partial Class T004
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "T004"
-        Me.Text = "T004_製品程別理論在庫計算"
+        Me.Text = "T004_製品別生産出荷検索"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
+        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox4.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -266,7 +266,7 @@ Partial Class T004
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents btnExcelSave As System.Windows.Forms.Button
     Friend WithEvents btnEnd As System.Windows.Forms.Button
-    Friend WithEvents btn As System.Windows.Forms.Button
+    Friend WithEvents btnClear As System.Windows.Forms.Button
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox

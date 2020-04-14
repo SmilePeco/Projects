@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports Microsoft.Office.Interop
 Imports System.Runtime.InteropServices
+Imports System.Xml
 
 
 Public Class T004
@@ -9,10 +10,6 @@ Public Class T004
     Dim Cn As New System.Data.SqlClient.SqlConnection
     Dim cd As System.Data.SqlClient.SqlCommand
     Dim strSQL As String
-    Dim strServerName As String = "SHINYA-PC\NAKADB" 'サーバー名
-    Dim strUserID As String = "sa" 'ユーザーID
-    Dim strPassword As String = "naka" 'パスワード
-    Dim strDatabaseName As String = "NAKADB" 'データベース
     Dim blnResult As Boolean '名前・パスワード判定用
 
     '---------------------------------------------
@@ -42,19 +39,36 @@ Public Class T004
     Private Sub txtItemNO_KeyDown(sender As Object, e As KeyEventArgs) Handles txtItemNO.KeyDown
 
         If e.KeyData = Keys.Enter Then
+            Dim result As Boolean
+
+
             '３桁まで０埋め
             txtItemNO.Text = txtItemNO.Text.PadLeft(3, "0")
 
             'DB接続
-            Call sDBConnect()
+            'Call sDBConnect()
+            result = sXmlConnection()
 
             'DataGridViewの値取得
-            Call sDataGridViewConnect()
+            If result = True Then
+                Call sDataGridViewConnect()
+            End If
+
 
 
 
 
         End If
+
+    End Sub
+
+    '------------------------------------------------
+    '--製品検索ボタンの押下                ----------
+    '------------------------------------------------
+    Private Sub btnIemNoSearch_Click(sender As Object, e As EventArgs) Handles btnIemNoSearch.Click
+        Dim frm As T004_2 = New T004_2()
+        T004_2.ShowDialog(Me)
+        Me.txtItemNO.Focus()
 
     End Sub
 
@@ -79,7 +93,7 @@ Public Class T004
     '------------------------------------------------
     '--クリアボタンの押下                    ----------
     '------------------------------------------------
-    Private Sub btn_Click(sender As Object, e As EventArgs) Handles btn.Click
+    Private Sub btn_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         sClear()
     End Sub
 
@@ -96,15 +110,15 @@ Public Class T004
     Public Sub sDBConnect()
 
         'DBに接続
-        strServerName = "SHINYA-PC\NAKADB" 'サーバー名(またはIPアドレス)
-        strUserID = "sa" 'ユーザーID
-        strPassword = "naka" 'パスワード
-        strDatabaseName = "NAKADB" 'データベース
+        'strServerName = "SHINYA-PC\NAKADB" 'サーバー名(またはIPアドレス)
+        'strUserID = "sa" 'ユーザーID
+        'strPassword = "naka" 'パスワード
+        'strDatabaseName = "NAKADB" 'データベース
 
-        strConnect = "Server=" & strServerName & ";"
-        strConnect &= "User ID=" & strUserID & ";"
-        strConnect &= "Password=" & strPassword & ";"
-        strConnect &= "Initial Catalog=" & strDatabaseName
+        'strConnect = "Server=" & strServerName & ";"
+        'strConnect &= "User ID=" & strUserID & ";"
+        'strConnect &= "Password=" & strPassword & ";"
+        'strConnect &= "Initial Catalog=" & strDatabaseName
 
         Cn.ConnectionString = strConnect
 
@@ -135,6 +149,74 @@ Public Class T004
     End Sub
 
     '---------------------------------------------
+    '---XMLファイル読み込み表示処理            ---
+    '---------------------------------------------
+    Public Function sXmlConnection() As Boolean
+
+        Dim strServer As String
+        Dim strUserID As String
+        Dim strPassword As String
+        Dim strDatabaseName As String
+
+        Dim xmlNode As XmlNodeList 'XMLノード取得用
+
+        Dim strFileAdress As String 'XMLファイルのアドレス
+        strFileAdress = "C:\SQLServer\DBConnect.xml"
+
+        Dim xmlDoc As New XmlDocument()
+
+
+        Try
+            'ファイル存在チェック
+            If System.IO.File.Exists(strFileAdress) Then
+                xmlDoc.Load(strFileAdress)
+
+                'サーバ名の取得
+                xmlNode = xmlDoc.GetElementsByTagName("Server")
+                strServer = xmlNode.Item(0).InnerText
+                'ユーザ名の取得
+                xmlNode = xmlDoc.GetElementsByTagName("UserID")
+                strUserID = xmlNode.Item(0).InnerText
+                'パスワードの取得
+                xmlNode = xmlDoc.GetElementsByTagName("Password")
+                strPassword = xmlNode.Item(0).InnerText
+                'パスワードの取得
+                xmlNode = xmlDoc.GetElementsByTagName("DatabaseName")
+                strDatabaseName = xmlNode.Item(0).InnerText
+
+                'DB接続
+                strConnect = "Server=" & strServer & ";"
+                strConnect &= "User ID=" & strUserID & ";"
+                strConnect &= "Password=" & strPassword & ";"
+                strConnect &= "Initial Catalog=" & strDatabaseName
+
+                Cn.ConnectionString = strConnect
+
+                cd = Cn.CreateCommand
+
+                Cn.Open()
+
+                Return True
+
+
+
+            Else
+                MessageBox.Show("接続設定ファイルが存在しません。" & vbCrLf & "データベースに接続できませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return False
+
+            End If
+
+
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString, "例外発生")
+            Return False
+
+        End Try
+
+
+    End Function
+
+    '---------------------------------------------
     '---DataGridView表示処理                   ---
     '---------------------------------------------
     Public Function sDataGridViewConnect() As Boolean
@@ -146,7 +228,8 @@ Public Class T004
             '製品NOが存在するのか確認
             strSQL = ""
             strSQL &= "SELECT "
-            strSQL &= " ""製品NO"" "
+            strSQL &= " ""製品NO"","
+            strSQL &= " ""製品名""　"
             strSQL &= "FROM "
             strSQL &= " ITEM_MS "
             strSQL &= "WHERE "
@@ -157,7 +240,11 @@ Public Class T004
             cd.ExecuteNonQuery()
             dtReader = cd.ExecuteReader()
 
-            If dtReader.Read = True Then
+            If dtReader.HasRows Then
+
+                While dtReader.Read()
+                    txtItemName.Text = dtReader("製品名")
+                End While
 
                 dtReader.Close()
 
@@ -184,6 +271,7 @@ Public Class T004
 
                     dtReader.Close()
 
+                    '生産、出荷の取得
                     strSQL = ""
                     strSQL &= "SELECT "
                     strSQL &= " CASE "
@@ -314,7 +402,7 @@ Public Class T004
     End Function
 
     '---------------------------------------------
-    '---DataGridView表示処理                   ---
+    '---EXCEL保存処理                          ---
     '---------------------------------------------
     Public Sub sExcelSavePrint(intDec As Integer)
 
@@ -434,6 +522,7 @@ Public Class T004
         End If
 
     End Sub
+
 
 
 End Class

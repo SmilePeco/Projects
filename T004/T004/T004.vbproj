@@ -71,7 +71,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="INIConnect.vb" />
     <Compile Include="T004.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +93,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="T004_2.Designer.vb">
+      <DependentUpon>T004_2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="T004_2.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -104,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="T004.resx">
       <DependentUpon>T004.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="T004_2.resx">
+      <DependentUpon>T004_2.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -116,7 +124,9 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
