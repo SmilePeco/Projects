@@ -93,12 +93,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="T005_2.vb" />
-    <Compile Include="TestForm.Designer.vb">
-      <DependentUpon>TestForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="TestForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="T005.resx">
