@@ -28,10 +28,10 @@ Partial Class T005
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.btnUpdate = New System.Windows.Forms.Button()
         Me.btnInput = New System.Windows.Forms.Button()
         Me.btnOutput = New System.Windows.Forms.Button()
         Me.btnSearch = New System.Windows.Forms.Button()
-        Me.btnUpdate = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,7 +54,7 @@ Partial Class T005
         Me.txtWorkProcessNo.Location = New System.Drawing.Point(98, 16)
         Me.txtWorkProcessNo.MaxLength = 3
         Me.txtWorkProcessNo.Name = "txtWorkProcessNo"
-        Me.txtWorkProcessNo.Size = New System.Drawing.Size(100, 19)
+        Me.txtWorkProcessNo.Size = New System.Drawing.Size(55, 19)
         Me.txtWorkProcessNo.TabIndex = 1
         '
         'Label1
@@ -93,16 +93,26 @@ Partial Class T005
         Me.GroupBox3.Controls.Add(Me.btnOutput)
         Me.GroupBox3.Controls.Add(Me.btnSearch)
         Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupBox3.Location = New System.Drawing.Point(0, 315)
+        Me.GroupBox3.Location = New System.Drawing.Point(0, 323)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(759, 60)
+        Me.GroupBox3.Size = New System.Drawing.Size(759, 52)
         Me.GroupBox3.TabIndex = 2
         Me.GroupBox3.TabStop = False
+        '
+        'btnUpdate
+        '
+        Me.btnUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnUpdate.Location = New System.Drawing.Point(255, 14)
+        Me.btnUpdate.Name = "btnUpdate"
+        Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
+        Me.btnUpdate.TabIndex = 3
+        Me.btnUpdate.Text = "F4更新"
+        Me.btnUpdate.UseVisualStyleBackColor = True
         '
         'btnInput
         '
         Me.btnInput.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnInput.Location = New System.Drawing.Point(174, 22)
+        Me.btnInput.Location = New System.Drawing.Point(174, 14)
         Me.btnInput.Name = "btnInput"
         Me.btnInput.Size = New System.Drawing.Size(75, 23)
         Me.btnInput.TabIndex = 2
@@ -112,7 +122,7 @@ Partial Class T005
         'btnOutput
         '
         Me.btnOutput.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnOutput.Location = New System.Drawing.Point(93, 22)
+        Me.btnOutput.Location = New System.Drawing.Point(93, 14)
         Me.btnOutput.Name = "btnOutput"
         Me.btnOutput.Size = New System.Drawing.Size(75, 23)
         Me.btnOutput.TabIndex = 1
@@ -122,22 +132,12 @@ Partial Class T005
         'btnSearch
         '
         Me.btnSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnSearch.Location = New System.Drawing.Point(12, 22)
+        Me.btnSearch.Location = New System.Drawing.Point(12, 14)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(75, 23)
         Me.btnSearch.TabIndex = 0
         Me.btnSearch.Text = "F1検索"
         Me.btnSearch.UseVisualStyleBackColor = True
-        '
-        'btnUpdate
-        '
-        Me.btnUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnUpdate.Location = New System.Drawing.Point(255, 22)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
-        Me.btnUpdate.TabIndex = 3
-        Me.btnUpdate.Text = "F4更新"
-        Me.btnUpdate.UseVisualStyleBackColor = True
         '
         'T005
         '

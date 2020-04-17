@@ -23,6 +23,10 @@ Public Class T005
         Select Case e.KeyCode
             Case Keys.F1
                 '検索
+                '作業工程NOは０埋め
+                If txtWorkProcessNo.Text.Trim <> "" Then
+                    txtWorkProcessNo.Text = txtWorkProcessNo.Text.PadLeft(3, "0")
+                End If
                 Dim frm As New T005_2(1, txtWorkProcessNo.Text.Trim)
                 frm.Main()
 

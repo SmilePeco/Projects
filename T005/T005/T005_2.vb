@@ -1,5 +1,8 @@
 ﻿Imports System.Xml
 Imports System.Data.SqlClient
+Imports Microsoft.VisualBasic.FileIO
+Imports System.Text
+Imports System.IO
 
 Public Class T005_2
 
@@ -36,25 +39,20 @@ Public Class T005_2
 
         If result = True Then
             If intJudge = 1 Then
-                'SELECT文
+                '検索処理
                 Call fSelect()
 
             ElseIf intJudge = 2 Then
-                'INSERT文
+                '更新処理
                 Call fUpdate()
 
-            ElseIf intJudge = 3 Then
-                'UPDATE文
-
-            ElseIf intJudge = 4 Then
-                'DELETE文
 
             ElseIf intJudge = 5 Then
                 'CSV出力
                 Call fSelect()
             ElseIf intJudge = 6 Then
                 'CSV取込
-                Call fInput()
+                Call fInput2()
 
 
 
@@ -125,7 +123,7 @@ Public Class T005_2
     End Function
 
     '---------------------------------------------
-    '---SELECT処理                             ---
+    '---検索、CSV出力処理                      ---
     '---------------------------------------------
     Public Function fSelect() As Boolean
 
@@ -264,23 +262,26 @@ Public Class T005_2
     End Function
 
     '---------------------------------------------
-    '---UPDATE処理                             ---
+    '---更新処理                             ---
     '---------------------------------------------
     Public Function fUpdate() As Boolean
 
         Dim intRowCount As Integer '現在の行数を格納
+        Dim blnFalse As Boolean = False '取込失敗しているか判定（失敗している場合はDataGridViewを閉じない）
         Dim strDt As String = Now.ToString("yyyyMMddHHmmss")        'エラーログファイル名（重複を避けるため、For文前で作成）
         Dim intErrCount As Integer        'エラー数カウント
-        Dim strErrText As String          'エラー内容
-        Dim intErrRow As Integer          'エラーの起きた行番号
+        Dim result As Boolean 'エラーチェック処理用
+        Dim strMasterSQL As String '変更不可なマスタSQL(INSERT、UPDATE、DELETE)
+        Dim dtReader As SqlDataReader
+        'Dim strErrText As String          'エラー内容
+        'Dim intErrRow As Integer          'エラーの起きた行番号
 
         Try
             If T005.DataGridView1.DataSource IsNot Nothing Then
 
                 'DataSourceをDatatableにキャストする
                 Dim dtTable As DataTable = DirectCast(T005.DataGridView1.DataSource, DataTable)
-
-
+                '判定の初期化
 
                 For Each Row As DataRow In dtTable.Rows
 
@@ -290,70 +291,197 @@ Public Class T005_2
 
                     Select Case Row.RowState
                         Case DataRowState.Added
-                            '新規作成の場合
-                            '工程NO、製品NOは０埋め
-                            Row("工程NO") = Row("工程NO").PadLeft(3, "0")
-                            Row("製品NO") = Row("製品NO").PadLeft(3, "0")
+                            Dim strMax As String = ""
 
-                            strSQL = ""
-                            strSQL &= "INSERT INTO WORKPROCESS_MS VALUES ( "
-                            strSQL &= " '" & Row("作業工程NO") & "', "
-                            strSQL &= " '" & Row("工程NO") & "', "
-                            strSQL &= " '" & Row("製品NO") & "', "
-                            strSQL &= " '" & Row("作業工程名") & "', "
-                            strSQL &= " SYSDATETIME(), "
-                            strSQL &= " SYSDATETIME() "
-                            strSQL &= " ) "
+                            '//新規作成の場合
+
+                            '//作業工程NOが空欄で登録した場合
+                            '//WORKPROCESS_MSをチェックし、連番で登録する（穴空きは無視とする）
+                            If Row("作業工程NO").ToString.Trim = "" Then
+                                Dim intMax As Integer 'MAX値を格納
+                                '作業工程NOのMAX値を取得
+                                strSQL = ""
+                                strSQL &= "SELECT "
+                                strSQL &= " MAX(作業工程NO) AS 作業工程NO "
+                                strSQL &= "FROM "
+                                strSQL &= " WORKPROCESS_MS "
+                                'SQLの実行
+                                cd.CommandText = strSQL
+                                cd.Connection = Cn
+                                'cd.ExecuteNonQuery()
+                                dtReader = cd.ExecuteReader()
+                                While dtReader.Read()
+                                    '最大件数の取得
+                                    intMax = dtReader("作業工程NO")
+                                    intMax += 1
+                                End While
+                                '０埋め
+                                strMax = CStr(intMax).PadLeft(3, "0")
+                                dtReader.Close()
+                            End If
+
+                            '工程NO、製品NOは０埋め（空白の場合は処理しない）
+                            If Row("工程NO").ToString.Trim <> "" Then
+                                Row("工程NO") = Row("工程NO").PadLeft(3, "0")
+                            End If
+                            If Row("製品NO").ToString.Trim <> "" Then
+                                Row("製品NO") = Row("製品NO").PadLeft(3, "0")
+                            End If
+
+                            strMasterSQL = ""
+                            strMasterSQL &= "INSERT INTO WORKPROCESS_MS VALUES ( "
+                            '最大値を取得している場合はそちらを参照する
+                            If strMax = "" Then
+                                strMasterSQL &= " '" & Row("作業工程NO") & "', "
+                            Else
+                                strMasterSQL &= " '" & strMax & "', "
+                            End If
+                            strMasterSQL &= " '" & Row("工程NO") & "', "
+                            strMasterSQL &= " '" & Row("製品NO") & "', "
+                            strMasterSQL &= " '" & Row("作業工程名") & "', "
+                            strMasterSQL &= " SYSDATETIME(), "
+                            strMasterSQL &= " SYSDATETIME() "
+                            strMasterSQL &= " ) "
+
+                            '作業工程NOのチェック
+                            If strMax = "" Then
+                                result = fUpdateCheck(1, intRowCount, Row("作業工程NO"))
+                            Else
+                                result = fUpdateCheck(1, intRowCount, strMax)
+                            End If
+
+                            If result = False Then
+                                blnFalse = True
+                                intErrCount += 1
+                                Continue For
+                            End If
+
+                            '工程NOのチェック
+                            If IsDBNull(Row("工程NO")) = False Then
+                                result = fUpdateCheck(2, intRowCount, Row("工程NO"))
+                            Else
+                                result = fUpdateCheck(2, intRowCount, "")
+                            End If
+                            If result = False Then
+                                blnFalse = True
+                                intErrCount += 1
+                                Continue For
+                            End If
+
+                            '製品NOのチェック
+                            If IsDBNull(Row("製品NO")) = False Then
+                                result = fUpdateCheck(3, intRowCount, Row("製品NO"))
+                            Else
+                                result = fUpdateCheck(3, intRowCount, "")
+
+                            End If
+                            If result = False Then
+                                blnFalse = True
+                                intErrCount += 1
+                                Continue For
+                            End If
+
 
                         Case DataRowState.Deleted
                             '削除の場合
-                            strSQL = ""
-                            strSQL &= "DELETE FROM WORKPROCESS_MS "
-                            strSQL &= "WHERE 作業工程NO ='" & Row("作業工程NO", DataRowVersion.Original) & "'"
+                            strMasterSQL = ""
+                            strMasterSQL &= "DELETE FROM WORKPROCESS_MS "
+                            strMasterSQL &= "WHERE 作業工程NO ='" & Row("作業工程NO", DataRowVersion.Original) & "'"
 
                         Case DataRowState.Modified
                             '更新の場合
-                            '工程NO、製品NOは０埋め
-                            Row("工程NO") = Row("工程NO").PadLeft(3, "0")
-                            Row("製品NO") = Row("製品NO").PadLeft(3, "0")
+                            '工程NO、製品NOは０埋め（空白の場合は処理しない）
+                            If Row("工程NO").ToString.Trim <> "" Then
+                                Row("工程NO") = Row("工程NO").PadLeft(3, "0")
+                            End If
+                            If Row("製品NO").ToString.Trim <> "" Then
+                                Row("製品NO") = Row("製品NO").PadLeft(3, "0")
+                            End If
 
-                            strSQL = ""
-                            strSQL &= "UPDATE WORKPROCESS_MS "
-                            strSQL &= "SET "
-                            strSQL &= " 作業工程NO = '" & Row("作業工程NO") & "', "
-                            strSQL &= " 工程NO = '" & Row("工程NO") & "', "
-                            strSQL &= " 製品NO = '" & Row("製品NO") & "', "
-                            strSQL &= " 作業工程名 = '" & Row("作業工程名") & "', "
-                            strSQL &= " 更新日 = SYSDATETIME() "
-                            strSQL &= "WHERE "
-                            strSQL &= " 作業工程NO = '" & Row("作業工程NO", DataRowVersion.Original) & "' "
+                            strMasterSQL = ""
+                            strMasterSQL &= "UPDATE WORKPROCESS_MS "
+                            strMasterSQL &= "SET "
+                            strMasterSQL &= " 作業工程NO = '" & Row("作業工程NO") & "', "
+                            strMasterSQL &= " 工程NO = '" & Row("工程NO") & "', "
+                            strMasterSQL &= " 製品NO = '" & Row("製品NO") & "', "
+                            strMasterSQL &= " 作業工程名 = '" & Row("作業工程名") & "', "
+                            strMasterSQL &= " 更新日 = SYSDATETIME() "
+                            strMasterSQL &= "WHERE "
+                            strMasterSQL &= " 作業工程NO = '" & Row("作業工程NO", DataRowVersion.Original) & "' "
 
-                            '作業工程NOが変更されたか判定()
-                            If Row("作業工程NO") <> Row("作業工程NO", DataRowVersion.Original) Then
-                                '作業工程NOの被りを判定
-                                strSQL = ""
-                                strSQL &= "SELECT "
-                                strSQL &= " 作業工程NO "
-                                strSQL &= "FROM "
-                                strSQL &= " WORKPROCESS_MS "
-                                strSQL &= "WHERE "
-                                strSQL &= " 作業工程NO = '" & Row("作業工程NO") & "' "
+                            ''作業工程NOが変更されたか判定()
+                            'If Row("作業工程NO") <> Row("作業工程NO", DataRowVersion.Original) Then
+                            'result = fUpdateCheck(1, intRowCount, Row("作業工程NO"))
 
-                                'SQLの実行
-                                cd.CommandText = strSQL
-                                Dim count As Integer = CInt(cd.ExecuteScalar())
-
-                                If count > 0 Then
-                                    'MessageBox.Show("作業工程NOが重複しています。" & vbCrLf & "処理を中断します。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                                    'T005.DataGridView1(0, dtTable.Rows.Count()).Style.BackColor = Color.Red
-                                    strErrText = "作業工程NOが重複しています。修正してください。"
-                                    intErrRow = intRowCount
-                                    sLogWrite(2, strErrText, strDt, intErrRow)
-                                    intErrCount += 1
-                                    Continue For
-
+                            '作業工程NOが変更されたか判定
+                            '変更された作業工程NOのみをチェック対象外とする。
+                            '変更していないNOを対象とすると、DB登録済みとチェックし必ず重複となってしまうため。
+                            If IsDBNull(Row("作業工程NO")) = False Then
+                                If Row("作業工程NO") <> Row("作業工程NO", DataRowVersion.Original) Then
+                                    result = fUpdateCheck(1, intRowCount, Row("作業工程NO"))
+                                Else
+                                    '変更されていない作業工程NOは問題なしとする
+                                    result = True
                                 End If
+                            Else
+                                result = fUpdateCheck(1, intRowCount, "")
+                            End If
+                            If result = False Then
+                                blnFalse = True
+                                intErrCount += 1
+                                Continue For
+                            End If
 
+
+                            ''作業工程NOの被りを判定
+                            'strSQL = ""
+                            'strSQL &= "SELECT "
+                            'strSQL &= " 作業工程NO "
+                            'strSQL &= "FROM "
+                            'strSQL &= " WORKPROCESS_MS "
+                            'strSQL &= "WHERE "
+                            'strSQL &= " 作業工程NO = '" & Row("作業工程NO") & "' "
+
+                            ''SQLの実行
+                            'cd.CommandText = strSQL
+                            'Dim count As Integer = CInt(cd.ExecuteScalar())
+
+                            'If count > 0 Then
+                            '    'MessageBox.Show("作業工程NOが重複しています。" & vbCrLf & "処理を中断します。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            '    'T005.DataGridView1(0, dtTable.Rows.Count()).Style.BackColor = Color.Red
+                            '    strErrText = "作業工程NOが重複しています。修正してください。"
+                            '    intErrRow = intRowCount
+                            '    sLogWrite(2, strErrText, strDt, intErrRow)
+                            '    intErrCount += 1
+                            '    Continue For
+
+                            'End If
+
+                            'End If
+
+                            '工程NOのチェック(NULLだった場合は空白検索=必ずエラーとなる)
+                            If IsDBNull(Row("工程NO")) = False Then
+                                result = fUpdateCheck(2, intRowCount, Row("工程NO"))
+                            Else
+                                result = fUpdateCheck(2, intRowCount, "")
+                            End If
+                            If result = False Then
+                                blnFalse = True
+                                intErrCount += 1
+                                Continue For
+                            End If
+
+                            '製品NOのチェック
+                            If IsDBNull(Row("製品NO")) = False Then
+                                result = fUpdateCheck(3, intRowCount, Row("製品NO"))
+                            Else
+                                result = fUpdateCheck(3, intRowCount, "")
+
+                            End If
+                            If result = False Then
+                                blnFalse = True
+                                intErrCount += 1
+                                Continue For
                             End If
 
                         Case Else
@@ -361,12 +489,11 @@ Public Class T005_2
 
                     End Select
 
-                    'SQLの実行
-                    cd.CommandText = strSQL
+                    '成功した場合は、マスターSQを実行
+                    cd.CommandText = strMasterSQL
                     cd.Connection = Cn
                     cd.ExecuteNonQuery()
-
-
+                    MsgBox("テスト")
 
                 Next
 
@@ -379,8 +506,6 @@ Public Class T005_2
 
                 Return False
 
-
-
             Else
                 MessageBox.Show("データが０件のため、更新できませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Return False
@@ -392,10 +517,112 @@ Public Class T005_2
             ClassName = "fUpdate"
             sLogWrite(1, ex.Message, ProgramName, ClassName)
             Return False
+        Finally
+            'エラーが有った場合は、初期化しない
+            If blnFalse = False Then
+                'DataGridViewの初期化
+                T005.DataGridView1.DataSource = Nothing
+                T005.DataGridView1.Columns.Clear()
+
+            End If
 
         End Try
 
+    End Function
 
+    Public Function fInput2() As Boolean
+
+        'ダイアログボックスの設定
+        Dim FileDialog As New OpenFileDialog
+        FileDialog.FileName = "OutputFile.csv"
+        FileDialog.InitialDirectory = "C:\"
+        FileDialog.Filter = "CSVファイル(*.csv)|*.csv"
+
+        Try
+            If FileDialog.ShowDialog() = DialogResult.OK Then
+                '初期設定
+                Dim SR As New StreamReader(FileDialog.FileName, System.Text.Encoding.GetEncoding("SHIFT-JIS"))
+                Dim strLineBuf As String
+                strLineBuf = SR.ReadLine
+                Dim strColArr() As String = strLineBuf.Split(",")
+                'ヘッダーの取得
+                For Each buf In strColArr
+                    T005.DataGridView1.Columns.Add(buf, buf)
+                Next
+
+                '値の取得
+                Do
+                    strLineBuf = SR.ReadLine()
+                    If strLineBuf = Nothing Then Exit Do
+                    Dim strRowArr() As String = strLineBuf.Split(",")
+                    T005.DataGridView1.Rows.Add(strRowArr)
+
+                Loop
+
+                Call fUpdate()
+
+
+                Return True
+            Else
+                Return False
+
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("例外処理が発生しました。" & vbCrLf & "ログを確認してください。", "例外発生")
+            ClassName = "fInput"
+            sLogWrite(1, ex.Message, ProgramName, ClassName)
+            Return False
+        End Try
+
+
+
+    End Function
+
+    Public Function fInput() As Boolean
+
+        'ダイアログボックスの設定
+        Dim FileDialog As New OpenFileDialog
+        FileDialog.FileName = "OutputFile.csv"
+        FileDialog.InitialDirectory = "C:\"
+        FileDialog.Filter = "CSVファイル(*.csv)|*.csv"
+
+        Try
+            If FileDialog.ShowDialog() = DialogResult.OK Then
+                Using parser As New TextFieldParser(FileDialog.FileName, Encoding.GetEncoding("Shift_JIS"))
+                    'カンマ区切りの指定
+                    parser.TextFieldType = FieldType.Delimited
+                    parser.SetDelimiters(",")
+                    'フィールドが引用符で囲まれているか
+                    parser.HasFieldsEnclosedInQuotes = False
+                    ' フィールドの空白トリム設定
+                    parser.TrimWhiteSpace = True
+
+                    'ファイルの末尾までループ
+                    While Not parser.EndOfData
+                        Dim row As String() = parser.ReadFields()
+                        For Each field As String In row
+                            ' MsgBox(field)
+                            T005.DataGridView1.Rows.Add(row)
+                        Next
+
+
+                    End While
+
+                End Using
+
+            Else
+                Return False
+
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("例外処理が発生しました。" & vbCrLf & "ログを確認してください。", "例外発生")
+            ClassName = "fInput"
+            sLogWrite(1, ex.Message, ProgramName, ClassName)
+            Return False
+
+        End Try
 
 
 
@@ -404,7 +631,7 @@ Public Class T005_2
     '---------------------------------------------
     '---CSV取込処理                            ---
     '---------------------------------------------
-    Public Function fInput() As Boolean
+    Public Function _fInput() As Boolean
 
         'ダイアログボックスの設定
         Dim FileDialog As New OpenFileDialog
@@ -415,8 +642,7 @@ Public Class T005_2
         Try
             'ダイアログを表示する
             If FileDialog.ShowDialog() = DialogResult.OK Then
-                'OKボタンがクリックされたとき、選択されたファイル名を表示する
-                Console.WriteLine(FileDialog.FileName)
+
 
                 'BULK INSERTを実行する
                 strSQL = ""
@@ -451,12 +677,105 @@ Public Class T005_2
             End If
 
         Catch ex As Exception
-            MessageBox.Show("例外処理が発生しました。" & vbCrLf & "ログを確認してください。。", "例外発生")
+            MessageBox.Show("例外処理が発生しました。" & vbCrLf & "ログを確認してください。", "例外発生")
             ClassName = "fInput"
             sLogWrite(1, ex.Message, ProgramName, ClassName)
             Return False
 
         End Try
+
+    End Function
+
+    '---------------------------------------------
+    '---更新前チェック書き込み             　　---
+    '---CheckNo：                            　---
+    '---1=Update:作業工程NO重複チェック        ---
+    '---2=Update:工程NO存在チェック            ---
+    '---3=Update:製品NO存在チェック            ---
+    '---------------------------------------------
+    Public Function fUpdateCheck(intCheckNo As Integer, intRowCount As Integer, strRowValue As String) As Boolean
+
+        Dim strDt As String = Now.ToString("yyyyMMddHHmmss")        'エラーログファイル名（重複を避けるため、For文前で作成）
+        Dim strErrText As String          'エラー内容
+        Dim intErrRow As Integer          'エラーの起きた行番号
+
+        If intCheckNo = 1 Then
+            '作業工程NOの被りを判定
+            strSQL = ""
+            strSQL &= "SELECT "
+            strSQL &= " 作業工程NO "
+            strSQL &= "FROM "
+            strSQL &= " WORKPROCESS_MS "
+            strSQL &= "WHERE "
+            strSQL &= " 作業工程NO = '" & strRowValue & "' "
+            'strSQL &= " 作業工程NO = '" & Row("作業工程NO") & "' "
+            'SQLの実行
+            cd.CommandText = strSQL
+            Dim count As Integer = CInt(cd.ExecuteScalar())
+
+            '重複していた場合はエラーを返す
+            If count > 0 Then
+                strErrText = "作業工程NOが重複しています。修正してください。"
+                intErrRow = intRowCount
+                'エラーログ書き込み処理を呼び出す
+                sLogWrite(2, strErrText, strDt, intErrRow)
+                Return False
+            Else
+                Return True
+            End If
+
+        ElseIf intCheckNo = 2 Then
+            strSQL = ""
+            strSQL &= "SELECT "
+            strSQL &= " 工程NO "
+            strSQL &= "FROM "
+            strSQL &= " PROCESS_MS "
+            strSQL &= "WHERE "
+            strSQL &= " 工程NO = '" & strRowValue & "' "
+            'SQLの実行
+            cd.CommandText = strSQL
+            Dim count As Integer = CInt(cd.ExecuteScalar())
+
+            '存在しない場合はエラーを返す
+            If count = 0 Then
+                strErrText = "マスタに存在しない工程NOが入力されています。修正してください。"
+                intErrRow = intRowCount
+                'エラーログ書き込み処理を呼び出す
+                sLogWrite(2, strErrText, strDt, intErrRow)
+                Return False
+            Else
+                Return True
+            End If
+
+        ElseIf intCheckNo = 3 Then
+            strSQL = ""
+            strSQL &= "SELECT "
+            strSQL &= " 製品NO "
+            strSQL &= "FROM "
+            strSQL &= " ITEM_MS "
+            strSQL &= "WHERE "
+            strSQL &= " 製品NO = '" & strRowValue & "' "
+
+            'SQLの実行
+            cd.CommandText = strSQL
+            Dim count As Integer = CInt(cd.ExecuteScalar())
+
+            '存在しない場合はエラーを返す
+            If count = 0 Then
+                strErrText = "マスタに存在しない製品NOが入力されています。修正してください。"
+                intErrRow = intRowCount
+                'エラーログ書き込み処理を呼び出す
+                sLogWrite(2, strErrText, strDt, intErrRow)
+                Return False
+            Else
+                Return True
+            End If
+
+        Else
+            'ありえない場合
+            Return False
+        End If
+
 
     End Function
 
@@ -517,7 +836,7 @@ Public Class T005_2
         '桁数制限
         DirectCast(T005.DataGridView1.Columns(1), DataGridViewTextBoxColumn).MaxInputLength = 3
         DirectCast(T005.DataGridView1.Columns(2), DataGridViewTextBoxColumn).MaxInputLength = 3
-        DirectCast(T005.DataGridView1.Columns(2), DataGridViewTextBoxColumn).MaxInputLength = 20
+        DirectCast(T005.DataGridView1.Columns(3), DataGridViewTextBoxColumn).MaxInputLength = 20
 
     End Sub
 
