@@ -28,6 +28,9 @@ Partial Class T005
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.btnEnd = New System.Windows.Forms.Button()
+        Me.btnClear = New System.Windows.Forms.Button()
+        Me.btnPrint = New System.Windows.Forms.Button()
         Me.btnUpdate = New System.Windows.Forms.Button()
         Me.btnInput = New System.Windows.Forms.Button()
         Me.btnOutput = New System.Windows.Forms.Button()
@@ -88,6 +91,9 @@ Partial Class T005
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.btnEnd)
+        Me.GroupBox3.Controls.Add(Me.btnClear)
+        Me.GroupBox3.Controls.Add(Me.btnPrint)
         Me.GroupBox3.Controls.Add(Me.btnUpdate)
         Me.GroupBox3.Controls.Add(Me.btnInput)
         Me.GroupBox3.Controls.Add(Me.btnOutput)
@@ -98,6 +104,36 @@ Partial Class T005
         Me.GroupBox3.Size = New System.Drawing.Size(759, 52)
         Me.GroupBox3.TabIndex = 2
         Me.GroupBox3.TabStop = False
+        '
+        'btnEnd
+        '
+        Me.btnEnd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnEnd.Location = New System.Drawing.Point(498, 14)
+        Me.btnEnd.Name = "btnEnd"
+        Me.btnEnd.Size = New System.Drawing.Size(75, 23)
+        Me.btnEnd.TabIndex = 6
+        Me.btnEnd.Text = "F7終了"
+        Me.btnEnd.UseVisualStyleBackColor = True
+        '
+        'btnClear
+        '
+        Me.btnClear.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnClear.Location = New System.Drawing.Point(417, 14)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(75, 23)
+        Me.btnClear.TabIndex = 5
+        Me.btnClear.Text = "F6クリア"
+        Me.btnClear.UseVisualStyleBackColor = True
+        '
+        'btnPrint
+        '
+        Me.btnPrint.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnPrint.Location = New System.Drawing.Point(336, 14)
+        Me.btnPrint.Name = "btnPrint"
+        Me.btnPrint.Size = New System.Drawing.Size(75, 23)
+        Me.btnPrint.TabIndex = 4
+        Me.btnPrint.Text = "F5印刷"
+        Me.btnPrint.UseVisualStyleBackColor = True
         '
         'btnUpdate
         '
@@ -149,7 +185,7 @@ Partial Class T005
         Me.Controls.Add(Me.GroupBox1)
         Me.KeyPreview = True
         Me.Name = "T005"
-        Me.Text = "T005"
+        Me.Text = "T005_作業工程マスタメンテナンス"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -168,5 +204,8 @@ Partial Class T005
     Friend WithEvents btnOutput As System.Windows.Forms.Button
     Friend WithEvents btnInput As System.Windows.Forms.Button
     Friend WithEvents btnUpdate As System.Windows.Forms.Button
+    Friend WithEvents btnPrint As System.Windows.Forms.Button
+    Friend WithEvents btnClear As System.Windows.Forms.Button
+    Friend WithEvents btnEnd As System.Windows.Forms.Button
 
 End Class

@@ -28,6 +28,7 @@ Public Class T005
                     txtWorkProcessNo.Text = txtWorkProcessNo.Text.PadLeft(3, "0")
                 End If
                 Dim frm As New T005_2(1, txtWorkProcessNo.Text.Trim)
+
                 frm.Main()
 
             Case Keys.F2
@@ -45,10 +46,93 @@ Public Class T005
                 Dim frm As New T005_2(2, txtWorkProcessNo.Text.Trim)
                 frm.Main()
 
+            Case Keys.F5
+                '印刷
+                Dim frm As New T005_2(3, txtWorkProcessNo.Text.Trim)
+                frm.Main()
 
+            Case Keys.F6
+                'クリア
+                Call sClear()
 
+            Case Keys.F7
+                '終了
+                Me.Close()
 
         End Select
+
+    End Sub
+
+    '---------------------------------------------
+    '--検索ボタン押下処理                      ---
+    '---------------------------------------------
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        '検索
+        '作業工程NOは０埋め
+        If txtWorkProcessNo.Text.Trim <> "" Then
+            txtWorkProcessNo.Text = txtWorkProcessNo.Text.PadLeft(3, "0")
+        End If
+        Dim frm As New T005_2(1, txtWorkProcessNo.Text.Trim)
+
+        frm.Main()
+
+    End Sub
+
+    '---------------------------------------------
+    '--出力ボタン押下処理                      ---
+    '---------------------------------------------
+    Private Sub btnOutput_Click(sender As Object, e As EventArgs) Handles btnOutput.Click
+        '出力
+        Dim frm As New T005_2(5, txtWorkProcessNo.Text.Trim)
+        frm.Main()
+
+    End Sub
+
+    '---------------------------------------------
+    '--取込ボタン押下処理                      ---
+    '---------------------------------------------
+    Private Sub btnInput_Click(sender As Object, e As EventArgs) Handles btnInput.Click
+        '取込
+        Dim frm As New T005_2(6, txtWorkProcessNo.Text.Trim)
+        frm.Main()
+
+    End Sub
+
+    '---------------------------------------------
+    '--更新ボタン押下処理                      ---
+    '---------------------------------------------
+    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+        '更新
+        Dim frm As New T005_2(2, txtWorkProcessNo.Text.Trim)
+        frm.Main()
+
+    End Sub
+
+    '---------------------------------------------
+    '--印刷ボタン押下処理                      ---
+    '---------------------------------------------
+    Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
+        '印刷
+        Dim frm As New T005_2(3, txtWorkProcessNo.Text.Trim)
+        frm.Main()
+
+    End Sub
+
+    '---------------------------------------------
+    '--クリアボタン押下処理                    ---
+    '---------------------------------------------
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        'クリア
+        Call sClear()
+
+    End Sub
+
+    '---------------------------------------------
+    '--終了ボタン押下処理                      ---
+    '---------------------------------------------
+    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
+        '終了
+        Me.Close()
 
     End Sub
 
@@ -167,6 +251,13 @@ Public Class T005
         End Try
 
     End Function
+
+
+
+
+
+
+
 
 
 
