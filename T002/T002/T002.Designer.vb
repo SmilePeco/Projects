@@ -23,17 +23,17 @@ Partial Class T002
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.txtWorkNo = New System.Windows.Forms.TextBox()
+        Me.txtProcessNo = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtWorkName = New System.Windows.Forms.TextBox()
+        Me.txtProcessName = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblMode = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.btnEntry = New System.Windows.Forms.Button()
         Me.btnEnd = New System.Windows.Forms.Button()
-        Me.lblMode = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -45,14 +45,15 @@ Partial Class T002
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(45, 12)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "作業NO"
+        Me.Label1.Text = "工程NO"
         '
-        'txtWorkNo
+        'txtProcessNo
         '
-        Me.txtWorkNo.Location = New System.Drawing.Point(84, 21)
-        Me.txtWorkNo.Name = "txtWorkNo"
-        Me.txtWorkNo.Size = New System.Drawing.Size(100, 19)
-        Me.txtWorkNo.TabIndex = 1
+        Me.txtProcessNo.Location = New System.Drawing.Point(84, 21)
+        Me.txtProcessNo.MaxLength = 3
+        Me.txtProcessNo.Name = "txtProcessNo"
+        Me.txtProcessNo.Size = New System.Drawing.Size(54, 19)
+        Me.txtProcessNo.TabIndex = 1
         '
         'Label2
         '
@@ -61,21 +62,22 @@ Partial Class T002
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(41, 12)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "作業名"
+        Me.Label2.Text = "工程名"
         '
-        'txtWorkName
+        'txtProcessName
         '
-        Me.txtWorkName.Location = New System.Drawing.Point(84, 65)
-        Me.txtWorkName.Name = "txtWorkName"
-        Me.txtWorkName.Size = New System.Drawing.Size(100, 19)
-        Me.txtWorkName.TabIndex = 3
+        Me.txtProcessName.Location = New System.Drawing.Point(84, 65)
+        Me.txtProcessName.MaxLength = 10
+        Me.txtProcessName.Name = "txtProcessName"
+        Me.txtProcessName.Size = New System.Drawing.Size(100, 19)
+        Me.txtProcessName.TabIndex = 3
         '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.lblMode)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.txtWorkName)
-        Me.GroupBox1.Controls.Add(Me.txtWorkNo)
+        Me.GroupBox1.Controls.Add(Me.txtProcessName)
+        Me.GroupBox1.Controls.Add(Me.txtProcessNo)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
@@ -83,6 +85,16 @@ Partial Class T002
         Me.GroupBox1.Size = New System.Drawing.Size(513, 157)
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
+        '
+        'lblMode
+        '
+        Me.lblMode.AutoSize = True
+        Me.lblMode.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblMode.Location = New System.Drawing.Point(200, 92)
+        Me.lblMode.Name = "lblMode"
+        Me.lblMode.Size = New System.Drawing.Size(51, 12)
+        Me.lblMode.TabIndex = 4
+        Me.lblMode.Text = "lblMode"
         '
         'GroupBox2
         '
@@ -113,7 +125,7 @@ Partial Class T002
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(90, 23)
         Me.btnCancel.TabIndex = 16
-        Me.btnCancel.Text = "F11:キャンセル"
+        Me.btnCancel.Text = "F11:クリア"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'btnDelete
@@ -143,16 +155,6 @@ Partial Class T002
         Me.btnEnd.Text = "F12:終了"
         Me.btnEnd.UseVisualStyleBackColor = True
         '
-        'lblMode
-        '
-        Me.lblMode.AutoSize = True
-        Me.lblMode.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblMode.Location = New System.Drawing.Point(200, 92)
-        Me.lblMode.Name = "lblMode"
-        Me.lblMode.Size = New System.Drawing.Size(51, 12)
-        Me.lblMode.TabIndex = 4
-        Me.lblMode.Text = "lblMode"
-        '
         'T002
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -160,8 +162,9 @@ Partial Class T002
         Me.ClientSize = New System.Drawing.Size(513, 157)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
+        Me.KeyPreview = True
         Me.Name = "T002"
-        Me.Text = "T002_作業マスタメンテナンス"
+        Me.Text = "T002_工程マスタメンテナンス"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -169,9 +172,9 @@ Partial Class T002
 
     End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents txtWorkNo As System.Windows.Forms.TextBox
+    Friend WithEvents txtProcessNo As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents txtWorkName As System.Windows.Forms.TextBox
+    Friend WithEvents txtProcessName As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents btnSearch As System.Windows.Forms.Button
