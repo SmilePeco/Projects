@@ -175,6 +175,7 @@ Public Class T006
                         txtAdress2.Text = CStr(dtReader("受注先住所２")).Trim
 
                         lblMode.Text = "更新"
+                        chkShipment.Enabled = False
 
                     End While
 
@@ -239,7 +240,7 @@ Public Class T006
                     strSQL &= "FROM "
                     strSQL &= " ORDER_MS "
                     strSQL &= "WHERE "
-                    strSQL &= " 受注先NO = '" + txtOrderNo.Text.Trim + "' "
+                    strSQL &= " 受注先NO = '" & txtOrderNo.Text.Trim & "' "
 
                     cd.CommandText = strSQL
                     cd.Connection = Cn
@@ -252,14 +253,14 @@ Public Class T006
                         strSQL = ""
                         strSQL &= "UPDATE ORDER_MS "
                         strSQL &= "SET "
-                        strSQL &= " 受注先名 = '" + txtOrderName.Text.Trim + "', "
-                        strSQL &= " 受注先担当者名 = '" + txtOfficer.Text.Trim + "', "
-                        strSQL &= " 受注先電話番号 = '" + txtTELL.Text.Trim + "', "
-                        strSQL &= " 受注先住所１ = '" + txtAdress1.Text.Trim + "', "
-                        strSQL &= " 受注先住所２ = '" + txtAdress2.Text.Trim + "' , "
+                        strSQL &= " 受注先名 = '" & txtOrderName.Text.Trim & "', "
+                        strSQL &= " 受注先担当者名 = '" & txtOfficer.Text.Trim & "', "
+                        strSQL &= " 受注先電話番号 = '" & txtTELL.Text.Trim & "', "
+                        strSQL &= " 受注先住所１ = '" & txtAdress1.Text.Trim & "', "
+                        strSQL &= " 受注先住所２ = '" & txtAdress2.Text.Trim & "' , "
                         strSQL &= " 更新日 = SYSDATETIME() "
                         strSQL &= "WHERE "
-                        strSQL &= " 受注先NO = '" + txtOrderNo.Text.Trim + "' "
+                        strSQL &= " 受注先NO = '" & txtOrderNo.Text.Trim & "' "
 
                         cd.CommandText = strSQL
                         cd.Connection = Cn
@@ -272,21 +273,64 @@ Public Class T006
                         '//登録されていない場合はINSERT
                         dtReader.Close()
 
+                        'チェックが入っている場合は、出荷テーブルの事前チェック
+                        If chkShipment.Checked = True Then
+                            '登録前チェック
+                            strSQL = ""
+                            strSQL &= "SELECT "
+                            strSQL &= " 出荷先NO "
+                            strSQL &= "FROM "
+                            strSQL &= " SHIPMENT_MS "
+                            strSQL &= "WHERE "
+                            strSQL &= " 出荷先NO = '" & txtOrderNo.Text.Trim & "' "
+                            cd.CommandText = strSQL
+                            cd.Connection = Cn
+                            dtReader = cd.ExecuteReader
+
+                            If dtReader.HasRows Then
+                                MessageBox.Show("その受注先NOは既に出荷先マスタに登録されています。" & vbCrLf & "確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                Return False
+                            End If
+
+                            dtReader.Close()
+
+                            '出荷先マスタにINSERT
+                            strSQL = ""
+                            strSQL &= "INSERT INTO SHIPMENT_MS VALUES ( "
+                            strSQL &= " '" & txtOrderNo.Text.Trim & "', "
+                            strSQL &= " '" & txtOrderName.Text.Trim & "', "
+                            strSQL &= " '" & txtOfficer.Text.Trim & "', "
+                            strSQL &= " '" & txtTELL.Text.Trim & "', "
+                            strSQL &= " '" & txtAdress1.Text.Trim & "', "
+                            strSQL &= " '" & txtAdress2.Text.Trim & "', "
+                            strSQL &= " SYSDATETIME(), "
+                            strSQL &= " SYSDATETIME()  "
+                            strSQL &= " ) "
+                            cd.CommandText = strSQL
+                            cd.Connection = Cn
+                            cd.ExecuteNonQuery()
+
+                        End If
+
+
+
+                        '受注先マスタにINSERT
                         strSQL = ""
                         strSQL &= "INSERT INTO ORDER_MS VALUES ( "
-                        strSQL &= " '" + txtOrderNo.Text.Trim + "', "
-                        strSQL &= " '" + txtOrderName.Text.Trim + "', "
-                        strSQL &= " '" + txtOfficer.Text.Trim + "', "
-                        strSQL &= " '" + txtTELL.Text.Trim + "', "
-                        strSQL &= " '" + txtAdress1.Text.Trim + "', "
-                        strSQL &= " '" + txtAdress2.Text.Trim + "', "
+                        strSQL &= " '" & txtOrderNo.Text.Trim & "', "
+                        strSQL &= " '" & txtOrderName.Text.Trim & "', "
+                        strSQL &= " '" & txtOfficer.Text.Trim & "', "
+                        strSQL &= " '" & txtTELL.Text.Trim & "', "
+                        strSQL &= " '" & txtAdress1.Text.Trim & "', "
+                        strSQL &= " '" & txtAdress2.Text.Trim & "', "
                         strSQL &= " SYSDATETIME(), "
                         strSQL &= " SYSDATETIME()  "
                         strSQL &= " ) "
-
                         cd.CommandText = strSQL
                         cd.Connection = Cn
                         cd.ExecuteNonQuery()
+
+
 
                         MessageBox.Show("登録完了しました。", "登録完了", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
                         Call sClear()
@@ -323,12 +367,12 @@ Public Class T006
                     '//INSERT文の作成
                     strSQL = ""
                     strSQL &= "INSERT INTO ORDER_MS VALUES ( "
-                    strSQL &= " '" + strMaxCount + "',"
-                    strSQL &= " '" + txtOrderName.Text.Trim + "', "
-                    strSQL &= " '" + txtOfficer.Text.Trim + "', "
-                    strSQL &= " '" + txtTELL.Text.Trim + "', "
-                    strSQL &= " '" + txtAdress1.Text.Trim + "', "
-                    strSQL &= " '" + txtAdress2.Text.Trim + "', "
+                    strSQL &= " '" & strMaxCount & "',"
+                    strSQL &= " '" & txtOrderName.Text.Trim & "', "
+                    strSQL &= " '" & txtOfficer.Text.Trim & "', "
+                    strSQL &= " '" & txtTELL.Text.Trim & "', "
+                    strSQL &= " '" & txtAdress1.Text.Trim & "', "
+                    strSQL &= " '" & txtAdress2.Text.Trim & "', "
                     strSQL &= " SYSDATETIME(), "
                     strSQL &= " SYSDATETIME()  "
                     strSQL &= " ) "
@@ -494,6 +538,9 @@ Public Class T006
         txtAdress2.Clear()
 
         txtOrderNo.Enabled = True
+
+        chkShipment.Checked = False
+        chkShipment.Enabled = True
 
         btnUpdate.Enabled = False
         btnDelete.Enabled = False

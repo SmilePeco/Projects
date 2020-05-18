@@ -26,6 +26,7 @@ Partial Class T006
         Me.txtOrderNo = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.lblMode = New System.Windows.Forms.Label()
         Me.txtAdress2 = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtAdress1 = New System.Windows.Forms.TextBox()
@@ -37,12 +38,12 @@ Partial Class T006
         Me.txtOrderName = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.lblMode = New System.Windows.Forms.Label()
-        Me.btnSearch = New System.Windows.Forms.Button()
-        Me.btnUpdate = New System.Windows.Forms.Button()
-        Me.btnDelete = New System.Windows.Forms.Button()
-        Me.btnClear = New System.Windows.Forms.Button()
         Me.btnEnd = New System.Windows.Forms.Button()
+        Me.btnClear = New System.Windows.Forms.Button()
+        Me.btnDelete = New System.Windows.Forms.Button()
+        Me.btnUpdate = New System.Windows.Forms.Button()
+        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.chkShipment = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -79,6 +80,7 @@ Partial Class T006
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.chkShipment)
         Me.GroupBox2.Controls.Add(Me.lblMode)
         Me.GroupBox2.Controls.Add(Me.txtAdress2)
         Me.GroupBox2.Controls.Add(Me.Label6)
@@ -93,9 +95,19 @@ Partial Class T006
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Location = New System.Drawing.Point(0, 48)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(569, 287)
+        Me.GroupBox2.Size = New System.Drawing.Size(569, 320)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
+        '
+        'lblMode
+        '
+        Me.lblMode.AutoSize = True
+        Me.lblMode.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblMode.Location = New System.Drawing.Point(506, 215)
+        Me.lblMode.Name = "lblMode"
+        Me.lblMode.Size = New System.Drawing.Size(51, 12)
+        Me.lblMode.TabIndex = 10
+        Me.lblMode.Text = "lblMode"
         '
         'txtAdress2
         '
@@ -191,57 +203,11 @@ Partial Class T006
         Me.GroupBox3.Controls.Add(Me.btnUpdate)
         Me.GroupBox3.Controls.Add(Me.btnSearch)
         Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupBox3.Location = New System.Drawing.Point(0, 278)
+        Me.GroupBox3.Location = New System.Drawing.Point(0, 311)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(569, 57)
         Me.GroupBox3.TabIndex = 2
         Me.GroupBox3.TabStop = False
-        '
-        'lblMode
-        '
-        Me.lblMode.AutoSize = True
-        Me.lblMode.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblMode.Location = New System.Drawing.Point(506, 215)
-        Me.lblMode.Name = "lblMode"
-        Me.lblMode.Size = New System.Drawing.Size(51, 12)
-        Me.lblMode.TabIndex = 10
-        Me.lblMode.Text = "lblMode"
-        '
-        'btnSearch
-        '
-        Me.btnSearch.Location = New System.Drawing.Point(14, 19)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(75, 23)
-        Me.btnSearch.TabIndex = 0
-        Me.btnSearch.Text = "F1:検索"
-        Me.btnSearch.UseVisualStyleBackColor = True
-        '
-        'btnUpdate
-        '
-        Me.btnUpdate.Location = New System.Drawing.Point(117, 19)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
-        Me.btnUpdate.TabIndex = 1
-        Me.btnUpdate.Text = "F2:登録"
-        Me.btnUpdate.UseVisualStyleBackColor = True
-        '
-        'btnDelete
-        '
-        Me.btnDelete.Location = New System.Drawing.Point(223, 19)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(75, 23)
-        Me.btnDelete.TabIndex = 2
-        Me.btnDelete.Text = "F3:削除"
-        Me.btnDelete.UseVisualStyleBackColor = True
-        '
-        'btnClear
-        '
-        Me.btnClear.Location = New System.Drawing.Point(326, 19)
-        Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(75, 23)
-        Me.btnClear.TabIndex = 3
-        Me.btnClear.Text = "F4:クリア"
-        Me.btnClear.UseVisualStyleBackColor = True
         '
         'btnEnd
         '
@@ -252,11 +218,57 @@ Partial Class T006
         Me.btnEnd.Text = "F5:終了"
         Me.btnEnd.UseVisualStyleBackColor = True
         '
+        'btnClear
+        '
+        Me.btnClear.Location = New System.Drawing.Point(326, 19)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(75, 23)
+        Me.btnClear.TabIndex = 3
+        Me.btnClear.Text = "F4:クリア"
+        Me.btnClear.UseVisualStyleBackColor = True
+        '
+        'btnDelete
+        '
+        Me.btnDelete.Location = New System.Drawing.Point(223, 19)
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Size = New System.Drawing.Size(75, 23)
+        Me.btnDelete.TabIndex = 2
+        Me.btnDelete.Text = "F3:削除"
+        Me.btnDelete.UseVisualStyleBackColor = True
+        '
+        'btnUpdate
+        '
+        Me.btnUpdate.Location = New System.Drawing.Point(117, 19)
+        Me.btnUpdate.Name = "btnUpdate"
+        Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
+        Me.btnUpdate.TabIndex = 1
+        Me.btnUpdate.Text = "F2:登録"
+        Me.btnUpdate.UseVisualStyleBackColor = True
+        '
+        'btnSearch
+        '
+        Me.btnSearch.Location = New System.Drawing.Point(14, 19)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(75, 23)
+        Me.btnSearch.TabIndex = 0
+        Me.btnSearch.Text = "F1:検索"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
+        'chkShipment
+        '
+        Me.chkShipment.AutoSize = True
+        Me.chkShipment.Location = New System.Drawing.Point(14, 226)
+        Me.chkShipment.Name = "chkShipment"
+        Me.chkShipment.Size = New System.Drawing.Size(128, 16)
+        Me.chkShipment.TabIndex = 11
+        Me.chkShipment.Text = "出荷先マスタにも登録"
+        Me.chkShipment.UseVisualStyleBackColor = True
+        '
         'T006
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(569, 335)
+        Me.ClientSize = New System.Drawing.Size(569, 368)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
@@ -292,5 +304,6 @@ Partial Class T006
     Friend WithEvents btnSearch As System.Windows.Forms.Button
     Friend WithEvents btnEnd As System.Windows.Forms.Button
     Friend WithEvents btnClear As System.Windows.Forms.Button
+    Friend WithEvents chkShipment As System.Windows.Forms.CheckBox
 
 End Class

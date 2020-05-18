@@ -66,7 +66,7 @@ Public Class T005
     '---------------------------------------------
     '--検索ボタン押下処理                      ---
     '---------------------------------------------
-    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs)
         '検索
         '作業工程NOは０埋め
         If txtWorkProcessNo.Text.Trim <> "" Then
@@ -81,7 +81,7 @@ Public Class T005
     '---------------------------------------------
     '--出力ボタン押下処理                      ---
     '---------------------------------------------
-    Private Sub btnOutput_Click(sender As Object, e As EventArgs) Handles btnOutput.Click
+    Private Sub btnOutput_Click(sender As Object, e As EventArgs)
         '出力
         Dim frm As New T005_2(5, txtWorkProcessNo.Text.Trim)
         frm.Main()
@@ -91,7 +91,7 @@ Public Class T005
     '---------------------------------------------
     '--取込ボタン押下処理                      ---
     '---------------------------------------------
-    Private Sub btnInput_Click(sender As Object, e As EventArgs) Handles btnInput.Click
+    Private Sub btnInput_Click(sender As Object, e As EventArgs)
         '取込
         Dim frm As New T005_2(6, txtWorkProcessNo.Text.Trim)
         frm.Main()
@@ -101,7 +101,7 @@ Public Class T005
     '---------------------------------------------
     '--更新ボタン押下処理                      ---
     '---------------------------------------------
-    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+    Private Sub btnUpdate_Click(sender As Object, e As EventArgs)
         '更新
         Dim frm As New T005_2(2, txtWorkProcessNo.Text.Trim)
         frm.Main()
@@ -111,7 +111,7 @@ Public Class T005
     '---------------------------------------------
     '--印刷ボタン押下処理                      ---
     '---------------------------------------------
-    Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
+    Private Sub btnPrint_Click(sender As Object, e As EventArgs)
         '印刷
         Dim frm As New T005_2(3, txtWorkProcessNo.Text.Trim)
         frm.Main()
@@ -121,7 +121,7 @@ Public Class T005
     '---------------------------------------------
     '--クリアボタン押下処理                    ---
     '---------------------------------------------
-    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+    Private Sub btnClear_Click(sender As Object, e As EventArgs)
         'クリア
         Call sClear()
 
@@ -130,7 +130,7 @@ Public Class T005
     '---------------------------------------------
     '--終了ボタン押下処理                      ---
     '---------------------------------------------
-    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
+    Private Sub btnEnd_Click(sender As Object, e As EventArgs)
         '終了
         Me.Close()
 
@@ -150,7 +150,7 @@ Public Class T005
     '---------------------------------------------
     '---DataGridView EditingControlShowing処理 ---
     '---------------------------------------------
-    Private Sub DataGridView1_EditingControlShowing(sender As Object, e As DataGridViewEditingControlShowingEventArgs) Handles DataGridView1.EditingControlShowing
+    Private Sub DataGridView1_EditingControlShowing(sender As Object, e As DataGridViewEditingControlShowingEventArgs)
         '表示されているコントロールがDataGridViewTextBoxEditingControlか調べる
         If TypeOf e.Control Is DataGridViewTextBoxEditingControl Then
             '編集のために表示されているコントロールを取得
