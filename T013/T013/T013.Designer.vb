@@ -23,6 +23,10 @@ Partial Class T013
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btnUserIDSearch = New System.Windows.Forms.Button()
+        Me.txtUserID = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.lblMainItemMSName = New System.Windows.Forms.Label()
         Me.lblMainWorkProcessMSName = New System.Windows.Forms.Label()
         Me.lblMainOrderMSName = New System.Windows.Forms.Label()
@@ -64,15 +68,11 @@ Partial Class T013
         Me.Label2 = New System.Windows.Forms.Label()
         Me.lblOrderMSName = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.btnUserIDSearch = New System.Windows.Forms.Button()
-        Me.txtUserID = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox4
@@ -108,6 +108,45 @@ Partial Class T013
         Me.GroupBox4.Size = New System.Drawing.Size(735, 306)
         Me.GroupBox4.TabIndex = 3
         Me.GroupBox4.TabStop = False
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.btnUserIDSearch)
+        Me.GroupBox1.Controls.Add(Me.txtUserID)
+        Me.GroupBox1.Controls.Add(Me.Label13)
+        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 206)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(729, 42)
+        Me.GroupBox1.TabIndex = 43
+        Me.GroupBox1.TabStop = False
+        '
+        'btnUserIDSearch
+        '
+        Me.btnUserIDSearch.Location = New System.Drawing.Point(184, 15)
+        Me.btnUserIDSearch.Name = "btnUserIDSearch"
+        Me.btnUserIDSearch.Size = New System.Drawing.Size(24, 23)
+        Me.btnUserIDSearch.TabIndex = 20
+        Me.btnUserIDSearch.Text = "..."
+        Me.btnUserIDSearch.UseVisualStyleBackColor = True
+        '
+        'txtUserID
+        '
+        Me.txtUserID.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txtUserID.Location = New System.Drawing.Point(89, 17)
+        Me.txtUserID.MaxLength = 10
+        Me.txtUserID.Name = "txtUserID"
+        Me.txtUserID.Size = New System.Drawing.Size(95, 19)
+        Me.txtUserID.TabIndex = 19
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(9, 20)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(65, 12)
+        Me.Label13.TabIndex = 21
+        Me.Label13.Text = "更新担当者"
         '
         'lblMainItemMSName
         '
@@ -342,6 +381,8 @@ Partial Class T013
         '
         'btnEnd
         '
+        Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEnd.Location = New System.Drawing.Point(645, 19)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(75, 23)
@@ -351,6 +392,8 @@ Partial Class T013
         '
         'btnClear
         '
+        Me.btnClear.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnClear.Location = New System.Drawing.Point(552, 19)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(75, 23)
@@ -415,7 +458,9 @@ Partial Class T013
         '
         'btnOrderNOSearch
         '
-        Me.btnOrderNOSearch.Location = New System.Drawing.Point(557, 59)
+        Me.btnOrderNOSearch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnOrderNOSearch.Location = New System.Drawing.Point(422, 55)
         Me.btnOrderNOSearch.Name = "btnOrderNOSearch"
         Me.btnOrderNOSearch.Size = New System.Drawing.Size(75, 23)
         Me.btnOrderNOSearch.TabIndex = 27
@@ -506,45 +551,6 @@ Partial Class T013
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.btnUserIDSearch)
-        Me.GroupBox1.Controls.Add(Me.txtUserID)
-        Me.GroupBox1.Controls.Add(Me.Label13)
-        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 206)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(729, 42)
-        Me.GroupBox1.TabIndex = 43
-        Me.GroupBox1.TabStop = False
-        '
-        'btnUserIDSearch
-        '
-        Me.btnUserIDSearch.Location = New System.Drawing.Point(184, 15)
-        Me.btnUserIDSearch.Name = "btnUserIDSearch"
-        Me.btnUserIDSearch.Size = New System.Drawing.Size(24, 23)
-        Me.btnUserIDSearch.TabIndex = 20
-        Me.btnUserIDSearch.Text = "..."
-        Me.btnUserIDSearch.UseVisualStyleBackColor = True
-        '
-        'txtUserID
-        '
-        Me.txtUserID.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txtUserID.Location = New System.Drawing.Point(89, 17)
-        Me.txtUserID.MaxLength = 10
-        Me.txtUserID.Name = "txtUserID"
-        Me.txtUserID.Size = New System.Drawing.Size(95, 19)
-        Me.txtUserID.TabIndex = 19
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(9, 20)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(65, 12)
-        Me.Label13.TabIndex = 21
-        Me.Label13.Text = "更新担当者"
-        '
         'T013
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -557,13 +563,13 @@ Partial Class T013
         Me.Text = "T013_出荷登録画面"
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
