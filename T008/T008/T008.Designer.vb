@@ -33,11 +33,11 @@ Partial Class T008
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.btnEnd = New System.Windows.Forms.Button()
+        Me.btnClear = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.btnClear = New System.Windows.Forms.Button()
-        Me.btnEnd = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -157,6 +157,28 @@ Partial Class T008
         Me.GroupBox3.TabIndex = 1
         Me.GroupBox3.TabStop = False
         '
+        'btnEnd
+        '
+        Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEnd.Location = New System.Drawing.Point(420, 18)
+        Me.btnEnd.Name = "btnEnd"
+        Me.btnEnd.Size = New System.Drawing.Size(75, 23)
+        Me.btnEnd.TabIndex = 3
+        Me.btnEnd.Text = "F4:終了"
+        Me.btnEnd.UseVisualStyleBackColor = True
+        '
+        'btnClear
+        '
+        Me.btnClear.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnClear.Location = New System.Drawing.Point(316, 18)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(75, 23)
+        Me.btnClear.TabIndex = 2
+        Me.btnClear.Text = "F3:クリア"
+        Me.btnClear.UseVisualStyleBackColor = True
+        '
         'btnDelete
         '
         Me.btnDelete.Location = New System.Drawing.Point(119, 18)
@@ -186,24 +208,6 @@ Partial Class T008
         Me.DataGridView1.RowTemplate.Height = 21
         Me.DataGridView1.Size = New System.Drawing.Size(504, 195)
         Me.DataGridView1.TabIndex = 0
-        '
-        'btnClear
-        '
-        Me.btnClear.Location = New System.Drawing.Point(316, 18)
-        Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(75, 23)
-        Me.btnClear.TabIndex = 2
-        Me.btnClear.Text = "F3:クリア"
-        Me.btnClear.UseVisualStyleBackColor = True
-        '
-        'btnEnd
-        '
-        Me.btnEnd.Location = New System.Drawing.Point(420, 18)
-        Me.btnEnd.Name = "btnEnd"
-        Me.btnEnd.Size = New System.Drawing.Size(75, 23)
-        Me.btnEnd.TabIndex = 3
-        Me.btnEnd.Text = "F4:終了"
-        Me.btnEnd.UseVisualStyleBackColor = True
         '
         'T008
         '
