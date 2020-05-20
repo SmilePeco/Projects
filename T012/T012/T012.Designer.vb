@@ -205,20 +205,24 @@ Partial Class T012
         '
         'btnEnd
         '
+        Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEnd.Location = New System.Drawing.Point(556, 15)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(75, 23)
         Me.btnEnd.TabIndex = 6
-        Me.btnEnd.Text = "F3:終了"
+        Me.btnEnd.Text = "F4:終了"
         Me.btnEnd.UseVisualStyleBackColor = True
         '
         'btnClear
         '
+        Me.btnClear.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnClear.Location = New System.Drawing.Point(459, 15)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(75, 23)
         Me.btnClear.TabIndex = 5
-        Me.btnClear.Text = "F2:クリア"
+        Me.btnClear.Text = "F3:クリア"
         Me.btnClear.UseVisualStyleBackColor = True
         '
         'btnSearch
