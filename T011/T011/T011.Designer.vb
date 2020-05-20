@@ -35,23 +35,23 @@ Partial Class T011
         Me.txtCreateNo = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.btnEnd = New System.Windows.Forms.Button()
-        Me.btnClear = New System.Windows.Forms.Button()
-        Me.btnSearch = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.btnUserIDSearch = New System.Windows.Forms.Button()
         Me.txtUserID = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnEnd = New System.Windows.Forms.Button()
+        Me.btnClear = New System.Windows.Forms.Button()
+        Me.btnSearch = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
-        Me.GroupBox5.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox6.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -189,46 +189,6 @@ Partial Class T011
         Me.GroupBox4.TabIndex = 3
         Me.GroupBox4.TabStop = False
         '
-        'GroupBox5
-        '
-        Me.GroupBox5.Controls.Add(Me.Button1)
-        Me.GroupBox5.Controls.Add(Me.btnEnd)
-        Me.GroupBox5.Controls.Add(Me.btnClear)
-        Me.GroupBox5.Controls.Add(Me.btnSearch)
-        Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupBox5.Location = New System.Drawing.Point(3, 237)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(637, 50)
-        Me.GroupBox5.TabIndex = 1
-        Me.GroupBox5.TabStop = False
-        '
-        'btnEnd
-        '
-        Me.btnEnd.Location = New System.Drawing.Point(529, 18)
-        Me.btnEnd.Name = "btnEnd"
-        Me.btnEnd.Size = New System.Drawing.Size(75, 23)
-        Me.btnEnd.TabIndex = 2
-        Me.btnEnd.Text = "F4:終了"
-        Me.btnEnd.UseVisualStyleBackColor = True
-        '
-        'btnClear
-        '
-        Me.btnClear.Location = New System.Drawing.Point(432, 18)
-        Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(75, 23)
-        Me.btnClear.TabIndex = 1
-        Me.btnClear.Text = "F3:クリア"
-        Me.btnClear.UseVisualStyleBackColor = True
-        '
-        'btnSearch
-        '
-        Me.btnSearch.Location = New System.Drawing.Point(11, 18)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(75, 23)
-        Me.btnSearch.TabIndex = 0
-        Me.btnSearch.Text = "F1:検索"
-        Me.btnSearch.UseVisualStyleBackColor = True
-        '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
@@ -240,15 +200,6 @@ Partial Class T011
         Me.DataGridView1.RowTemplate.Height = 21
         Me.DataGridView1.Size = New System.Drawing.Size(637, 178)
         Me.DataGridView1.TabIndex = 0
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(108, 18)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "F2:更新"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'GroupBox6
         '
@@ -289,6 +240,59 @@ Partial Class T011
         Me.Label5.TabIndex = 15
         Me.Label5.Text = "更新担当者"
         '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.Button1)
+        Me.GroupBox5.Controls.Add(Me.btnEnd)
+        Me.GroupBox5.Controls.Add(Me.btnClear)
+        Me.GroupBox5.Controls.Add(Me.btnSearch)
+        Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupBox5.Location = New System.Drawing.Point(3, 237)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(637, 50)
+        Me.GroupBox5.TabIndex = 1
+        Me.GroupBox5.TabStop = False
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(108, 18)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 3
+        Me.Button1.Text = "F2:更新"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'btnEnd
+        '
+        Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEnd.Location = New System.Drawing.Point(529, 18)
+        Me.btnEnd.Name = "btnEnd"
+        Me.btnEnd.Size = New System.Drawing.Size(75, 23)
+        Me.btnEnd.TabIndex = 2
+        Me.btnEnd.Text = "F4:終了"
+        Me.btnEnd.UseVisualStyleBackColor = True
+        '
+        'btnClear
+        '
+        Me.btnClear.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnClear.Location = New System.Drawing.Point(432, 18)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(75, 23)
+        Me.btnClear.TabIndex = 1
+        Me.btnClear.Text = "F3:クリア"
+        Me.btnClear.UseVisualStyleBackColor = True
+        '
+        'btnSearch
+        '
+        Me.btnSearch.Location = New System.Drawing.Point(11, 18)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(75, 23)
+        Me.btnSearch.TabIndex = 0
+        Me.btnSearch.Text = "F1:検索"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
         'T011
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -308,10 +312,10 @@ Partial Class T011
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox5.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
