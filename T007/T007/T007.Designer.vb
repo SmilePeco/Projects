@@ -42,10 +42,14 @@ Partial Class T007
         Me.Label5 = New System.Windows.Forms.Label()
         Me.btnSubmit = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.btnClear = New System.Windows.Forms.Button()
+        Me.btnEnd = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -227,16 +231,15 @@ Partial Class T007
         '
         'btnSubmit
         '
-        Me.btnSubmit.Location = New System.Drawing.Point(474, 25)
+        Me.btnSubmit.Location = New System.Drawing.Point(14, 18)
         Me.btnSubmit.Name = "btnSubmit"
         Me.btnSubmit.Size = New System.Drawing.Size(75, 23)
         Me.btnSubmit.TabIndex = 13
-        Me.btnSubmit.Text = "登録"
+        Me.btnSubmit.Text = "F1:登録"
         Me.btnSubmit.UseVisualStyleBackColor = True
         '
         'GroupBox4
         '
-        Me.GroupBox4.Controls.Add(Me.btnSubmit)
         Me.GroupBox4.Controls.Add(Me.Label3)
         Me.GroupBox4.Controls.Add(Me.txtOrderAmount)
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Top
@@ -246,15 +249,51 @@ Partial Class T007
         Me.GroupBox4.TabIndex = 3
         Me.GroupBox4.TabStop = False
         '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.btnEnd)
+        Me.GroupBox5.Controls.Add(Me.btnClear)
+        Me.GroupBox5.Controls.Add(Me.btnSubmit)
+        Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupBox5.Location = New System.Drawing.Point(0, 210)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(576, 52)
+        Me.GroupBox5.TabIndex = 4
+        Me.GroupBox5.TabStop = False
+        '
+        'btnClear
+        '
+        Me.btnClear.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnClear.Location = New System.Drawing.Point(401, 18)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(75, 23)
+        Me.btnClear.TabIndex = 14
+        Me.btnClear.Text = "F2:クリア"
+        Me.btnClear.UseVisualStyleBackColor = True
+        '
+        'btnEnd
+        '
+        Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEnd.Location = New System.Drawing.Point(495, 18)
+        Me.btnEnd.Name = "btnEnd"
+        Me.btnEnd.Size = New System.Drawing.Size(75, 23)
+        Me.btnEnd.TabIndex = 15
+        Me.btnEnd.Text = "F3:終了"
+        Me.btnEnd.UseVisualStyleBackColor = True
+        '
         'T007
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(576, 243)
+        Me.ClientSize = New System.Drawing.Size(576, 262)
+        Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
+        Me.KeyPreview = True
         Me.Name = "T007"
         Me.Text = "T007_受注登録"
         Me.GroupBox1.ResumeLayout(False)
@@ -265,6 +304,7 @@ Partial Class T007
         Me.GroupBox3.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -288,5 +328,8 @@ Partial Class T007
     Friend WithEvents btnUserIDSearch As System.Windows.Forms.Button
     Friend WithEvents txtUserID As System.Windows.Forms.TextBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
+    Friend WithEvents btnEnd As System.Windows.Forms.Button
+    Friend WithEvents btnClear As System.Windows.Forms.Button
 
 End Class

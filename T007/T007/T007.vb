@@ -8,12 +8,57 @@ Public Class T007
     Dim cd As System.Data.SqlClient.SqlCommand
     Dim strSQL As String
 
+
+
     '------------------------------------------------
     '--Load処理                            ----------
     '------------------------------------------------
     Private Sub T007_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'クリア処理
         sClear()
 
+    End Sub
+
+    '------------------------------------------------
+    '--ファンクションキー処理              ----------
+    '------------------------------------------------
+    Private Sub T007_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        Select Case e.KeyCode
+            Case Keys.F1
+                '登録処理
+                Call sSubmit()
+            Case Keys.F2
+                'クリア処理
+                Call sClear()
+            Case Keys.F3
+                '終了処理
+                Me.Close()
+        End Select
+
+    End Sub
+
+    '------------------------------------------------
+    '--登録ボタン押下処理                  ----------
+    '------------------------------------------------
+    Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+        '登録処理
+        Call sSubmit()
+    End Sub
+
+    '------------------------------------------------
+    '--クリアボタン押下処理                ----------
+    '------------------------------------------------
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        'クリア処理
+        Call sClear()
+    End Sub
+
+    '------------------------------------------------
+    '--終了ボタン押下処理                  ----------
+    '------------------------------------------------
+    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
+        '終了処理
+        Me.Close()
     End Sub
 
     '------------------------------------------------
@@ -47,9 +92,9 @@ Public Class T007
     End Sub
 
     '------------------------------------------------
-    '--登録ボタン処理                      ----------
+    '--登録処理                            ----------
     '------------------------------------------------
-    Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+    Private Sub sSubmit()
         Dim result As Boolean
         'DB接続
         Call sDBConnect()
@@ -60,7 +105,7 @@ Public Class T007
             'DB接続
             Call sDBConnect()
             '登録処理
-            result = fSubmit()
+            result = fMainSubmit()
             If result = True Then
                 Call sClear()
             End If
@@ -339,9 +384,9 @@ Public Class T007
     End Function
 
     '------------------------------------------------
-    '--登録処理                            ----------
+    '--登録メイン処理                            ----------
     '------------------------------------------------
-    Public Function fSubmit()
+    Public Function fMainSubmit()
 
         Dim dtReader As SqlDataReader
         Dim intOrderCount As Integer
@@ -410,6 +455,27 @@ Public Class T007
 
     End Function
 
+
+    '------------------------------------------------
+    '--クリア処理                          ----------
+    '------------------------------------------------
+    Public Sub sClear()
+
+        txtOrderMSNo.Clear()
+        lblOrderMSName.Text = ""
+        dtpOrderDate.Value = DateTime.Now
+
+        txtWorkProcessNO.Clear()
+        lblWorkProcessName.Text = ""
+
+        txtOrderAmount.Clear()
+
+        txtUserID.Clear()
+
+        txtOrderMSNo.Focus()
+
+    End Sub
+
     '------------------------------------------------
     '--DB接続の開始                        ----------
     '------------------------------------------------
@@ -470,27 +536,8 @@ Public Class T007
 
     End Function
 
-    '------------------------------------------------
-    '--クリア処理                          ----------
-    '------------------------------------------------
-    Public Sub sClear()
-
-        txtOrderMSNo.Clear()
-        lblOrderMSName.Text = ""
-        dtpOrderDate.Value = DateTime.Now
-
-        txtWorkProcessNO.Clear()
-        lblWorkProcessName.Text = ""
-
-        txtOrderAmount.Clear()
-
-        txtUserID.Clear()
-
-        txtOrderMSNo.Focus()
 
 
-
-    End Sub
 
 
 
