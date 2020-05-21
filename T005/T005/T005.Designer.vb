@@ -87,8 +87,9 @@ Partial Class T005
         '
         'btnEnd
         '
-        Me.btnEnd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnEnd.Location = New System.Drawing.Point(498, 14)
+        Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEnd.Location = New System.Drawing.Point(672, 14)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(75, 23)
         Me.btnEnd.TabIndex = 6
@@ -97,8 +98,9 @@ Partial Class T005
         '
         'btnClear
         '
-        Me.btnClear.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnClear.Location = New System.Drawing.Point(417, 14)
+        Me.btnClear.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnClear.Location = New System.Drawing.Point(572, 14)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(75, 23)
         Me.btnClear.TabIndex = 5
@@ -107,8 +109,9 @@ Partial Class T005
         '
         'btnPrint
         '
-        Me.btnPrint.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnPrint.Location = New System.Drawing.Point(336, 14)
+        Me.btnPrint.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnPrint.Location = New System.Drawing.Point(411, 14)
         Me.btnPrint.Name = "btnPrint"
         Me.btnPrint.Size = New System.Drawing.Size(75, 23)
         Me.btnPrint.TabIndex = 4
@@ -117,8 +120,9 @@ Partial Class T005
         '
         'btnUpdate
         '
-        Me.btnUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnUpdate.Location = New System.Drawing.Point(255, 14)
+        Me.btnUpdate.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnUpdate.Location = New System.Drawing.Point(309, 14)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
         Me.btnUpdate.TabIndex = 3
@@ -127,8 +131,9 @@ Partial Class T005
         '
         'btnInput
         '
-        Me.btnInput.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnInput.Location = New System.Drawing.Point(174, 14)
+        Me.btnInput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnInput.Location = New System.Drawing.Point(208, 14)
         Me.btnInput.Name = "btnInput"
         Me.btnInput.Size = New System.Drawing.Size(75, 23)
         Me.btnInput.TabIndex = 2
@@ -137,8 +142,9 @@ Partial Class T005
         '
         'btnOutput
         '
-        Me.btnOutput.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnOutput.Location = New System.Drawing.Point(93, 14)
+        Me.btnOutput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnOutput.Location = New System.Drawing.Point(110, 14)
         Me.btnOutput.Name = "btnOutput"
         Me.btnOutput.Size = New System.Drawing.Size(75, 23)
         Me.btnOutput.TabIndex = 1
@@ -147,7 +153,8 @@ Partial Class T005
         '
         'btnSearch
         '
-        Me.btnSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnSearch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnSearch.Location = New System.Drawing.Point(12, 14)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(75, 23)
