@@ -29,6 +29,11 @@ Partial Class T009
         Me.btnOrderSearch = New System.Windows.Forms.Button()
         Me.txtOrderMSNo = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.lblItemName = New System.Windows.Forms.Label()
+        Me.lblItemNO = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.lblWorkProcessName = New System.Windows.Forms.Label()
         Me.cmdWorkProcessSearch = New System.Windows.Forms.Button()
         Me.txtWorkProcessNO = New System.Windows.Forms.TextBox()
@@ -44,17 +49,14 @@ Partial Class T009
         Me.txtOrderAmount = New System.Windows.Forms.TextBox()
         Me.btnSubmit = New System.Windows.Forms.Button()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.lblItemNO = New System.Windows.Forms.Label()
-        Me.lblItemName = New System.Windows.Forms.Label()
+        Me.btnClear = New System.Windows.Forms.Button()
+        Me.btnEnd = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
-        Me.GroupBox6.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -102,6 +104,7 @@ Partial Class T009
         '
         'btnOrderSearch
         '
+        Me.btnOrderSearch.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnOrderSearch.Location = New System.Drawing.Point(133, 19)
         Me.btnOrderSearch.Name = "btnOrderSearch"
         Me.btnOrderSearch.Size = New System.Drawing.Size(24, 23)
@@ -131,6 +134,60 @@ Partial Class T009
         Me.GroupBox2.Size = New System.Drawing.Size(641, 110)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
+        '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.lblItemName)
+        Me.GroupBox6.Controls.Add(Me.lblItemNO)
+        Me.GroupBox6.Controls.Add(Me.Label7)
+        Me.GroupBox6.Controls.Add(Me.Label6)
+        Me.GroupBox6.Dock = System.Windows.Forms.DockStyle.Right
+        Me.GroupBox6.Location = New System.Drawing.Point(267, 15)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(371, 92)
+        Me.GroupBox6.TabIndex = 15
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "製品情報"
+        '
+        'lblItemName
+        '
+        Me.lblItemName.AutoSize = True
+        Me.lblItemName.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblItemName.Location = New System.Drawing.Point(69, 57)
+        Me.lblItemName.Name = "lblItemName"
+        Me.lblItemName.Size = New System.Drawing.Size(75, 13)
+        Me.lblItemName.TabIndex = 20
+        Me.lblItemName.Text = "lblItemName"
+        '
+        'lblItemNO
+        '
+        Me.lblItemNO.AutoSize = True
+        Me.lblItemNO.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblItemNO.Location = New System.Drawing.Point(69, 22)
+        Me.lblItemNO.Name = "lblItemNO"
+        Me.lblItemNO.Size = New System.Drawing.Size(61, 13)
+        Me.lblItemNO.TabIndex = 19
+        Me.lblItemNO.Text = "lblItemNO"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label7.Location = New System.Drawing.Point(6, 57)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(53, 13)
+        Me.Label7.TabIndex = 16
+        Me.Label7.Text = "製品名："
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label6.Location = New System.Drawing.Point(6, 22)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(57, 13)
+        Me.Label6.TabIndex = 15
+        Me.Label6.Text = "製品NO："
         '
         'lblWorkProcessName
         '
@@ -260,101 +317,75 @@ Partial Class T009
         'btnSubmit
         '
         Me.btnSubmit.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnSubmit.Location = New System.Drawing.Point(525, 18)
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnSubmit.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnSubmit.Location = New System.Drawing.Point(12, 20)
         Me.btnSubmit.Name = "btnSubmit"
         Me.btnSubmit.Size = New System.Drawing.Size(75, 23)
         Me.btnSubmit.TabIndex = 8
-        Me.btnSubmit.Text = "登録"
+        Me.btnSubmit.Text = "F1:登録"
         Me.btnSubmit.UseVisualStyleBackColor = True
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.btnClear)
+        Me.GroupBox5.Controls.Add(Me.btnEnd)
         Me.GroupBox5.Controls.Add(Me.btnSubmit)
-        Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox5.Location = New System.Drawing.Point(0, 285)
+        Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupBox5.Location = New System.Drawing.Point(0, 307)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(641, 55)
         Me.GroupBox5.TabIndex = 4
         Me.GroupBox5.TabStop = False
         '
-        'GroupBox6
+        'btnClear
         '
-        Me.GroupBox6.Controls.Add(Me.lblItemName)
-        Me.GroupBox6.Controls.Add(Me.lblItemNO)
-        Me.GroupBox6.Controls.Add(Me.Label7)
-        Me.GroupBox6.Controls.Add(Me.Label6)
-        Me.GroupBox6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GroupBox6.Location = New System.Drawing.Point(267, 15)
-        Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(371, 92)
-        Me.GroupBox6.TabIndex = 15
-        Me.GroupBox6.TabStop = False
-        Me.GroupBox6.Text = "製品情報"
+        Me.btnClear.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnClear.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnClear.Location = New System.Drawing.Point(456, 20)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(75, 23)
+        Me.btnClear.TabIndex = 10
+        Me.btnClear.Text = "F2:クリア"
+        Me.btnClear.UseVisualStyleBackColor = True
         '
-        'Label6
+        'btnEnd
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label6.Location = New System.Drawing.Point(6, 22)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(57, 13)
-        Me.Label6.TabIndex = 15
-        Me.Label6.Text = "製品NO："
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label7.Location = New System.Drawing.Point(6, 57)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(53, 13)
-        Me.Label7.TabIndex = 16
-        Me.Label7.Text = "製品名："
-        '
-        'lblItemNO
-        '
-        Me.lblItemNO.AutoSize = True
-        Me.lblItemNO.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblItemNO.Location = New System.Drawing.Point(69, 22)
-        Me.lblItemNO.Name = "lblItemNO"
-        Me.lblItemNO.Size = New System.Drawing.Size(61, 13)
-        Me.lblItemNO.TabIndex = 19
-        Me.lblItemNO.Text = "lblItemNO"
-        '
-        'lblItemName
-        '
-        Me.lblItemName.AutoSize = True
-        Me.lblItemName.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblItemName.Location = New System.Drawing.Point(69, 57)
-        Me.lblItemName.Name = "lblItemName"
-        Me.lblItemName.Size = New System.Drawing.Size(75, 13)
-        Me.lblItemName.TabIndex = 20
-        Me.lblItemName.Text = "lblItemName"
+        Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEnd.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnEnd.Location = New System.Drawing.Point(554, 20)
+        Me.btnEnd.Name = "btnEnd"
+        Me.btnEnd.Size = New System.Drawing.Size(75, 23)
+        Me.btnEnd.TabIndex = 9
+        Me.btnEnd.Text = "F3:終了"
+        Me.btnEnd.UseVisualStyleBackColor = True
         '
         'T009
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(641, 330)
+        Me.ClientSize = New System.Drawing.Size(641, 362)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
+        Me.KeyPreview = True
         Me.Name = "T009"
         Me.Text = "T009_生産登録"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
-        Me.GroupBox6.ResumeLayout(False)
-        Me.GroupBox6.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -385,5 +416,7 @@ Partial Class T009
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents lblItemName As System.Windows.Forms.Label
     Friend WithEvents lblItemNO As System.Windows.Forms.Label
+    Friend WithEvents btnClear As System.Windows.Forms.Button
+    Friend WithEvents btnEnd As System.Windows.Forms.Button
 
 End Class

@@ -17,6 +17,49 @@ Public Class T009
     End Sub
 
     '------------------------------------------------
+    '--ファンクションキー検索              ----------
+    '------------------------------------------------
+    Private Sub T009_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+
+        Select Case e.KeyCode
+            Case Keys.F1
+                '登録処理
+                Call fUpdate()
+            Case Keys.F2
+                'クリア処理
+                Call sClear()
+            Case Keys.F3
+                '終了処理
+                Me.Close()
+
+        End Select
+    End Sub
+
+    '------------------------------------------------
+    '--登録ボタン押下処理                   ----------
+    '------------------------------------------------
+    Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+        '登録処理
+        Call fUpdate()
+    End Sub
+
+    '------------------------------------------------
+    '--クリアボタン押下処理                ----------
+    '------------------------------------------------
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        'クリア処理
+        Call sClear()
+    End Sub
+
+    '------------------------------------------------
+    '--終了ボタン押下処理                  ----------
+    '------------------------------------------------
+    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
+        '終了処理
+        Me.Close()
+    End Sub
+
+    '------------------------------------------------
     '--出荷先NO KeyPress検索               ----------
     '------------------------------------------------
     Private Sub txtOrderMSNo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtOrderMSNo.KeyPress
@@ -87,13 +130,7 @@ Public Class T009
 
     End Sub
 
-    '------------------------------------------------
-    '--登録ボタン押下処理                   ----------
-    '------------------------------------------------
-    Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-        '登録処理
-        Call fUpdate()
-    End Sub
+
 
     '------------------------------------------------
     '--出荷先検索 　                       ----------
@@ -465,6 +502,26 @@ Public Class T009
     End Function
 
     '------------------------------------------------
+    '--クリア処理                        ----------
+    '------------------------------------------------
+    Public Sub sClear()
+        txtOrderMSNo.Clear()
+        lblOrderMSName.Text = ""
+        txtWorkProcessNO.Clear()
+        lblWorkProcessName.Text = ""
+        txtUserID.Clear()
+        txtOrderAmount.Clear()
+        lblItemNO.Text = ""
+        lblItemName.Text = ""
+        dtpCreateTime.Text = Date.Now
+        chkClosedStock.Checked = False
+
+        '臨時在庫はオフ
+        'chkClosedStock.Visible = False
+
+    End Sub
+
+    '------------------------------------------------
     '--DB接続の開始                        ----------
     '------------------------------------------------
     Public Function sDBConnect() As Boolean
@@ -524,25 +581,11 @@ Public Class T009
 
     End Function
 
-    '------------------------------------------------
-    '--クリア処理                        ----------
-    '------------------------------------------------
-    Public Sub sClear()
-        txtOrderMSNo.Clear()
-        lblOrderMSName.Text = ""
-        txtWorkProcessNO.Clear()
-        lblWorkProcessName.Text = ""
-        txtUserID.Clear()
-        txtOrderAmount.Clear()
-        lblItemNO.Text = ""
-        lblItemName.Text = ""
-        dtpCreateTime.Text = Date.Now
-        chkClosedStock.Checked = False
 
-        '臨時在庫はオフ
-        'chkClosedStock.Visible = False
 
-    End Sub
+
+
+
 
 
 End Class
