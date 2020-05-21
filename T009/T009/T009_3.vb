@@ -61,10 +61,14 @@ Public Class T009_3
         '作業工程NOと作業工程名を取得
         Dim strWorkProcessNO As String = DataGridView1.Item(0, intRow).Value
         Dim strWorkProcessName As String = DataGridView1.Item(1, intRow).Value
+        Dim strItemNO As String = DataGridView1.Item(2, intRow).Value
+        Dim strItemName As String = DataGridView1.Item(3, intRow).Value
         '元のフォームに値を転送
         Dim frm As T009 = CType(Me.Owner, T009)
         frm.txtWorkProcessNO.Text = strWorkProcessNO
         frm.lblWorkProcessName.Text = strWorkProcessName
+        frm.lblItemNO.Text = strItemNO
+        frm.lblItemName.Text = strItemName
         'フォームを閉じる
         Me.Close()
 
@@ -95,14 +99,17 @@ Public Class T009_3
         Try
             strSQL = ""
             strSQL &= "SELECT "
-            strSQL &= " 作業工程NO, "
-            strSQL &= " 作業工程名 "
+            strSQL &= " A.作業工程NO, "
+            strSQL &= " A.作業工程名, "
+            strSQL &= " B.製品NO, "
+            strSQL &= " B.製品名 "
             strSQL &= "FROM "
-            strSQL &= " WORKPROCESS_MS "
+            strSQL &= " WORKPROCESS_MS A, "
+            strSQL &= " ITEM_MS B "
+            strSQL &= "WHERE "
+            strSQL &= "    A.製品NO = B.製品NO "
             If txtWorkProcessNO.Text.Trim <> "" Then
-                strSQL &= "WHERE "
-                strSQL &= " 作業工程NO = '" + txtWorkProcessNO.Text.Trim + "' "
-
+                strSQL &= "AND A.作業工程NO = '" + txtWorkProcessNO.Text.Trim + "' "
             End If
 
             cd.CommandText = strSQL
@@ -123,8 +130,9 @@ Public Class T009_3
 
                 '検索結果のトリム
                 For i = 0 To DataGridView1.RowCount - 1
-                    DataGridView1.Item(0, i).Value = DataGridView1.Item(0, i).Value.ToString.Trim
-                    DataGridView1.Item(1, i).Value = DataGridView1.Item(1, i).Value.ToString.Trim
+                    For y = 0 To DataGridView1.ColumnCount - 1
+                        DataGridView1.Item(y, i).Value = DataGridView1.Item(y, i).Value.ToString.Trim
+                    Next
                 Next
 
                 Return True

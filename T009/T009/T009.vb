@@ -181,12 +181,16 @@ Public Class T009
         Try
             strSQL = ""
             strSQL &= "SELECT "
-            strSQL &= " 作業工程NO, "
-            strSQL &= " 作業工程名 "
+            strSQL &= " A.作業工程NO, "
+            strSQL &= " A.作業工程名, "
+            strSQL &= " B.製品NO, "
+            strSQL &= " B.製品名 "
             strSQL &= "FROM "
-            strSQL &= " WORKPROCESS_MS "
+            strSQL &= " WORKPROCESS_MS A, "
+            strSQL &= " ITEM_MS B "
             strSQL &= "WHERE "
-            strSQL &= " 作業工程NO = '" + txtWorkProcessNO.Text.Trim + "' "
+            strSQL &= "    A.製品NO = B.製品NO "
+            strSQL &= "AND 作業工程NO = '" + txtWorkProcessNO.Text.Trim + "' "
 
             cd.CommandText = strSQL
             cd.Connection = Cn
@@ -198,12 +202,17 @@ Public Class T009
                 While dtReader.Read
                     txtWorkProcessNO.Text = CStr(dtReader("作業工程NO")).Trim
                     lblWorkProcessName.Text = CStr(dtReader("作業工程名")).Trim
+                    lblItemNO.Text = CStr(dtReader("製品NO")).Trim()
+                    lblItemName.Text = CStr(dtReader("製品名")).Trim()
                 End While
+
                 dtReader.Close()
                 Return True
             Else
                 dtReader.Close()
                 lblWorkProcessName.Text = ""
+                lblItemNO.Text = ""
+                lblItemName.Text = ""
                 Return False
             End If
         Catch ex As Exception
@@ -519,26 +528,21 @@ Public Class T009
     '--クリア処理                        ----------
     '------------------------------------------------
     Public Sub sClear()
-
         txtOrderMSNo.Clear()
         lblOrderMSName.Text = ""
         txtWorkProcessNO.Clear()
         lblWorkProcessName.Text = ""
         txtUserID.Clear()
         txtOrderAmount.Clear()
+        lblItemNO.Text = ""
+        lblItemName.Text = ""
         dtpCreateTime.Text = Date.Now
         chkClosedStock.Checked = False
 
+        '臨時在庫はオフ
+        'chkClosedStock.Visible = False
+
     End Sub
-
-
-
-
-
-
-
-
-
 
 
 End Class
