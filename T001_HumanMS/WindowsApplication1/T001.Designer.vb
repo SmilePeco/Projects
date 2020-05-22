@@ -39,6 +39,7 @@ Partial Class T001
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.btnHumanSearch = New System.Windows.Forms.Button()
         Me.grpHuman.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -82,11 +83,13 @@ Partial Class T001
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(298, 18)
+        Me.btnCancel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.Location = New System.Drawing.Point(386, 18)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(90, 23)
         Me.btnCancel.TabIndex = 11
-        Me.btnCancel.Text = "F11:キャンセル"
+        Me.btnCancel.Text = "F4:クリア"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'btnSearch
@@ -100,20 +103,22 @@ Partial Class T001
         '
         'btnEntry
         '
-        Me.btnEntry.Location = New System.Drawing.Point(104, 18)
+        Me.btnEntry.Location = New System.Drawing.Point(108, 18)
         Me.btnEntry.Name = "btnEntry"
         Me.btnEntry.Size = New System.Drawing.Size(90, 23)
         Me.btnEntry.TabIndex = 9
-        Me.btnEntry.Text = "F5:登録"
+        Me.btnEntry.Text = "F2:登録"
         Me.btnEntry.UseVisualStyleBackColor = True
         '
         'btnEnd
         '
-        Me.btnEnd.Location = New System.Drawing.Point(403, 18)
+        Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEnd.Location = New System.Drawing.Point(495, 18)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(90, 23)
         Me.btnEnd.TabIndex = 12
-        Me.btnEnd.Text = "F12:終了"
+        Me.btnEnd.Text = "F5:終了"
         Me.btnEnd.UseVisualStyleBackColor = True
         '
         'Label1
@@ -137,7 +142,7 @@ Partial Class T001
         'txtHumanNo
         '
         Me.txtHumanNo.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.txtHumanNo.Location = New System.Drawing.Point(91, 10)
+        Me.txtHumanNo.Location = New System.Drawing.Point(98, 14)
         Me.txtHumanNo.MaxLength = 3
         Me.txtHumanNo.Name = "txtHumanNo"
         Me.txtHumanNo.Size = New System.Drawing.Size(51, 19)
@@ -179,15 +184,16 @@ Partial Class T001
         '
         'btnDelete
         '
-        Me.btnDelete.Location = New System.Drawing.Point(202, 18)
+        Me.btnDelete.Location = New System.Drawing.Point(222, 18)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(90, 23)
         Me.btnDelete.TabIndex = 10
-        Me.btnDelete.Text = "F6:削除"
+        Me.btnDelete.Text = "F3:削除"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.btnHumanSearch)
         Me.GroupBox1.Controls.Add(Me.lblHumanNo)
         Me.GroupBox1.Controls.Add(Me.txtHumanNo)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
@@ -211,6 +217,15 @@ Partial Class T001
         Me.GroupBox2.TabIndex = 14
         Me.GroupBox2.TabStop = False
         '
+        'btnHumanSearch
+        '
+        Me.btnHumanSearch.Location = New System.Drawing.Point(150, 12)
+        Me.btnHumanSearch.Name = "btnHumanSearch"
+        Me.btnHumanSearch.Size = New System.Drawing.Size(24, 23)
+        Me.btnHumanSearch.TabIndex = 10
+        Me.btnHumanSearch.Text = "..."
+        Me.btnHumanSearch.UseVisualStyleBackColor = True
+        '
         'T001
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -221,7 +236,7 @@ Partial Class T001
         Me.Controls.Add(Me.grpHuman)
         Me.KeyPreview = True
         Me.Name = "T001"
-        Me.Text = "社員マスタメンテナンス"
+        Me.Text = "T001社員マスタメンテナンス"
         Me.grpHuman.ResumeLayout(False)
         Me.grpHuman.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
@@ -247,5 +262,6 @@ Partial Class T001
     Friend WithEvents btnDelete As System.Windows.Forms.Button
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents btnHumanSearch As System.Windows.Forms.Button
 
 End Class
