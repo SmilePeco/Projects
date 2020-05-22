@@ -188,7 +188,9 @@ Public Class T016
             strSQL &= " B.受注残, "
             strSQL &= " A.受注日, "
             strSQL &= " A.最終更新者, "
-            strSQL &= " A.更新日 "
+            strSQL &= " A.更新日, "
+            strSQL &= " C.製品NO, "
+            strSQL &= " C.金額 "
             strSQL &= "FROM "
             strSQL &= " ORDER_TBL A, "
             strSQL &= " (SELECT "
@@ -205,9 +207,23 @@ Public Class T016
             strSQL &= "  GROUP BY "
             strSQL &= "   A.受注NO, "
             strSQL &= "   B.出荷先NO, "
-            strSQL &= "   A.受注数) B "
+            strSQL &= "   A.受注数) B, "
+            strSQL &= " (SELECT "
+            strSQL &= "   A.受注NO, "
+            strSQL &= "   C.製品NO, "
+            strSQL &= "   C.金額 "
+            strSQL &= "  FROM "
+            strSQL &= "   ORDER_TBL A, "
+            strSQL &= "   WORKPROCESS_MS B, "
+            strSQL &= "   ITEM_HISTORY_MS C "
+            strSQL &= "  WHERE "
+            strSQL &= "       A.作業工程NO = B.作業工程NO "
+            strSQL &= "   AND B.製品NO = C.製品NO "
+            strSQL &= "   AND C.更新日 = (SELECT MAX(更新日) FROM ITEM_HISTORY_MS) "
+            strSQL &= "   ) C "
             strSQL &= "WHERE "
             strSQL &= "    A.受注NO = B.受注NO "
+            strSQL &= "AND A.受注NO = C.受注NO "
             strSQL &= "AND B.受注残 = 0 "
             strSQL &= "AND A.受注チェックフラグ = 1 "
             strSQL &= "AND A.出荷チェックフラグ = 0 "
@@ -235,7 +251,7 @@ Public Class T016
 
                 'トリム処理
                 For i = 0 To DataGridView1.RowCount - 1
-                    For y = 0 To 8
+                    For y = 0 To DataGridView1.ColumnCount - 1
                         DataGridView1.Item(y, i).Value = DataGridView1.Item(y, i).Value.ToString.Trim
                         DataGridView1.Item(y, i).ReadOnly = True
                     Next
@@ -243,6 +259,10 @@ Public Class T016
                 'チェックボックスの追加
                 Dim dgvCheck As New DataGridViewCheckBoxColumn
                 DataGridView1.Columns.Insert(0, dgvCheck)
+
+                '製品NOと金額はVisible=FALSE
+                DataGridView1.Columns(10).Visible = False
+                DataGridView1.Columns(11).Visible = False
 
                 'DataGridView1のすべての列の幅を自動調整する
                 DataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells)
@@ -388,6 +408,7 @@ Public Class T016
 
         Dim intCount As Integer '更新数のカウント
         Dim intSalesNO As Integer '売上テーブルの売上NOカウント数
+        Dim intSalesMoney As Integer '売上金額計算用（製品単価✕売上数）
         Dim dtReader As SqlDataReader
         Dim tran As SqlTransaction
         tran = Cn.BeginTransaction
@@ -437,15 +458,21 @@ Public Class T016
                         intSalesNO += 1
                     End If
 
+                    '売上金額計算（製品単価✕売上数）
+                    intSalesMoney = DataGridView1.Item(4, i).Value * DataGridView1.Item(11, i).Value
 
                     '新規登録のSQL発行
                     strSQL = ""
                     strSQL &= "INSERT INTO SALES_TBL VALUES "
                     strSQL &= "( "
                     strSQL &= "" & intSalesNO & ", " '売上NO
+                    strSQL &= "'" & DataGridView1.Item(1, i).Value.ToString.Trim & "', " '受注NO
                     strSQL &= "'" & DataGridView1.Item(2, i).Value.ToString.Trim & "', " '受注先NO
                     strSQL &= "'" & DataGridView1.Item(3, i).Value.ToString.Trim & "', " '出荷先NO
+                    strSQL &= "'" & DataGridView1.Item(10, i).Value.ToString.Trim & "', " '製品NO
+                    strSQL &= "" & DataGridView1.Item(11, i).Value.ToString.Trim & ", " '製品単価
                     strSQL &= "" & DataGridView1.Item(4, i).Value.ToString.Trim & ", " '売上数
+                    strSQL &= "" & intSalesMoney & ", " '売上金額
                     strSQL &= "SYSDATETIME(), " '売上日
                     strSQL &= "'" & txtUserID.Text.Trim & "', " '最終更新者
                     strSQL &= "SYSDATETIME(), " '更新日

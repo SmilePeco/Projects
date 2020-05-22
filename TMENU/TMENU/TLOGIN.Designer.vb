@@ -98,6 +98,7 @@ Partial Class TLOGIN
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.KeyPreview = True
         Me.Name = "TLOGIN"
         Me.Text = "LoginForm"
         Me.ResumeLayout(False)

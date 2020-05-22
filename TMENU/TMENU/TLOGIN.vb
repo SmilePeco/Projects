@@ -12,15 +12,55 @@ Public Class TLOGIN
     '---Load処理                               ---
     '---------------------------------------------
     Private Sub TLOGIN_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'クリア処理
         Call sClear()
-        Call fDBConnect()
 
+
+    End Sub
+
+    '---------------------------------------------
+    '---エンターキー押下処理                   ---
+    '---------------------------------------------
+    Private Sub TLOGIN_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Enter
+                'ログイン処理
+                Call sLogin()
+        End Select
     End Sub
 
     '---------------------------------------------
     '---ログインボタン押下処理                 ---
     '---------------------------------------------
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
+        'ログイン処理
+        Call sLogin()
+    End Sub
+
+    '---------------------------------------------
+    '---パスワード変更ボタン押下処理           ---
+    '---------------------------------------------
+    Private Sub btnChange_Click(sender As Object, e As EventArgs) Handles btnChange.Click
+        'パスワード変更前処理
+        Call sPassChange()
+
+    End Sub
+
+    '---------------------------------------------
+    '---ログイン処理                           ---
+    '---------------------------------------------
+    Public Sub sLogin()
+        'DB接続
+        Call fDBConnect()
+        'ログインメイン処理
+        Call fMainLogin()
+
+    End Sub
+
+    '---------------------------------------------
+    '---ログインボタン押下処理                 ---
+    '---------------------------------------------
+    Private Function fMainLogin() As Boolean
 
         Dim dtReader As SqlDataReader
         Dim frm As New TMENU
@@ -28,80 +68,114 @@ Public Class TLOGIN
         Dim intAdminFLG As Integer
         Dim result As DialogResult
 
+        Try
+            strSQL = ""
+            strSQL &= "SELECT "
+            strSQL &= " 社員NO, "
+            strSQL &= " 名前, "
+            strSQL &= " 管理者フラグ "
+            strSQL &= "FROM "
+            strSQL &= " HUMAN_MS "
+            strSQL &= "WHERE "
+            strSQL &= "    名前 = '" + txtLoginID.Text.Trim + "' "
+            strSQL &= "AND パスワード = '" + txtPassword.Text.Trim + "' "
 
-        strSQL = ""
-        strSQL &= "SELECT "
-        strSQL &= " 社員NO, "
-        strSQL &= " 名前, "
-        strSQL &= " 管理者フラグ "
-        strSQL &= "FROM "
-        strSQL &= " HUMAN_MS "
-        strSQL &= "WHERE "
-        strSQL &= "    名前 = '" + txtLoginID.Text.Trim + "' "
-        strSQL &= "AND パスワード = '" + txtPassword.Text.Trim + "' "
+            cd.CommandText = strSQL
+            cd.Connection = Cn
+            dtReader = cd.ExecuteReader
+            If dtReader.Read = True Then
+                'ログイン成功
+                'Readし、値を取得。メニュー画面に引き継ぐ
+                While dtReader.Read
+                    strUserID = dtReader("名前")
+                    intAdminFLG = dtReader("管理者フラグ")
+                End While
+                dtReader.Close()
+                result = frm.ShowDialog()
+                Return True
+                'result = frm.ShowDialog(strUserID, intAdminFLG)
 
-        cd.CommandText = strSQL
-        cd.Connection = Cn
-        dtReader = cd.ExecuteReader
-        If dtReader.Read = True Then
-            'ログイン成功
-            'Readし、値を取得。メニュー画面に引き継ぐ
-            While dtReader.Read
-                strUserID = dtReader("名前")
-                intAdminFLG = dtReader("管理者フラグ")
-            End While
-            dtReader.Close()
-            result = frm.ShowDialog()
-            'result = frm.ShowDialog(strUserID, intAdminFLG)
-
-        Else
-            'ログイン失敗
-            MessageBox.Show("ログイン情報に誤りがあります。" & vbCrLf & "確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            dtReader.Close()
-        End If
+            Else
+                'ログイン失敗
+                MessageBox.Show("ログイン情報に誤りがあります。" & vbCrLf & "確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                dtReader.Close()
+                Return False
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString, "例外発生")
+            Return False
+        Finally
+            Cn.Close()
+            Cn.Dispose()
+        End Try
 
 
 
+
+
+
+    End Function
+
+    '---------------------------------------------
+    '---パスワード変更前処理                 ---
+    '---------------------------------------------
+    Public Sub sPassChange()
+        'DB接続
+        Call fDBConnect()
+        '変更前メイン処理
+        Call fMainPassChange()
 
     End Sub
 
     '---------------------------------------------
-    '---パスワード変更押下処理                 ---
+    '---パスワード変更前メイン処理             ---
     '---------------------------------------------
-    Private Sub btnChange_Click(sender As Object, e As EventArgs) Handles btnChange.Click
+    Private Function fMainPassChange() As Boolean
 
         Dim dtReader As SqlDataReader
         Dim frm As TPASSCHANGE = New TPASSCHANGE(txtLoginID.Text.Trim)
         Dim result As DialogResult
 
-        strSQL = ""
-        strSQL &= "SELECT "
-        strSQL &= " 社員NO "
-        strSQL &= "FROM "
-        strSQL &= " HUMAN_MS "
-        strSQL &= "WHERE "
-        strSQL &= "    名前 = '" + txtLoginID.Text.Trim + "' "
+        Try
 
-        cd.CommandText = strSQL
-        cd.Connection = Cn
-        dtReader = cd.ExecuteReader
+            '変更の前にログインチェックする
+            strSQL = ""
+            strSQL &= "SELECT "
+            strSQL &= " 社員NO "
+            strSQL &= "FROM "
+            strSQL &= " HUMAN_MS "
+            strSQL &= "WHERE "
+            strSQL &= "    名前 = '" + txtLoginID.Text.Trim + "' "
 
-        If dtReader.Read = True Then
-            dtReader.Close()
-            'パスワード変更画面を開く
-            result = frm.ShowDialog(Me)
+            cd.CommandText = strSQL
+            cd.Connection = Cn
+            dtReader = cd.ExecuteReader
 
-        Else
-            '入力したログインIDが存在しない場合は失敗とする
-            dtReader.Close()
-            MessageBox.Show("そのログインIDは存在しません。" & vbCrLf & "確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            dtReader.Close()
+            If dtReader.HasRows Then
+                dtReader.Close()
+                'パスワード変更画面を開く
+                result = frm.ShowDialog(Me)
+                Return True
 
-        End If
+            Else
+                '入力したログインIDが存在しない場合は失敗とする
+                dtReader.Close()
+                MessageBox.Show("そのログインIDは存在しません。" & vbCrLf & "確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return False
+
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString, "例外発生")
+            Return False
+        Finally
+            Cn.Close()
+            Cn.Dispose()
+        End Try
 
 
 
-    End Sub
+
+    End Function
 
     '---------------------------------------------
     '---DB接続処理                             ---
@@ -169,7 +243,10 @@ Public Class TLOGIN
     Public Sub sClear()
         txtLoginID.Clear()
         txtPassword.Clear()
-
+        Me.MaximizeBox = False
     End Sub
+
+
+
 
 End Class

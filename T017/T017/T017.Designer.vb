@@ -24,18 +24,14 @@ Partial Class T017
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.chkWhereItem01 = New System.Windows.Forms.CheckBox()
         Me.chkWhereShipment01 = New System.Windows.Forms.CheckBox()
         Me.chkWhereOrder01 = New System.Windows.Forms.CheckBox()
         Me.rboSales03 = New System.Windows.Forms.RadioButton()
         Me.rboSales02 = New System.Windows.Forms.RadioButton()
         Me.rboSales01 = New System.Windows.Forms.RadioButton()
-        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.btnSearch = New System.Windows.Forms.GroupBox()
-        Me.btnEnd = New System.Windows.Forms.Button()
-        Me.btnClear = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.chkSelectItem01 = New System.Windows.Forms.CheckBox()
         Me.chkSelectShipment01 = New System.Windows.Forms.CheckBox()
         Me.chkSelectOrder01 = New System.Windows.Forms.CheckBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -51,15 +47,27 @@ Partial Class T017
         Me.btnShipmentSearch = New System.Windows.Forms.Button()
         Me.txtShipmentMSNo = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.lblItemMSName = New System.Windows.Forms.Label()
+        Me.btnItemSearch = New System.Windows.Forms.Button()
+        Me.txtItemMSNo = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.btnEnd = New System.Windows.Forms.Button()
+        Me.btnClear = New System.Windows.Forms.Button()
+        Me.btnSearch = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
-        Me.GroupBox6.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.btnSearch.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
+        Me.GroupBox9.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox8.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -78,6 +86,7 @@ Partial Class T017
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.chkWhereItem01)
         Me.GroupBox4.Controls.Add(Me.chkWhereShipment01)
         Me.GroupBox4.Controls.Add(Me.chkWhereOrder01)
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -87,6 +96,16 @@ Partial Class T017
         Me.GroupBox4.TabIndex = 7
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "    追加検索条件"
+        '
+        'chkWhereItem01
+        '
+        Me.chkWhereItem01.AutoSize = True
+        Me.chkWhereItem01.Location = New System.Drawing.Point(246, 21)
+        Me.chkWhereItem01.Name = "chkWhereItem01"
+        Me.chkWhereItem01.Size = New System.Drawing.Size(64, 16)
+        Me.chkWhereItem01.TabIndex = 6
+        Me.chkWhereItem01.Text = "製品NO"
+        Me.chkWhereItem01.UseVisualStyleBackColor = True
         '
         'chkWhereShipment01
         '
@@ -141,75 +160,9 @@ Partial Class T017
         Me.rboSales01.Text = "売上年月"
         Me.rboSales01.UseVisualStyleBackColor = True
         '
-        'GroupBox6
-        '
-        Me.GroupBox6.Controls.Add(Me.DataGridView1)
-        Me.GroupBox6.Controls.Add(Me.btnSearch)
-        Me.GroupBox6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox6.Location = New System.Drawing.Point(0, 285)
-        Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(860, 277)
-        Me.GroupBox6.TabIndex = 4
-        Me.GroupBox6.TabStop = False
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(3, 15)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.RowTemplate.Height = 21
-        Me.DataGridView1.Size = New System.Drawing.Size(854, 210)
-        Me.DataGridView1.TabIndex = 0
-        '
-        'btnSearch
-        '
-        Me.btnSearch.Controls.Add(Me.btnEnd)
-        Me.btnSearch.Controls.Add(Me.btnClear)
-        Me.btnSearch.Controls.Add(Me.Button1)
-        Me.btnSearch.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.btnSearch.Location = New System.Drawing.Point(3, 225)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(854, 49)
-        Me.btnSearch.TabIndex = 1
-        Me.btnSearch.TabStop = False
-        '
-        'btnEnd
-        '
-        Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEnd.Location = New System.Drawing.Point(761, 19)
-        Me.btnEnd.Name = "btnEnd"
-        Me.btnEnd.Size = New System.Drawing.Size(75, 23)
-        Me.btnEnd.TabIndex = 2
-        Me.btnEnd.Text = "F3:終了"
-        Me.btnEnd.UseVisualStyleBackColor = True
-        '
-        'btnClear
-        '
-        Me.btnClear.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnClear.Location = New System.Drawing.Point(658, 19)
-        Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(75, 23)
-        Me.btnClear.TabIndex = 1
-        Me.btnClear.Text = "F2:クリア"
-        Me.btnClear.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(10, 19)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "F1:検索"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'GroupBox7
         '
+        Me.GroupBox7.Controls.Add(Me.chkSelectItem01)
         Me.GroupBox7.Controls.Add(Me.chkSelectShipment01)
         Me.GroupBox7.Controls.Add(Me.chkSelectOrder01)
         Me.GroupBox7.Dock = System.Windows.Forms.DockStyle.Top
@@ -219,6 +172,16 @@ Partial Class T017
         Me.GroupBox7.TabIndex = 5
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "検索結果表示項目"
+        '
+        'chkSelectItem01
+        '
+        Me.chkSelectItem01.AutoSize = True
+        Me.chkSelectItem01.Location = New System.Drawing.Point(211, 22)
+        Me.chkSelectItem01.Name = "chkSelectItem01"
+        Me.chkSelectItem01.Size = New System.Drawing.Size(64, 16)
+        Me.chkSelectItem01.TabIndex = 8
+        Me.chkSelectItem01.Text = "製品NO"
+        Me.chkSelectItem01.UseVisualStyleBackColor = True
         '
         'chkSelectShipment01
         '
@@ -368,12 +331,130 @@ Partial Class T017
         Me.Label4.TabIndex = 35
         Me.Label4.Text = "出荷先NO"
         '
+        'GroupBox9
+        '
+        Me.GroupBox9.Controls.Add(Me.lblItemMSName)
+        Me.GroupBox9.Controls.Add(Me.btnItemSearch)
+        Me.GroupBox9.Controls.Add(Me.txtItemMSNo)
+        Me.GroupBox9.Controls.Add(Me.Label5)
+        Me.GroupBox9.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox9.Location = New System.Drawing.Point(0, 285)
+        Me.GroupBox9.Name = "GroupBox9"
+        Me.GroupBox9.Size = New System.Drawing.Size(860, 46)
+        Me.GroupBox9.TabIndex = 105
+        Me.GroupBox9.TabStop = False
+        '
+        'lblItemMSName
+        '
+        Me.lblItemMSName.AutoSize = True
+        Me.lblItemMSName.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblItemMSName.Location = New System.Drawing.Point(158, 22)
+        Me.lblItemMSName.Name = "lblItemMSName"
+        Me.lblItemMSName.Size = New System.Drawing.Size(46, 13)
+        Me.lblItemMSName.TabIndex = 42
+        Me.lblItemMSName.Text = "製品名"
+        '
+        'btnItemSearch
+        '
+        Me.btnItemSearch.Location = New System.Drawing.Point(133, 16)
+        Me.btnItemSearch.Name = "btnItemSearch"
+        Me.btnItemSearch.Size = New System.Drawing.Size(24, 23)
+        Me.btnItemSearch.TabIndex = 41
+        Me.btnItemSearch.Text = "..."
+        Me.btnItemSearch.UseVisualStyleBackColor = True
+        '
+        'txtItemMSNo
+        '
+        Me.txtItemMSNo.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.txtItemMSNo.Location = New System.Drawing.Point(92, 18)
+        Me.txtItemMSNo.MaxLength = 3
+        Me.txtItemMSNo.Name = "txtItemMSNo"
+        Me.txtItemMSNo.Size = New System.Drawing.Size(41, 19)
+        Me.txtItemMSNo.TabIndex = 40
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 21)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(45, 12)
+        Me.Label5.TabIndex = 39
+        Me.Label5.Text = "製品NO"
+        '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.DataGridView1)
+        Me.GroupBox6.Controls.Add(Me.GroupBox8)
+        Me.GroupBox6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox6.Location = New System.Drawing.Point(0, 331)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(860, 231)
+        Me.GroupBox6.TabIndex = 106
+        Me.GroupBox6.TabStop = False
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridView1.Location = New System.Drawing.Point(3, 15)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.RowTemplate.Height = 21
+        Me.DataGridView1.Size = New System.Drawing.Size(854, 164)
+        Me.DataGridView1.TabIndex = 0
+        '
+        'GroupBox8
+        '
+        Me.GroupBox8.Controls.Add(Me.btnEnd)
+        Me.GroupBox8.Controls.Add(Me.btnClear)
+        Me.GroupBox8.Controls.Add(Me.btnSearch)
+        Me.GroupBox8.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupBox8.Location = New System.Drawing.Point(3, 179)
+        Me.GroupBox8.Name = "GroupBox8"
+        Me.GroupBox8.Size = New System.Drawing.Size(854, 49)
+        Me.GroupBox8.TabIndex = 1
+        Me.GroupBox8.TabStop = False
+        '
+        'btnEnd
+        '
+        Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEnd.Location = New System.Drawing.Point(761, 19)
+        Me.btnEnd.Name = "btnEnd"
+        Me.btnEnd.Size = New System.Drawing.Size(75, 23)
+        Me.btnEnd.TabIndex = 2
+        Me.btnEnd.Text = "F3:終了"
+        Me.btnEnd.UseVisualStyleBackColor = True
+        '
+        'btnClear
+        '
+        Me.btnClear.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnClear.Location = New System.Drawing.Point(658, 19)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(75, 23)
+        Me.btnClear.TabIndex = 1
+        Me.btnClear.Text = "F2:クリア"
+        Me.btnClear.UseVisualStyleBackColor = True
+        '
+        'btnSearch
+        '
+        Me.btnSearch.Location = New System.Drawing.Point(10, 19)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(75, 23)
+        Me.btnSearch.TabIndex = 0
+        Me.btnSearch.Text = "F1:検索"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
         'T017
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(860, 562)
         Me.Controls.Add(Me.GroupBox6)
+        Me.Controls.Add(Me.GroupBox9)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
@@ -386,9 +467,6 @@ Partial Class T017
         Me.GroupBox1.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
-        Me.GroupBox6.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.btnSearch.ResumeLayout(False)
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -397,6 +475,11 @@ Partial Class T017
         Me.GroupBox3.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
+        Me.GroupBox9.ResumeLayout(False)
+        Me.GroupBox9.PerformLayout()
+        Me.GroupBox6.ResumeLayout(False)
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox8.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -407,12 +490,6 @@ Partial Class T017
     Friend WithEvents rboSales03 As System.Windows.Forms.RadioButton
     Friend WithEvents chkWhereShipment01 As System.Windows.Forms.CheckBox
     Friend WithEvents chkWhereOrder01 As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
-    Friend WithEvents btnSearch As System.Windows.Forms.GroupBox
-    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents btnEnd As System.Windows.Forms.Button
-    Friend WithEvents btnClear As System.Windows.Forms.Button
-    Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents GroupBox7 As System.Windows.Forms.GroupBox
     Friend WithEvents chkSelectShipment01 As System.Windows.Forms.CheckBox
     Friend WithEvents chkSelectOrder01 As System.Windows.Forms.CheckBox
@@ -429,5 +506,18 @@ Partial Class T017
     Friend WithEvents btnShipmentSearch As System.Windows.Forms.Button
     Friend WithEvents txtShipmentMSNo As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents chkSelectItem01 As System.Windows.Forms.CheckBox
+    Friend WithEvents GroupBox9 As System.Windows.Forms.GroupBox
+    Friend WithEvents lblItemMSName As System.Windows.Forms.Label
+    Friend WithEvents btnItemSearch As System.Windows.Forms.Button
+    Friend WithEvents txtItemMSNo As System.Windows.Forms.TextBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
+    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents GroupBox8 As System.Windows.Forms.GroupBox
+    Friend WithEvents btnEnd As System.Windows.Forms.Button
+    Friend WithEvents btnClear As System.Windows.Forms.Button
+    Friend WithEvents btnSearch As System.Windows.Forms.Button
+    Friend WithEvents chkWhereItem01 As System.Windows.Forms.CheckBox
 
 End Class

@@ -263,6 +263,9 @@ Public Class T019
                 'GrouopBox等の設定
                 GroupBox3.Enabled = True
                 txtUpdateItemNO.Enabled = True
+                '//製品NOが空欄の場合は、連番で設定する
+                '製品NOの連番を取得
+                Call fItemMS_GetSerialnumber()
                 '製品NOは入力不可
                 txtUpdateItemNO.Enabled = False
                 lblMode.Text = "新規作成"
@@ -432,33 +435,34 @@ Public Class T019
                 '//新規作成の場合
                 '//ITEM_MSのINSERT
                 If txtItemNo.Text.Trim = "" Then
-                    '//製品NOが空欄の場合は、連番で設定する
                     '製品NOの連番を取得
-                    strSQL = ""
-                    strSQL &= "SELECT "
-                    strSQL &= " MAX(製品NO) AS 製品NO "
-                    strSQL &= "FROM "
-                    strSQL &= " ITEM_MS "
-                    'SQL実行
-                    cd.CommandText = strSQL
-                    cd.Transaction = tran
-                    cd.Connection = Cn
-                    dtReader = cd.ExecuteReader
-                    '連番設定
-                    If dtReader.HasRows Then
-                        While dtReader.Read
-                            '取得した値を代入
-                            intCount = dtReader("製品NO")
-                            '＋１する
-                            intCount += 1
-                        End While
-                    Else
-                        '０件の場合は１を代入
-                        intCount = 1
-                    End If
-                    dtReader.Close()
-                    '０埋め処理
-                    strCount = intCount.ToString.PadLeft(3, "0")
+                    strCount = txtUpdateItemNO.Text.Trim
+
+                    'strSQL = ""
+                    'strSQL &= "SELECT "
+                    'strSQL &= " MAX(製品NO) AS 製品NO "
+                    'strSQL &= "FROM "
+                    'strSQL &= " ITEM_MS "
+                    ''SQL実行
+                    'cd.CommandText = strSQL
+                    'cd.Transaction = tran
+                    'cd.Connection = Cn
+                    'dtReader = cd.ExecuteReader
+                    ''連番設定
+                    'If dtReader.HasRows Then
+                    '    While dtReader.Read
+                    '        '取得した値を代入
+                    '        intCount = dtReader("製品NO")
+                    '        '＋１する
+                    '        intCount += 1
+                    '    End While
+                    'Else
+                    '    '０件の場合は１を代入
+                    '    intCount = 1
+                    'End If
+                    'dtReader.Close()
+                    ''０埋め処理
+                    'strCount = intCount.ToString.PadLeft(3, "0")
 
                 Else
                     '//製品NOが空欄以外の場合は、画面上の製品NOを取得
@@ -830,6 +834,66 @@ Public Class T019
             Cn.Close()
             Cn.Dispose()
         End Try
+
+    End Function
+
+    '------------------------------------------------
+    '--製品NO 連番取得処理           　    ----------
+    '------------------------------------------------
+    Public Sub fItemMS_GetSerialnumber()
+        '連番取得メイン処理
+        Call fItemMS_MainGetSerialnumber()
+
+    End Sub
+
+    '------------------------------------------------
+    '--製品NO 連番取得メイン処理     　    ----------
+    '------------------------------------------------
+    Public Function fItemMS_MainGetSerialnumber()
+
+        Dim dtReader As SqlDataReader
+        Dim intCount As Integer '製品NO連番取得用
+        Dim strCount As String   '製品NO連番設定用
+
+        Try
+            strSQL = ""
+            strSQL &= "SELECT "
+            strSQL &= " MAX(製品NO) AS 製品NO "
+            strSQL &= "FROM "
+            strSQL &= " ITEM_MS "
+            'SQL実行
+            cd.CommandText = strSQL
+            cd.Connection = Cn
+            dtReader = cd.ExecuteReader
+            '連番設定
+            If dtReader.HasRows Then
+                While dtReader.Read
+                    '取得した値を代入
+                    intCount = dtReader("製品NO")
+                    '＋１する
+                    intCount += 1
+                End While
+            Else
+                '０件の場合は１を代入
+                intCount = 1
+            End If
+            dtReader.Close()
+            '０埋め処理
+            strCount = intCount.ToString.PadLeft(3, "0")
+
+            '値の転送
+            txtUpdateItemNO.Text = strCount
+
+            Return True
+
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString, "例外発生")
+            Return False
+        Finally
+            Cn.Close()
+            Cn.Dispose()
+        End Try
+
 
     End Function
 

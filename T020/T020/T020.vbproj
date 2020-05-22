@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F650D877-BEA3-4A7D-AE9F-890D0139FB5F}</ProjectGuid>
+    <ProjectGuid>{CBCA38B8-8F7C-40B2-AE3C-7A38B3D3C3ED}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>T017.My.MyApplication</StartupObject>
-    <RootNamespace>T017</RootNamespace>
-    <AssemblyName>T017</AssemblyName>
+    <StartupObject>T020.My.MyApplication</StartupObject>
+    <RootNamespace>T020</RootNamespace>
+    <AssemblyName>T020</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -20,7 +20,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>T017.xml</DocumentationFile>
+    <DocumentationFile>T020.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -30,7 +30,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>T017.xml</DocumentationFile>
+    <DocumentationFile>T020.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -70,17 +70,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="T017_2.designer.vb">
-      <DependentUpon>T017_2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="T017_2.vb">
+    <Compile Include="T020.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="T017.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="T017.Designer.vb">
-      <DependentUpon>T017.vb</DependentUpon>
+    <Compile Include="T020.Designer.vb">
+      <DependentUpon>T020.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -98,37 +92,25 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="T017_3.Designer.vb">
-      <DependentUpon>T017_3.vb</DependentUpon>
+    <Compile Include="T020_2.Designer.vb">
+      <DependentUpon>T020_2.vb</DependentUpon>
     </Compile>
-    <Compile Include="T017_3.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="T017_4.Designer.vb">
-      <DependentUpon>T017_4.vb</DependentUpon>
-    </Compile>
-    <Compile Include="T017_4.vb">
+    <Compile Include="T020_2.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="T017_2.resx">
-      <DependentUpon>T017_2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="T017.resx">
-      <DependentUpon>T017.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="T017_3.resx">
-      <DependentUpon>T017_3.vb</DependentUpon>
+    <EmbeddedResource Include="T020.resx">
+      <DependentUpon>T020.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="T017_4.resx">
-      <DependentUpon>T017_4.vb</DependentUpon>
+    <EmbeddedResource Include="T020_2.resx">
+      <DependentUpon>T020_2.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

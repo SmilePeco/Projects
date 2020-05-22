@@ -26,8 +26,41 @@ Public Class T017
                 '検索処理
                 Call sSearch()
 
+            Case Keys.F2
+                'クリア処理
+                Call sClear()
+
+            Case Keys.F3
+                '終了処理
+                Me.Close()
+
+
         End Select
 
+    End Sub
+
+    '------------------------------------------------
+    '--検索ボタン押下処理            　    ----------
+    '------------------------------------------------
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        '検索処理
+        Call sSearch()
+    End Sub
+
+    '------------------------------------------------
+    '--クリアボタン押下処理          　    ----------
+    '------------------------------------------------
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        'クリア処理
+        Call sClear()
+    End Sub
+
+    '------------------------------------------------
+    '--終了ボタン押下処理            　    ----------
+    '------------------------------------------------
+    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
+        '終了処理
+        Me.Close()
     End Sub
 
     '------------------------------------------------
@@ -72,7 +105,20 @@ Public Class T017
             chkSelectShipment01.Checked = False
         End If
 
+    End Sub
 
+    '------------------------------------------------
+    '-製品NO チェック処理                  ----------
+    '------------------------------------------------
+    Private Sub chkWhereItem01_CheckedChanged(sender As Object, e As EventArgs) Handles chkWhereItem01.CheckedChanged
+        If chkWhereItem01.Checked = True Then
+            GroupBox9.Enabled = True
+            '検索結果にも表示されるようにする
+            chkSelectItem01.Checked = True
+        Else
+            GroupBox9.Enabled = False
+            chkSelectItem01.Checked = False
+        End If
     End Sub
 
     '------------------------------------------------
@@ -93,6 +139,14 @@ Public Class T017
     End Sub
 
     '------------------------------------------------
+    '--製品NO ボタン押下処理        　   ----------
+    '------------------------------------------------
+    Private Sub btnItemSearch_Click(sender As Object, e As EventArgs) Handles btnItemSearch.Click
+        Dim frm As New T017_4
+        frm.ShowDialog(Me)
+    End Sub
+
+    '------------------------------------------------
     '--受注先NO Leave処理             　   ----------
     '------------------------------------------------
     Private Sub txtOrderMSNo_Leave(sender As Object, e As EventArgs) Handles txtOrderMSNo.Leave
@@ -106,6 +160,14 @@ Public Class T017
     Private Sub txtShipmentMSNo_Leave(sender As Object, e As EventArgs) Handles txtShipmentMSNo.Leave
         '検索処理
         Call sShipmentMS_Search()
+    End Sub
+
+    '------------------------------------------------
+    '--製品NO Leave処理               　   ----------
+    '------------------------------------------------
+    Private Sub txtItemMSNo_Leave(sender As Object, e As EventArgs) Handles txtItemMSNo.Leave
+        '検索処理
+        Call sItemMS_Search()
     End Sub
 
     '------------------------------------------------
@@ -166,14 +228,22 @@ Public Class T017
                 strSQL &= " A.出荷先NO, "
                 strSQL &= " C.出荷先名, "
             End If
-            strSQL &= " SUM(A.売上数) AS 売上数 "
+            'SELECT製品NO指定
+            If chkSelectItem01.Checked = True Then
+                strSQL &= " A.製品NO, "
+                strSQL &= " D.製品名, "
+            End If
+            strSQL &= " SUM(A.売上数) AS 売上数, "
+            strSQL &= " SUM(A.売上金額) AS 売上金額 "
             strSQL &= "FROM "
             strSQL &= " SALES_TBL A, "
             strSQL &= " ORDER_MS B, "
-            strSQL &= " SHIPMENT_MS C "
+            strSQL &= " SHIPMENT_MS C, "
+            strSQL &= " ITEM_MS D "
             strSQL &= "WHERE "
             strSQL &= "     A.受注先NO = B.受注先NO  "
             strSQL &= " AND A.出荷先NO = C.出荷先NO  "
+            strSQL &= " AND A.製品NO = D.製品NO  "
             'WHERE売上年月指定
             If rboSales01.Checked = True Then
                 strSQL &= " AND LEFT(売上日,7) = REPLACE('" & dtpSales01.Text.Trim & "','/','-')  "
@@ -186,6 +256,10 @@ Public Class T017
             If chkWhereShipment01.Checked Then
                 strSQL &= " AND A.出荷先NO = '" & txtShipmentMSNo.Text.Trim & "'  "
             End If
+            'WHERE製品NO指定
+            If chkWhereItem01.Checked Then
+                strSQL &= " AND A.製品NO = '" & txtItemMSNo.Text.Trim & "'  "
+            End If
             strSQL &= "GROUP BY "
             'GROUP BY受注先NO指定
             If chkSelectOrder01.Checked = True Then
@@ -196,6 +270,11 @@ Public Class T017
             If chkSelectShipment01.Checked = True Then
                 strSQL &= " A.出荷先NO, "
                 strSQL &= " C.出荷先名, "
+            End If
+            'GROUP BY製品NO指定
+            If chkSelectItem01.Checked = True Then
+                strSQL &= " A.製品NO, "
+                strSQL &= " D.製品名, "
             End If
             strSQL &= " STUFF(LEFT(CONVERT(VARCHAR, A.売上日, 112), 6),5,0,'-') "
 
@@ -363,6 +442,65 @@ Public Class T017
     End Function
 
     '------------------------------------------------
+    '--製品NO 検索処理               　    ----------
+    '------------------------------------------------
+    Public Sub sItemMS_Search()
+        '０埋め処理
+        txtItemMSNo.Text = txtItemMSNo.Text.PadLeft(3, "0")
+        'DB接続
+        Call sDBconnect()
+        '検索メイン処理
+        Call fItemMS_MainSearch()
+
+    End Sub
+
+    '------------------------------------------------
+    '--製品NO 検索メイン処理         　    ----------
+    '------------------------------------------------
+    Public Function fItemMS_MainSearch()
+
+        Dim dtReader As SqlDataReader
+
+        Try
+            strSQL = ""
+            strSQL &= "SELECT "
+            strSQL &= " 製品NO, "
+            strSQL &= " 製品名 "
+            strSQL &= "FROM "
+            strSQL &= " ITEM_MS "
+            strSQL &= "WHERE "
+            strSQL &= " 製品NO = '" & txtItemMSNo.Text.Trim & "'  "
+
+            cd.CommandText = strSQL
+            cd.Connection = Cn
+            dtReader = cd.ExecuteReader
+
+            If dtReader.HasRows Then
+                While dtReader.Read
+                    lblItemMSName.Text = dtReader("製品名").ToString.Trim
+                End While
+
+                dtReader.Close()
+                Return True
+            Else
+                dtReader.Close()
+                lblItemMSName.Text = ""
+                Return False
+            End If
+
+
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString, "例外発生")
+            Return False
+        Finally
+            Cn.Close()
+            Cn.Dispose()
+        End Try
+
+
+    End Function
+
+    '------------------------------------------------
     '--クリア処理                    　    ----------
     '------------------------------------------------
     Public Sub sClear()
@@ -372,6 +510,8 @@ Public Class T017
         lblOrderMSName.Text = ""
         txtShipmentMSNo.Clear()
         lblShipmentMSName.Text = ""
+        txtItemMSNo.Clear()
+        lblItemMSName.Text = ""
 
         'ラジオボタンの初期設定
         rboSales03.Checked = True
@@ -380,6 +520,9 @@ Public Class T017
         'チェックボックスの設定
         chkWhereOrder01.Checked = False
         chkWhereShipment01.Checked = False
+        chkSelectOrder01.Checked = False
+        chkSelectShipment01.Checked = False
+        chkSelectItem01.Checked = False
 
         '年月の初期設定
         dtpSales01.Format = DateTimePickerFormat.Custom
@@ -390,6 +533,7 @@ Public Class T017
         GroupBox2.Enabled = False
         GroupBox3.Enabled = False
         GroupBox5.Enabled = False
+        GroupBox9.Enabled = False
 
         'DataGridViewの初期設定
         DataGridView1.DataSource = ""
@@ -406,8 +550,6 @@ Public Class T017
         DataGridView1.DataSource = ""
         DataGridView1.Columns.Clear()
     End Sub
-
-
 
     '------------------------------------------------
     '--DB接続の開始                        ----------
@@ -466,6 +608,12 @@ Public Class T017
         End Try
 
     End Function
+
+
+
+
+
+
 
 
 

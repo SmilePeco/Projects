@@ -107,6 +107,7 @@ Public Class T010
     '--受注一覧　検索メイン処理            ----------
     '------------------------------------------------
     Public Sub sSearch()
+        Me.ActiveControl = Nothing
         'DataGridViewの初期化
         Call sDataGridView_Clear()
         'DB接続
