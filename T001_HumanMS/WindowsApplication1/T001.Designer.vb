@@ -38,8 +38,8 @@ Partial Class T001
         Me.lblMode = New System.Windows.Forms.Label()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.btnHumanSearch = New System.Windows.Forms.Button()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.grpHuman.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -203,6 +203,15 @@ Partial Class T001
         Me.GroupBox1.TabIndex = 13
         Me.GroupBox1.TabStop = False
         '
+        'btnHumanSearch
+        '
+        Me.btnHumanSearch.Location = New System.Drawing.Point(150, 12)
+        Me.btnHumanSearch.Name = "btnHumanSearch"
+        Me.btnHumanSearch.Size = New System.Drawing.Size(24, 23)
+        Me.btnHumanSearch.TabIndex = 10
+        Me.btnHumanSearch.Text = "..."
+        Me.btnHumanSearch.UseVisualStyleBackColor = True
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.btnSearch)
@@ -217,15 +226,6 @@ Partial Class T001
         Me.GroupBox2.TabIndex = 14
         Me.GroupBox2.TabStop = False
         '
-        'btnHumanSearch
-        '
-        Me.btnHumanSearch.Location = New System.Drawing.Point(150, 12)
-        Me.btnHumanSearch.Name = "btnHumanSearch"
-        Me.btnHumanSearch.Size = New System.Drawing.Size(24, 23)
-        Me.btnHumanSearch.TabIndex = 10
-        Me.btnHumanSearch.Text = "..."
-        Me.btnHumanSearch.UseVisualStyleBackColor = True
-        '
         'T001
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -236,7 +236,7 @@ Partial Class T001
         Me.Controls.Add(Me.grpHuman)
         Me.KeyPreview = True
         Me.Name = "T001"
-        Me.Text = "T001社員マスタメンテナンス"
+        Me.Text = "T001_社員マスタメンテナンス"
         Me.grpHuman.ResumeLayout(False)
         Me.grpHuman.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)

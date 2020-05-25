@@ -114,6 +114,7 @@ Public Class T015
         '初期化
         Call sClear_DataGridView()
         Dim result As Boolean
+        Me.ActiveControl = Nothing
         result = fCheckSearch()
         If result = True Then
             'DB接続

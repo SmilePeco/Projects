@@ -132,6 +132,7 @@ Public Class T016
     '------------------------------------------------
     Public Sub sSearch()
         Dim result As Boolean
+        Me.ActiveControl = Nothing
         '初期化
         Call sClear_DataGridView()
         'チェック処理
@@ -198,7 +199,8 @@ Public Class T016
             strSQL &= "   B.出荷先NO, "
             strSQL &= "	  A.受注数, "
             strSQL &= "   COALESCE(SUM(B.出荷数), 0) AS 出荷数, "
-            strSQL &= "   A.受注数 - COALESCE(SUM(B.出荷数), 0) as 受注残 "
+            strSQL &= "   A.受注数 - COALESCE(SUM(B.出荷数), 0) as 受注残, "
+            strSQL &= "   B.出荷チェックフラグ "
             strSQL &= "  FROM "
             strSQL &= "   ORDER_TBL A, "
             strSQL &= "   SHIPMENT_TBL B "
@@ -207,7 +209,9 @@ Public Class T016
             strSQL &= "  GROUP BY "
             strSQL &= "   A.受注NO, "
             strSQL &= "   B.出荷先NO, "
-            strSQL &= "   A.受注数) B, "
+            strSQL &= "   A.受注数, "
+            strSQL &= "   B.出荷チェックフラグ "
+            strSQL &= " ) B,  "
             strSQL &= " (SELECT "
             strSQL &= "   A.受注NO, "
             strSQL &= "   C.製品NO, "
@@ -219,7 +223,30 @@ Public Class T016
             strSQL &= "  WHERE "
             strSQL &= "       A.作業工程NO = B.作業工程NO "
             strSQL &= "   AND B.製品NO = C.製品NO "
-            strSQL &= "   AND C.更新日 = (SELECT MAX(更新日) FROM ITEM_HISTORY_MS) "
+            strSQL &= "   AND C.更新日 = ( "
+            strSQL &= "                SELECT "
+            strSQL &= "                    MAX(更新日) "
+            strSQL &= "                FROM "
+            strSQL &= "                    ITEM_HISTORY_MS A, "
+            strSQL &= "                    ( "
+            strSQL &= "                        SELECT "
+            strSQL &= "                            B.製品NO "
+            strSQL &= "                        FROM "
+            strSQL &= "                            ORDER_TBL A, "
+            strSQL &= "                            WORKPROCESS_MS B "
+            strSQL &= "                        WHERE "
+            strSQL &= "                            A.作業工程NO = B.作業工程NO "
+            '                              検索条件に受注先NOを選択していた場合
+            If rboOrder01.Checked = True Then
+                strSQL &= "                        AND A.受注先NO = '" & txtOrderMSNo.Text.Trim & "' "
+                strSQL &= "                        AND A.受注日 BETWEEN '" & dtpOrderDateFrom.Text.Trim & "' AND '" & dtpOrderDateTo.Text.Trim & "' "
+            ElseIf rboOrder02.Checked = True Then
+                strSQL &= "                        AND A.受注NO = " & txtOrderNO.Text.Trim & " "
+            End If
+            strSQL &= "                    ) B "
+            strSQL &= "                WHERE "
+            strSQL &= "                    A.製品NO = B.製品NO "
+            strSQL &= "            ) "
             strSQL &= "   ) C "
             strSQL &= "WHERE "
             strSQL &= "    A.受注NO = B.受注NO "
@@ -227,6 +254,7 @@ Public Class T016
             strSQL &= "AND B.受注残 = 0 "
             strSQL &= "AND A.受注チェックフラグ = 1 "
             strSQL &= "AND A.出荷チェックフラグ = 0 "
+            strSQL &= "AND B.出荷チェックフラグ = 1 "
             If rboOrder01.Checked = True Then
                 strSQL &= "AND A.受注先NO = '" & txtOrderMSNo.Text.Trim & "' "
                 strSQL &= "AND A.受注日 BETWEEN "

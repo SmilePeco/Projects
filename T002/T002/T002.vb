@@ -39,9 +39,9 @@ Public Class T002
                     Call frmSearch()
                 End If
 
-            Case Keys.F5
+            Case Keys.F2
                 If btnEntry.Enabled = True Then
-                    '//「F5登録」押下
+                    '//「F2登録」押下
                     '新規登録・更新処理
                     If lblMode.Text = "新規作成" Then
                         '新規作成の場合
@@ -54,22 +54,22 @@ Public Class T002
                     End If
                 End If
 
-            Case Keys.F6
+            Case Keys.F3
                 If btnDelete.Enabled = True Then
-                    '//「F6削除」押下
+                    '//「F3削除」押下
                     'DB接続処理
                     Call sDBConnect()
                     '削除処理
                     Call frmDelete()
                 End If
 
-            Case Keys.F11
-                '//「F11キャンセル」押下
+            Case Keys.F4
+                '//「F4キャンセル」押下
                 'クリア処理
                 Call sClear()
 
-            Case Keys.F12
-                '//「F12終了」押下
+            Case Keys.F5
+                '//「F5終了」押下
                 'クローズ処理
                 Me.Close()
 
@@ -197,66 +197,6 @@ Public Class T002
     End Sub
 
     '------------------------------------------------
-    '--DB接続の開始                        ----------
-    '------------------------------------------------
-    Public Function sDBConnect() As Boolean
-
-        Dim strServer As String
-        Dim strUserID As String
-        Dim strPassword As String
-        Dim strDatabaseName As String
-
-        Dim xmlNode As XmlNodeList
-        Dim strFileAdress As String = "C:\SQLServer\DBConnect.xml"
-
-        Dim xmlDoc As New XmlDocument()
-
-        Try
-            If System.IO.File.Exists(strFileAdress) Then
-                xmlDoc.Load(strFileAdress)
-
-                'サーバ名の取得
-                xmlNode = xmlDoc.GetElementsByTagName("Server")
-                strServer = xmlNode.Item(0).InnerText
-                'ユーザ名の取得
-                xmlNode = xmlDoc.GetElementsByTagName("UserID")
-                strUserID = xmlNode.Item(0).InnerText
-                'パスワードの取得
-                xmlNode = xmlDoc.GetElementsByTagName("Password")
-                strPassword = xmlNode.Item(0).InnerText
-                'データベース名の取得
-                xmlNode = xmlDoc.GetElementsByTagName("DatabaseName")
-                strDatabaseName = xmlNode.Item(0).InnerText
-
-                'DB接続
-                strConnect = "Server=" & strServer & ";"
-                strConnect &= "User ID=" & strUserID & ";"
-                strConnect &= "Password=" & strPassword & ";"
-                strConnect &= "Initial Catalog=" & strDatabaseName
-
-                Cn.ConnectionString = strConnect
-
-                cd = Cn.CreateCommand
-
-                Cn.Open()
-
-                Return True
-
-            Else
-                MessageBox.Show("接続設定ファイルが存在しません。" & vbCrLf & "データベースに接続できませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                Return False
-
-            End If
-
-        Catch ex As Exception
-            MessageBox.Show(ex.ToString, "例外発生")
-            Return False
-
-        End Try
-
-    End Function
-
-    '------------------------------------------------
     '--検索メイン処理                      ----------
     '------------------------------------------------
     Public Function frmMainSearch() As Boolean
@@ -273,7 +213,7 @@ Public Class T002
                 strSQL &= "FROM "
                 strSQL &= " PROCESS_MS "
                 strSQL &= "WHERE "
-                strSQL &= " 工程NO = '" + txtProcessNo.Text.Trim + "'"
+                strSQL &= " 工程NO = '" & txtProcessNo.Text.Trim & "'"
 
                 cd.CommandText = strSQL
                 cd.Connection = Cn
@@ -332,9 +272,9 @@ Public Class T002
                 If result = Windows.Forms.DialogResult.Yes Then
                     strSQL = ""
                     strSQL &= "UPDATE PROCESS_MS "
-                    strSQL &= "SET 工程名 = '" + txtProcessName.Text.Trim + "', "
+                    strSQL &= "SET 工程名 = '" & txtProcessName.Text.Trim & "', "
                     strSQL &= "    更新日 = SYSDATETIME() "
-                    strSQL &= "WHERE 工程NO = '" + txtProcessNo.Text.Trim + "'"
+                    strSQL &= "WHERE 工程NO = '" & txtProcessNo.Text.Trim & "'"
 
                     'SQLの実行
                     cd.CommandText = strSQL
@@ -392,7 +332,7 @@ Public Class T002
                     strSQL &= "FROM "
                     strSQL &= " PROCESS_MS "
                     strSQL &= "WHERE "
-                    strSQL &= " 工程NO ='" + txtProcessNo.Text.Trim + "' "
+                    strSQL &= " 工程NO ='" & txtProcessNo.Text.Trim & "' "
 
                     cd.CommandText = strSQL
                     cd.Connection = Cn
@@ -406,8 +346,8 @@ Public Class T002
                         strSQL = ""
                         strSQL &= "INSERT INTO PROCESS_MS VALUES "
                         strSQL &= " ( "
-                        strSQL &= " '" + txtProcessNo.Text.Trim + "', "
-                        strSQL &= " '" + txtProcessName.Text.Trim + "', "
+                        strSQL &= " '" & txtProcessNo.Text.Trim & "', "
+                        strSQL &= " '" & txtProcessName.Text.Trim & "', "
                         strSQL &= " SYSDATETIME(), "
                         strSQL &= " SYSDATETIME() "
                         strSQL &= " ) "
@@ -455,8 +395,8 @@ Public Class T002
                     strSQL = ""
                     strSQL &= "INSERT INTO PROCESS_MS VALUES "
                     strSQL &= " ( "
-                    strSQL &= " '" + strProcessNo + "', "
-                    strSQL &= " '" + txtProcessName.Text.Trim + "', "
+                    strSQL &= " '" & strProcessNo & "', "
+                    strSQL &= " '" & txtProcessName.Text.Trim & "', "
                     strSQL &= " SYSDATETIME(), "
                     strSQL &= " SYSDATETIME() "
                     strSQL &= " ) "
@@ -498,7 +438,7 @@ Public Class T002
                 'SQL生成
                 strSQL = ""
                 strSQL &= "DELETE FROM PROCESS_MS "
-                strSQL &= "WHERE 工程NO = '" + txtProcessNo.Text.Trim + "' "
+                strSQL &= "WHERE 工程NO = '" & txtProcessNo.Text.Trim & "' "
 
                 cd.CommandText = strSQL
                 cd.Connection = Cn
@@ -541,5 +481,64 @@ Public Class T002
 
     End Sub
 
+    '------------------------------------------------
+    '--DB接続の開始                        ----------
+    '------------------------------------------------
+    Public Function sDBConnect() As Boolean
+
+        Dim strServer As String
+        Dim strUserID As String
+        Dim strPassword As String
+        Dim strDatabaseName As String
+
+        Dim xmlNode As XmlNodeList
+        Dim strFileAdress As String = "C:\SQLServer\DBConnect.xml"
+
+        Dim xmlDoc As New XmlDocument()
+
+        Try
+            If System.IO.File.Exists(strFileAdress) Then
+                xmlDoc.Load(strFileAdress)
+
+                'サーバ名の取得
+                xmlNode = xmlDoc.GetElementsByTagName("Server")
+                strServer = xmlNode.Item(0).InnerText
+                'ユーザ名の取得
+                xmlNode = xmlDoc.GetElementsByTagName("UserID")
+                strUserID = xmlNode.Item(0).InnerText
+                'パスワードの取得
+                xmlNode = xmlDoc.GetElementsByTagName("Password")
+                strPassword = xmlNode.Item(0).InnerText
+                'データベース名の取得
+                xmlNode = xmlDoc.GetElementsByTagName("DatabaseName")
+                strDatabaseName = xmlNode.Item(0).InnerText
+
+                'DB接続
+                strConnect = "Server=" & strServer & ";"
+                strConnect &= "User ID=" & strUserID & ";"
+                strConnect &= "Password=" & strPassword & ";"
+                strConnect &= "Initial Catalog=" & strDatabaseName
+
+                Cn.ConnectionString = strConnect
+
+                cd = Cn.CreateCommand
+
+                Cn.Open()
+
+                Return True
+
+            Else
+                MessageBox.Show("接続設定ファイルが存在しません。" & vbCrLf & "データベースに接続できませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return False
+
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString, "例外発生")
+            Return False
+
+        End Try
+
+    End Function
 
 End Class

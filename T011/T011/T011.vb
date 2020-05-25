@@ -44,7 +44,7 @@ Public Class T011
     '--更新担当者ボタン押下処理            ----------
     '------------------------------------------------
     Private Sub btnUserIDSearch_Click(sender As Object, e As EventArgs) Handles btnUserIDSearch.Click
-        Dim frm As New T011_4
+        Dim frm As New T011_1
         frm.ShowDialog(Me)
 
     End Sub

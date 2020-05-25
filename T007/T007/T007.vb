@@ -96,6 +96,8 @@ Public Class T007
     '------------------------------------------------
     Private Sub sSubmit()
         Dim result As Boolean
+
+        Me.ActiveControl = Nothing
         'DB接続
         Call sDBConnect()
         '登録前チェック
@@ -356,7 +358,6 @@ Public Class T007
                     Else
                         '空欄だった場合はエラーとする
                         MessageBox.Show("受注数が入力されていません。" & vbCrLf & "確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        txtOrderAmount.Focus()
                         Return False
                     End If
 
@@ -364,13 +365,13 @@ Public Class T007
 
                 Else
                     MessageBox.Show("入力した作業工程先は登録されていません。" & vbCrLf & "確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    txtWorkProcessNO.Focus()
+                    dtReader.Close()
                     Return False
                 End If
 
             Else
                 MessageBox.Show("入力した受注先NOは登録されていません。" & vbCrLf & "確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                txtOrderMSNo.Focus()
+                dtReader.Close()
                 Return False
             End If
         Catch ex As Exception

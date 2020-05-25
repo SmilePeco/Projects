@@ -1,6 +1,6 @@
 ﻿Imports System.Xml
 
-Public Class T011_4
+Public Class T011_1
 
     Dim strConnect As String 'DB接続用
     Dim Cn As New System.Data.SqlClient.SqlConnection

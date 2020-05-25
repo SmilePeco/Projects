@@ -70,10 +70,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="T011_4.designer.vb">
-      <DependentUpon>T011_4.vb</DependentUpon>
+    <Compile Include="T011_1.designer.vb">
+      <DependentUpon>T011_1.vb</DependentUpon>
     </Compile>
-    <Compile Include="T011_4.vb">
+    <Compile Include="T011_1.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="T011.vb">
@@ -106,8 +106,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="T011_4.resx">
-      <DependentUpon>T011_4.vb</DependentUpon>
+    <EmbeddedResource Include="T011_1.resx">
+      <DependentUpon>T011_1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="T011.resx">
       <DependentUpon>T011.vb</DependentUpon>

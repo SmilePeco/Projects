@@ -82,7 +82,7 @@ Partial Class T002
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(513, 157)
+        Me.GroupBox1.Size = New System.Drawing.Size(543, 162)
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
         '
@@ -104,9 +104,9 @@ Partial Class T002
         Me.GroupBox2.Controls.Add(Me.btnEntry)
         Me.GroupBox2.Controls.Add(Me.btnEnd)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupBox2.Location = New System.Drawing.Point(0, 107)
+        Me.GroupBox2.Location = New System.Drawing.Point(0, 112)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(513, 50)
+        Me.GroupBox2.Size = New System.Drawing.Size(543, 50)
         Me.GroupBox2.TabIndex = 5
         Me.GroupBox2.TabStop = False
         '
@@ -121,11 +121,13 @@ Partial Class T002
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(298, 18)
+        Me.btnCancel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.Location = New System.Drawing.Point(345, 18)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(90, 23)
         Me.btnCancel.TabIndex = 16
-        Me.btnCancel.Text = "F11:クリア"
+        Me.btnCancel.Text = "F4:クリア"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'btnDelete
@@ -134,7 +136,7 @@ Partial Class T002
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(90, 23)
         Me.btnDelete.TabIndex = 15
-        Me.btnDelete.Text = "F6:削除"
+        Me.btnDelete.Text = "F3:削除"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
         'btnEntry
@@ -143,23 +145,25 @@ Partial Class T002
         Me.btnEntry.Name = "btnEntry"
         Me.btnEntry.Size = New System.Drawing.Size(90, 23)
         Me.btnEntry.TabIndex = 14
-        Me.btnEntry.Text = "F5:登録"
+        Me.btnEntry.Text = "F2:登録"
         Me.btnEntry.UseVisualStyleBackColor = True
         '
         'btnEnd
         '
-        Me.btnEnd.Location = New System.Drawing.Point(403, 18)
+        Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEnd.Location = New System.Drawing.Point(441, 18)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(90, 23)
         Me.btnEnd.TabIndex = 17
-        Me.btnEnd.Text = "F12:終了"
+        Me.btnEnd.Text = "F5:終了"
         Me.btnEnd.UseVisualStyleBackColor = True
         '
         'T002
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(513, 157)
+        Me.ClientSize = New System.Drawing.Size(543, 162)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.KeyPreview = True

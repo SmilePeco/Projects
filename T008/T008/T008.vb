@@ -179,6 +179,7 @@ Public Class T008
     '--受注一覧　検索処理            　    ----------
     '------------------------------------------------
     Public Sub sOrderTBL_Search()
+        Me.ActiveControl = Nothing
         Dim result As Boolean
         'DataGridView1クリア処理
         Call sClear_DataGridView1()

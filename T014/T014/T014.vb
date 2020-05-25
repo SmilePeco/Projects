@@ -133,6 +133,9 @@ Public Class T014
     '------------------------------------------------
     Public Sub sSearch()
         Dim result As Boolean
+        Me.ActiveControl = Nothing
+        'クリア処理
+        Call sClear_DataGridView()
         'チェック処理
         result = fCheckSearch()
         If result = True Then
@@ -476,6 +479,41 @@ Public Class T014
     End Function
 
     '------------------------------------------------
+    '--クリア処理                    　    ----------
+    '------------------------------------------------
+    Public Sub sClear()
+
+        rboShipment04.Visible = False
+        rboShipment04.Checked = True
+
+        txtShipmentMSNo.Clear()
+        lblShipmentMSName.Text = ""
+        dtpShipmentDateFrom.Text = Date.Now
+        dtpShipmentDateTo.Text = Date.Now
+
+        txtShipmentNo.Clear()
+
+        DataGridView1.DataSource = Nothing
+        DataGridView1.Columns.Clear()
+
+        GroupBox2.Enabled = False
+        GroupBox3.Enabled = False
+        GroupBox4.Enabled = False
+
+
+    End Sub
+
+    '------------------------------------------------
+    '--クリア処理 DataGridViuewのみ  　    ----------
+    '------------------------------------------------
+    Public Sub sClear_DataGridView()
+
+        DataGridView1.DataSource = Nothing
+        DataGridView1.Columns.Clear()
+
+    End Sub
+
+    '------------------------------------------------
     '--DB接続の開始                        ----------
     '------------------------------------------------
     Public Function sDBconnect() As Boolean
@@ -532,42 +570,5 @@ Public Class T014
         End Try
 
     End Function
-
-    '------------------------------------------------
-    '--クリア処理                    　    ----------
-    '------------------------------------------------
-    Public Sub sClear()
-
-        rboShipment04.Visible = False
-        rboShipment04.Checked = True
-
-        txtShipmentMSNo.Clear()
-        lblShipmentMSName.Text = ""
-        dtpShipmentDateFrom.Text = Date.Now
-        dtpShipmentDateTo.Text = Date.Now
-
-        txtShipmentNo.Clear()
-
-        DataGridView1.DataSource = Nothing
-        DataGridView1.Columns.Clear()
-
-        GroupBox2.Enabled = False
-        GroupBox3.Enabled = False
-        GroupBox4.Enabled = False
-
-
-    End Sub
-
-
-
-
-
-
-
-
-
-
-
-
 
 End Class

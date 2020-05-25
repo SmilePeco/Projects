@@ -191,13 +191,14 @@ Public Class T001
         grpHuman.Enabled = True
         txtName.Focus()
         txtHumanNo.Enabled = False
+        btnHumanSearch.Enabled = False
         btnSearch.Enabled = False
         btnEntry.Enabled = True
 
         If lblMode.Text = "新規作成" Then
-            btnEntry.Text = "F5:新規作成"
+            btnEntry.Text = "F2:新規作成"
         ElseIf lblMode.Text = "更新" Then
-            btnEntry.Text = "F5:更新"
+            btnEntry.Text = "F2:更新"
 
         End If
 
@@ -225,7 +226,7 @@ Public Class T001
                 strSQL &= "FROM "
                 strSQL &= "HUMAN_MS "
                 strSQL &= "WHERE "
-                strSQL &= "    社員No= '" + txtHumanNo.Text + "' "
+                strSQL &= "    社員No= '" & txtHumanNo.Text & "' "
                 'SQL実行
                 cd.CommandText = strSQL
                 cd.Connection = Cn
@@ -483,6 +484,7 @@ Public Class T001
         txtHumanNo.Enabled = True
         txtHumanNo.Clear()
         txtHumanNo.Focus()
+        btnHumanSearch.Enabled = True
         grpHuman.Enabled = False
         txtName.Clear()
         txtPass.Clear()
@@ -491,7 +493,7 @@ Public Class T001
         btnSearch.Enabled = True
 
         btnEntry.Enabled = False
-        btnEntry.Text = "F5:"
+        btnEntry.Text = "F2:"
 
         btnDelete.Enabled = False
 
@@ -556,6 +558,7 @@ Public Class T001
         End Try
 
     End Function
+
 
 
 

@@ -28,7 +28,11 @@ Public Class T012
                 Call sSearch()
             Case Keys.F2
                 '削除処理
-                Call sDelete()
+                '//削除機能は撤廃
+                If btnDelete.Visible = True Then
+                    Call sDelete()
+
+                End If
             Case Keys.F3
                 'クリア処理
                 Call sClear()
@@ -112,6 +116,7 @@ Public Class T012
     '------------------------------------------------
     Public Sub sSearch()
         Dim result As Boolean
+        Me.ActiveControl = Nothing
         'グリッド初期化
         Call sDataGridView_Clear()
         'DB接続
@@ -177,11 +182,12 @@ Public Class T012
                 daDataAdapter.Fill(dsDataset, "TABLE001")
                 DataGridView1.DataSource = dsDataset.Tables("TABLE001")
 
-                Dim chkColumn As New DataGridViewCheckBoxColumn
-                DataGridView1.Columns.Insert(0, chkColumn)
+                '生産削除機能は撤廃
+                'Dim chkColumn As New DataGridViewCheckBoxColumn
+                'DataGridView1.Columns.Insert(0, chkColumn)
 
                 For i = 0 To DataGridView1.RowCount - 1
-                    For y = 1 To 7
+                    For y = 1 To DataGridView1.ColumnCount - 1
                         'トリム処理
                         DataGridView1.Item(y, i).Value = DataGridView1.Item(y, i).Value.ToString.Trim
                         DataGridView1.Columns(y).ReadOnly = True
@@ -388,6 +394,9 @@ Public Class T012
         DataGridView1.DataSource = Nothing
         DataGridView1.Columns.Clear()
         DataGridView1.Rows.Clear()
+
+        '削除機能は撤廃
+        btnDelete.Visible = False
 
     End Sub
 

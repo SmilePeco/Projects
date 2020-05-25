@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class T011_4
+Partial Class T011_1
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
@@ -51,15 +51,15 @@ Partial Class T011_4
         Me.DataGridView1.Size = New System.Drawing.Size(452, 243)
         Me.DataGridView1.TabIndex = 0
         '
-        'T011_4
+        'T011_1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(458, 261)
         Me.Controls.Add(Me.GroupBox1)
         Me.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Name = "T011_4"
-        Me.Text = "T011_4_ログインID検索"
+        Me.Name = "T011_1"
+        Me.Text = "T011_1_ログインID検索"
         Me.GroupBox1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
