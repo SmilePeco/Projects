@@ -160,7 +160,7 @@ Public Class TLOGIN
             Else
                 '入力したログインIDが存在しない場合は失敗とする
                 dtReader.Close()
-                MessageBox.Show("そのログインIDは存在しません。" & vbCrLf & "確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                MessageBox.Show("ログイン情報に誤りがあります。" & vbCrLf & "確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Return False
 
             End If

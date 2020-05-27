@@ -38,6 +38,7 @@ Partial Class T008
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.chkOrderCheck = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -46,6 +47,7 @@ Partial Class T008
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.chkOrderCheck)
         Me.GroupBox1.Controls.Add(Me.dtpOrderDateTo)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.dtpOrderDateFrom)
@@ -57,7 +59,7 @@ Partial Class T008
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(510, 97)
+        Me.GroupBox1.Size = New System.Drawing.Size(548, 127)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         '
@@ -138,9 +140,9 @@ Partial Class T008
         Me.GroupBox2.Controls.Add(Me.GroupBox3)
         Me.GroupBox2.Controls.Add(Me.DataGridView1)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Location = New System.Drawing.Point(0, 97)
+        Me.GroupBox2.Location = New System.Drawing.Point(0, 127)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(510, 213)
+        Me.GroupBox2.Size = New System.Drawing.Size(548, 265)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         '
@@ -151,9 +153,9 @@ Partial Class T008
         Me.GroupBox3.Controls.Add(Me.btnDelete)
         Me.GroupBox3.Controls.Add(Me.Button1)
         Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupBox3.Location = New System.Drawing.Point(3, 149)
+        Me.GroupBox3.Location = New System.Drawing.Point(3, 201)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(504, 61)
+        Me.GroupBox3.Size = New System.Drawing.Size(542, 61)
         Me.GroupBox3.TabIndex = 1
         Me.GroupBox3.TabStop = False
         '
@@ -161,7 +163,7 @@ Partial Class T008
         '
         Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEnd.Location = New System.Drawing.Point(420, 18)
+        Me.btnEnd.Location = New System.Drawing.Point(458, 18)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(75, 23)
         Me.btnEnd.TabIndex = 3
@@ -172,7 +174,7 @@ Partial Class T008
         '
         Me.btnClear.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnClear.Location = New System.Drawing.Point(316, 18)
+        Me.btnClear.Location = New System.Drawing.Point(354, 18)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(75, 23)
         Me.btnClear.TabIndex = 2
@@ -206,14 +208,24 @@ Partial Class T008
         Me.DataGridView1.Location = New System.Drawing.Point(3, 15)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 21
-        Me.DataGridView1.Size = New System.Drawing.Size(504, 195)
+        Me.DataGridView1.Size = New System.Drawing.Size(542, 247)
         Me.DataGridView1.TabIndex = 0
+        '
+        'chkOrderCheck
+        '
+        Me.chkOrderCheck.AutoSize = True
+        Me.chkOrderCheck.Location = New System.Drawing.Point(14, 96)
+        Me.chkOrderCheck.Name = "chkOrderCheck"
+        Me.chkOrderCheck.Size = New System.Drawing.Size(135, 16)
+        Me.chkOrderCheck.TabIndex = 15
+        Me.chkOrderCheck.Text = "受注チェック済みも表示"
+        Me.chkOrderCheck.UseVisualStyleBackColor = True
         '
         'T008
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(510, 310)
+        Me.ClientSize = New System.Drawing.Size(548, 392)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.KeyPreview = True
@@ -243,5 +255,6 @@ Partial Class T008
     Friend WithEvents btnDelete As System.Windows.Forms.Button
     Friend WithEvents btnEnd As System.Windows.Forms.Button
     Friend WithEvents btnClear As System.Windows.Forms.Button
+    Friend WithEvents chkOrderCheck As System.Windows.Forms.CheckBox
 
 End Class

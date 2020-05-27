@@ -250,7 +250,7 @@ Partial Class T011
         Me.GroupBox5.Location = New System.Drawing.Point(3, 237)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(637, 50)
-        Me.GroupBox5.TabIndex = 1
+        Me.GroupBox5.TabIndex = 5
         Me.GroupBox5.TabStop = False
         '
         'Button1
@@ -258,7 +258,7 @@ Partial Class T011
         Me.Button1.Location = New System.Drawing.Point(108, 18)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 3
+        Me.Button1.TabIndex = 1
         Me.Button1.Text = "F2:更新"
         Me.Button1.UseVisualStyleBackColor = True
         '
@@ -269,7 +269,7 @@ Partial Class T011
         Me.btnEnd.Location = New System.Drawing.Point(529, 18)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(75, 23)
-        Me.btnEnd.TabIndex = 2
+        Me.btnEnd.TabIndex = 3
         Me.btnEnd.Text = "F4:終了"
         Me.btnEnd.UseVisualStyleBackColor = True
         '
@@ -280,7 +280,7 @@ Partial Class T011
         Me.btnClear.Location = New System.Drawing.Point(432, 18)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(75, 23)
-        Me.btnClear.TabIndex = 1
+        Me.btnClear.TabIndex = 2
         Me.btnClear.Text = "F3:クリア"
         Me.btnClear.UseVisualStyleBackColor = True
         '
@@ -304,7 +304,7 @@ Partial Class T011
         Me.Controls.Add(Me.GroupBox1)
         Me.KeyPreview = True
         Me.Name = "T011"
-        Me.Text = "T011_生産完了チェック"
+        Me.Text = "T011_生産チェック"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)

@@ -87,6 +87,8 @@ Partial Class T009_2
         '
         'btnEnd
         '
+        Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEnd.Location = New System.Drawing.Point(397, 17)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(75, 23)
@@ -116,7 +118,7 @@ Partial Class T009_2
         Me.DataGridView1.Size = New System.Drawing.Size(499, 260)
         Me.DataGridView1.TabIndex = 0
         '
-        'T010_2
+        'T009_2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -124,7 +126,7 @@ Partial Class T009_2
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.KeyPreview = True
-        Me.Name = "T010_2"
+        Me.Name = "T009_2"
         Me.Text = "T009_2_出荷先マスタ検索"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()

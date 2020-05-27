@@ -38,17 +38,17 @@ Partial Class T015
         Me.btnOrderSearch = New System.Windows.Forms.Button()
         Me.txtOrderMSNo = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.btnEnd = New System.Windows.Forms.Button()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.btnSearch = New System.Windows.Forms.Button()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -106,7 +106,7 @@ Partial Class T015
         Me.GroupBox3.Location = New System.Drawing.Point(0, 94)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(636, 39)
-        Me.GroupBox3.TabIndex = 4
+        Me.GroupBox3.TabIndex = 2
         Me.GroupBox3.TabStop = False
         '
         'txtOrderNO
@@ -141,7 +141,7 @@ Partial Class T015
         Me.GroupBox2.Location = New System.Drawing.Point(0, 49)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(636, 45)
-        Me.GroupBox2.TabIndex = 3
+        Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         '
         'dtpOrderDateTo
@@ -216,34 +216,23 @@ Partial Class T015
         Me.Label1.TabIndex = 19
         Me.Label1.Text = "受注先NO"
         '
-        'GroupBox4
-        '
-        Me.GroupBox4.Controls.Add(Me.GroupBox5)
-        Me.GroupBox4.Controls.Add(Me.DataGridView1)
-        Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox4.Location = New System.Drawing.Point(0, 133)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(636, 264)
-        Me.GroupBox4.TabIndex = 5
-        Me.GroupBox4.TabStop = False
-        '
         'GroupBox5
         '
         Me.GroupBox5.Controls.Add(Me.btnEnd)
         Me.GroupBox5.Controls.Add(Me.btnClear)
         Me.GroupBox5.Controls.Add(Me.btnSearch)
         Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupBox5.Location = New System.Drawing.Point(3, 216)
+        Me.GroupBox5.Location = New System.Drawing.Point(0, 352)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(630, 45)
-        Me.GroupBox5.TabIndex = 1
+        Me.GroupBox5.Size = New System.Drawing.Size(636, 45)
+        Me.GroupBox5.TabIndex = 4
         Me.GroupBox5.TabStop = False
         '
         'btnEnd
         '
         Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEnd.Location = New System.Drawing.Point(540, 16)
+        Me.btnEnd.Location = New System.Drawing.Point(546, 16)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(75, 23)
         Me.btnEnd.TabIndex = 2
@@ -254,7 +243,7 @@ Partial Class T015
         '
         Me.btnClear.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnClear.Location = New System.Drawing.Point(447, 16)
+        Me.btnClear.Location = New System.Drawing.Point(453, 16)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(75, 23)
         Me.btnClear.TabIndex = 1
@@ -270,6 +259,16 @@ Partial Class T015
         Me.btnSearch.Text = "F1:検索"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.DataGridView1)
+        Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox4.Location = New System.Drawing.Point(0, 133)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(636, 219)
+        Me.GroupBox4.TabIndex = 3
+        Me.GroupBox4.TabStop = False
+        '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
@@ -280,7 +279,7 @@ Partial Class T015
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowTemplate.Height = 21
-        Me.DataGridView1.Size = New System.Drawing.Size(630, 246)
+        Me.DataGridView1.Size = New System.Drawing.Size(630, 201)
         Me.DataGridView1.TabIndex = 0
         '
         'T015
@@ -289,6 +288,7 @@ Partial Class T015
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(636, 397)
         Me.Controls.Add(Me.GroupBox4)
+        Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
@@ -301,8 +301,8 @@ Partial Class T015
         Me.GroupBox3.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox4.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -323,11 +323,11 @@ Partial Class T015
     Friend WithEvents btnOrderSearch As System.Windows.Forms.Button
     Friend WithEvents txtOrderMSNo As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
+    Friend WithEvents btnEnd As System.Windows.Forms.Button
+    Friend WithEvents btnClear As System.Windows.Forms.Button
+    Friend WithEvents btnSearch As System.Windows.Forms.Button
     Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
-    Friend WithEvents btnSearch As System.Windows.Forms.Button
-    Friend WithEvents btnClear As System.Windows.Forms.Button
-    Friend WithEvents btnEnd As System.Windows.Forms.Button
 
 End Class

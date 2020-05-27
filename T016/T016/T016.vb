@@ -43,7 +43,7 @@ Public Class T016
     '------------------------------------------------
     '--検索ボタン押下押下処理        　    ----------
     '------------------------------------------------
-    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs)
         '検索処理
         Call sSearch()
     End Sub
@@ -51,7 +51,7 @@ Public Class T016
     '------------------------------------------------
     '--更新ボタン押下押下処理        　    ----------
     '------------------------------------------------
-    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+    Private Sub btnUpdate_Click(sender As Object, e As EventArgs)
         '更新処理
         Call sUpdate()
     End Sub
@@ -59,7 +59,7 @@ Public Class T016
     '------------------------------------------------
     '--クリアボタン押下押下処理      　    ----------
     '------------------------------------------------
-    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+    Private Sub btnClear_Click(sender As Object, e As EventArgs)
         'クリア処理
         Call sClear()
     End Sub
@@ -67,7 +67,7 @@ Public Class T016
     '------------------------------------------------
     '--終了ボタン押下押下処理        　    ----------
     '------------------------------------------------
-    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
+    Private Sub btnEnd_Click(sender As Object, e As EventArgs)
         '終了処理
         Me.Close()
     End Sub
@@ -121,7 +121,7 @@ Public Class T016
     '------------------------------------------------
     '--更新担当者 ボタン押下処理     　    ----------
     '------------------------------------------------
-    Private Sub btnUserIDSearch_Click(sender As Object, e As EventArgs) Handles btnUserIDSearch.Click
+    Private Sub btnUserIDSearch_Click(sender As Object, e As EventArgs)
         Dim frm As New T016_3
         frm.ShowDialog(Me)
 

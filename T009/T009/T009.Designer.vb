@@ -70,7 +70,7 @@ Partial Class T009
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(641, 58)
-        Me.GroupBox1.TabIndex = 0
+        Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         '
         'chkClosedStock
@@ -79,7 +79,7 @@ Partial Class T009
         Me.chkClosedStock.Location = New System.Drawing.Point(267, 24)
         Me.chkClosedStock.Name = "chkClosedStock"
         Me.chkClosedStock.Size = New System.Drawing.Size(122, 16)
-        Me.chkClosedStock.TabIndex = 2
+        Me.chkClosedStock.TabIndex = 3
         Me.chkClosedStock.Text = "臨時在庫として登録"
         Me.chkClosedStock.UseVisualStyleBackColor = True
         '
@@ -108,7 +108,7 @@ Partial Class T009
         Me.btnOrderSearch.Location = New System.Drawing.Point(133, 19)
         Me.btnOrderSearch.Name = "btnOrderSearch"
         Me.btnOrderSearch.Size = New System.Drawing.Size(24, 23)
-        Me.btnOrderSearch.TabIndex = 17
+        Me.btnOrderSearch.TabIndex = 2
         Me.btnOrderSearch.Text = "..."
         Me.btnOrderSearch.UseVisualStyleBackColor = True
         '
@@ -132,7 +132,7 @@ Partial Class T009
         Me.GroupBox2.Location = New System.Drawing.Point(0, 58)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(641, 110)
-        Me.GroupBox2.TabIndex = 1
+        Me.GroupBox2.TabIndex = 2
         Me.GroupBox2.TabStop = False
         '
         'GroupBox6
@@ -204,7 +204,7 @@ Partial Class T009
         Me.cmdWorkProcessSearch.Location = New System.Drawing.Point(133, 33)
         Me.cmdWorkProcessSearch.Name = "cmdWorkProcessSearch"
         Me.cmdWorkProcessSearch.Size = New System.Drawing.Size(24, 23)
-        Me.cmdWorkProcessSearch.TabIndex = 13
+        Me.cmdWorkProcessSearch.TabIndex = 2
         Me.cmdWorkProcessSearch.Text = "..."
         Me.cmdWorkProcessSearch.UseVisualStyleBackColor = True
         '
@@ -215,7 +215,7 @@ Partial Class T009
         Me.txtWorkProcessNO.MaxLength = 3
         Me.txtWorkProcessNO.Name = "txtWorkProcessNO"
         Me.txtWorkProcessNO.Size = New System.Drawing.Size(41, 19)
-        Me.txtWorkProcessNO.TabIndex = 3
+        Me.txtWorkProcessNO.TabIndex = 1
         '
         'Label4
         '
@@ -235,7 +235,7 @@ Partial Class T009
         Me.GroupBox3.Location = New System.Drawing.Point(0, 168)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(641, 62)
-        Me.GroupBox3.TabIndex = 2
+        Me.GroupBox3.TabIndex = 3
         Me.GroupBox3.TabStop = False
         '
         'btnUserIDSearch
@@ -243,7 +243,7 @@ Partial Class T009
         Me.btnUserIDSearch.Location = New System.Drawing.Point(187, 20)
         Me.btnUserIDSearch.Name = "btnUserIDSearch"
         Me.btnUserIDSearch.Size = New System.Drawing.Size(24, 23)
-        Me.btnUserIDSearch.TabIndex = 5
+        Me.btnUserIDSearch.TabIndex = 2
         Me.btnUserIDSearch.Text = "..."
         Me.btnUserIDSearch.UseVisualStyleBackColor = True
         '
@@ -254,7 +254,7 @@ Partial Class T009
         Me.txtUserID.MaxLength = 10
         Me.txtUserID.Name = "txtUserID"
         Me.txtUserID.Size = New System.Drawing.Size(95, 19)
-        Me.txtUserID.TabIndex = 4
+        Me.txtUserID.TabIndex = 1
         '
         'Label5
         '
@@ -275,7 +275,7 @@ Partial Class T009
         Me.GroupBox4.Location = New System.Drawing.Point(0, 230)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(641, 55)
-        Me.GroupBox4.TabIndex = 3
+        Me.GroupBox4.TabIndex = 4
         Me.GroupBox4.TabStop = False
         '
         'dtpCreateTime
@@ -284,7 +284,7 @@ Partial Class T009
         Me.dtpCreateTime.Location = New System.Drawing.Point(309, 12)
         Me.dtpCreateTime.Name = "dtpCreateTime"
         Me.dtpCreateTime.Size = New System.Drawing.Size(200, 19)
-        Me.dtpCreateTime.TabIndex = 7
+        Me.dtpCreateTime.TabIndex = 2
         '
         'Label2
         '
@@ -311,7 +311,7 @@ Partial Class T009
         Me.txtOrderAmount.MaxLength = 6
         Me.txtOrderAmount.Name = "txtOrderAmount"
         Me.txtOrderAmount.Size = New System.Drawing.Size(65, 19)
-        Me.txtOrderAmount.TabIndex = 6
+        Me.txtOrderAmount.TabIndex = 1
         Me.txtOrderAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'btnSubmit
@@ -322,7 +322,7 @@ Partial Class T009
         Me.btnSubmit.Location = New System.Drawing.Point(12, 20)
         Me.btnSubmit.Name = "btnSubmit"
         Me.btnSubmit.Size = New System.Drawing.Size(75, 23)
-        Me.btnSubmit.TabIndex = 8
+        Me.btnSubmit.TabIndex = 1
         Me.btnSubmit.Text = "F1:登録"
         Me.btnSubmit.UseVisualStyleBackColor = True
         '
@@ -335,7 +335,7 @@ Partial Class T009
         Me.GroupBox5.Location = New System.Drawing.Point(0, 307)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(641, 55)
-        Me.GroupBox5.TabIndex = 4
+        Me.GroupBox5.TabIndex = 5
         Me.GroupBox5.TabStop = False
         '
         'btnClear
@@ -346,7 +346,7 @@ Partial Class T009
         Me.btnClear.Location = New System.Drawing.Point(456, 20)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(75, 23)
-        Me.btnClear.TabIndex = 10
+        Me.btnClear.TabIndex = 2
         Me.btnClear.Text = "F2:クリア"
         Me.btnClear.UseVisualStyleBackColor = True
         '
@@ -358,7 +358,7 @@ Partial Class T009
         Me.btnEnd.Location = New System.Drawing.Point(554, 20)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(75, 23)
-        Me.btnEnd.TabIndex = 9
+        Me.btnEnd.TabIndex = 3
         Me.btnEnd.Text = "F3:終了"
         Me.btnEnd.UseVisualStyleBackColor = True
         '

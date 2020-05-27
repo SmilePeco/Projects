@@ -125,7 +125,8 @@ Public Class T010
         Dim dtReader As SqlDataReader
 
         Try
-            If rboSearch1.Checked = True Then
+
+            If rboSearch3.Checked = False Then
                 '受注NO、受注日検索の場合
                 strSQL = ""
                 strSQL &= "SELECT "
@@ -139,114 +140,147 @@ Public Class T010
                 strSQL &= " 登録日 "
                 strSQL &= "FROM "
                 strSQL &= " ORDER_TBL "
-                'WHERE条件が異なる
                 strSQL &= "WHERE "
-                strSQL &= "    受注先NO='" & txtOrderMSNo.Text.Trim & "' "
-                strSQL &= "AND 受注日 BETWEEN "
-                strSQL &= "'" & dtpOrderDateFrom.Text & "' AND '" & dtpOrderDateTo.Text & "' "
-                strSQL &= "ORDER BY "
-                strSQL &= "受注NO "
-
-            ElseIf rboSearch2.Checked = True Then
-                '受注番号検索の場合
-                strSQL = ""
-                strSQL &= "SELECT "
-                strSQL &= " 受注NO, "
-                strSQL &= " 受注先NO, "
-                strSQL &= " 作業工程NO, "
-                strSQL &= " 受注数, "
-                strSQL &= " 受注日, "
-                strSQL &= " 最終更新者, "
-                strSQL &= " 更新日, "
-                strSQL &= " 登録日 "
-                strSQL &= "FROM "
-                strSQL &= " ORDER_TBL "
-                'WHERE条件が異なる
-                strSQL &= "WHERE "
-                strSQL &= "    受注NO='" & txtOrderNo.Text.Trim & "' "
-                strSQL &= "ORDER BY "
-                strSQL &= "受注NO "
-
-
-            Else
-                '何も選択されていない場合
-                MessageBox.Show("検索条件が未選択です。" & vbCrLf & "確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Return False
-
-            End If
-
-            cd.CommandText = strSQL
-            cd.Connection = Cn
-            dtReader = cd.ExecuteReader
-
-            If dtReader.HasRows Then
-                dtReader.Close()
-
-                Dim dsDataset As New DataSet
-                Dim daDataAdapter As New SqlClient.SqlDataAdapter
-
-                daDataAdapter.SelectCommand = New SqlClient.SqlCommand(strSQL, Cn)
-                daDataAdapter.SelectCommand.CommandTimeout = 0
-                daDataAdapter.Fill(dsDataset, "TABLE001")
-                DataGridView1.DataSource = dsDataset.Tables("TABLE001")
-
-
-
-                '１行目にチェックボックスを追加
-                Dim chkColumns As New DataGridViewCheckBoxColumn
-                DataGridView1.Columns.Insert(0, chkColumns)
-                'DBからチェックボックスの値を反映
-                strSQL = ""
-                strSQL &= "SELECT "
-                strSQL &= " 受注チェックフラグ "
-                strSQL &= "FROM "
-                strSQL &= " ORDER_TBL "
-                strSQL &= "WHERE "
+                strSQL &= "    受注チェックフラグ=0 "
                 If rboSearch1.Checked = True Then
-                    strSQL &= "    受注先NO='" & txtOrderMSNo.Text.Trim & "' "
+
+                    strSQL &= "AND 受注先NO='" & txtOrderMSNo.Text.Trim & "' "
                     strSQL &= "AND 受注日 BETWEEN "
                     strSQL &= "'" & dtpOrderDateFrom.Text & "' AND '" & dtpOrderDateTo.Text & "' "
-                Else
-                    strSQL &= "    受注NO='" & txtOrderNo.Text.Trim & "' "
+                ElseIf rboSearch2.Checked = True Then
+                    strSQL &= "AND 受注NO='" & txtOrderNo.Text.Trim & "' "
                 End If
                 strSQL &= "ORDER BY "
                 strSQL &= "受注NO "
+
+
+
+                'If rboSearch1.Checked = True Then
+                '    '受注NO、受注日検索の場合
+                '    strSQL = ""
+                '    strSQL &= "SELECT "
+                '    strSQL &= " 受注NO, "
+                '    strSQL &= " 受注先NO, "
+                '    strSQL &= " 作業工程NO, "
+                '    strSQL &= " 受注数, "
+                '    strSQL &= " 受注日, "
+                '    strSQL &= " 最終更新者, "
+                '    strSQL &= " 更新日, "
+                '    strSQL &= " 登録日 "
+                '    strSQL &= "FROM "
+                '    strSQL &= " ORDER_TBL "
+                '    'WHERE条件が異なる
+                '    strSQL &= "WHERE "
+                '    strSQL &= "    受注先NO='" & txtOrderMSNo.Text.Trim & "' "
+                '    strSQL &= "AND 受注日 BETWEEN "
+                '    strSQL &= "'" & dtpOrderDateFrom.Text & "' AND '" & dtpOrderDateTo.Text & "' "
+                '    strSQL &= "ORDER BY "
+                '    strSQL &= "受注NO "
+
+                'ElseIf rboSearch2.Checked = True Then
+                '    '受注番号検索の場合
+                '    strSQL = ""
+                '    strSQL &= "SELECT "
+                '    strSQL &= " 受注NO, "
+                '    strSQL &= " 受注先NO, "
+                '    strSQL &= " 作業工程NO, "
+                '    strSQL &= " 受注数, "
+                '    strSQL &= " 受注日, "
+                '    strSQL &= " 最終更新者, "
+                '    strSQL &= " 更新日, "
+                '    strSQL &= " 登録日 "
+                '    strSQL &= "FROM "
+                '    strSQL &= " ORDER_TBL "
+                '    'WHERE条件が異なる
+                '    strSQL &= "WHERE "
+                '    strSQL &= "    受注NO='" & txtOrderNo.Text.Trim & "' "
+                '    strSQL &= "ORDER BY "
+                '    strSQL &= "受注NO "
+
+
+
 
                 cd.CommandText = strSQL
                 cd.Connection = Cn
                 dtReader = cd.ExecuteReader
 
-                Dim i As Integer = 0
-                'チェック情報の反映
-                While dtReader.Read
-                    DataGridView1.Item(0, i).Value = dtReader("受注チェックフラグ")
-                    i += 1
-                End While
+                If dtReader.HasRows Then
+                    dtReader.Close()
 
-                'トリム処理
-                For i = 0 To DataGridView1.RowCount - 1
-                    For y = 0 To 8
-                        DataGridView1.Item(y, i).Value = DataGridView1.Item(y, i).Value.ToString.Trim
+                    Dim dsDataset As New DataSet
+                    Dim daDataAdapter As New SqlClient.SqlDataAdapter
+
+                    daDataAdapter.SelectCommand = New SqlClient.SqlCommand(strSQL, Cn)
+                    daDataAdapter.SelectCommand.CommandTimeout = 0
+                    daDataAdapter.Fill(dsDataset, "TABLE001")
+                    DataGridView1.DataSource = dsDataset.Tables("TABLE001")
+
+
+
+                    '１行目にチェックボックスを追加
+                    Dim chkColumns As New DataGridViewCheckBoxColumn
+                    DataGridView1.Columns.Insert(0, chkColumns)
+                    'DBからチェックボックスの値を反映
+                    strSQL = ""
+                    strSQL &= "SELECT "
+                    strSQL &= " 受注チェックフラグ "
+                    strSQL &= "FROM "
+                    strSQL &= " ORDER_TBL "
+                    strSQL &= "WHERE "
+                    strSQL &= "    受注チェックフラグ=0 "
+                    If rboSearch1.Checked = True Then
+                        strSQL &= "AND 受注先NO='" & txtOrderMSNo.Text.Trim & "' "
+                        strSQL &= "AND 受注日 BETWEEN "
+                        strSQL &= "'" & dtpOrderDateFrom.Text & "' AND '" & dtpOrderDateTo.Text & "' "
+                    Else
+                        strSQL &= "AND 受注NO='" & txtOrderNo.Text.Trim & "' "
+                    End If
+                    strSQL &= "ORDER BY "
+                    strSQL &= "受注NO "
+
+                    cd.CommandText = strSQL
+                    cd.Connection = Cn
+                    dtReader = cd.ExecuteReader
+
+                    Dim i As Integer = 0
+                    'チェック情報の反映
+                    While dtReader.Read
+                        DataGridView1.Item(0, i).Value = dtReader("受注チェックフラグ")
+                        i += 1
+                    End While
+
+                    'トリム処理
+                    For i = 0 To DataGridView1.RowCount - 1
+                        For y = 0 To DataGridView1.ColumnCount - 1
+                            DataGridView1.Item(y, i).Value = DataGridView1.Item(y, i).Value.ToString.Trim
+                        Next
                     Next
-                Next
 
-                'ヘッダーとすべてのセルの内容に合わせて、列の幅を自動調整する
-                DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+                    'ヘッダーとすべてのセルの内容に合わせて、列の幅を自動調整する
+                    DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
-                '最初の列以外は編集不可
-                For i = 1 To 8
-                    DataGridView1.Columns(i).ReadOnly = True
-                Next
+                    '最初の列以外は編集不可
+                    For i = 1 To DataGridView1.ColumnCount - 1
+                        DataGridView1.Columns(i).ReadOnly = True
+                    Next
 
 
-                Return True
+                    Return True
+
+                Else
+                    '検索結果が０件の場合
+                    MessageBox.Show("検索結果が一致しません。" & vbCrLf & "確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    dtReader.Close()
+                    Return False
+
+                End If
 
             Else
-                '検索結果が０件の場合
-                MessageBox.Show("検索結果が一致しません。" & vbCrLf & "確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                MessageBox.Show("検索条件が選択されていません。" & vbCrLf & "確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
                 Return False
 
             End If
+
 
         Catch ex As Exception
             MessageBox.Show(ex.ToString, "例外発生")

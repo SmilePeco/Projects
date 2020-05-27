@@ -61,7 +61,7 @@ Partial Class T010
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(682, 47)
+        Me.GroupBox1.Size = New System.Drawing.Size(831, 47)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "検索条件"
@@ -112,7 +112,7 @@ Partial Class T010
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox2.Location = New System.Drawing.Point(0, 47)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(682, 52)
+        Me.GroupBox2.Size = New System.Drawing.Size(831, 52)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         '
@@ -195,7 +195,7 @@ Partial Class T010
         Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox3.Location = New System.Drawing.Point(0, 99)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(682, 46)
+        Me.GroupBox3.Size = New System.Drawing.Size(831, 46)
         Me.GroupBox3.TabIndex = 2
         Me.GroupBox3.TabStop = False
         '
@@ -224,7 +224,7 @@ Partial Class T010
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox4.Location = New System.Drawing.Point(0, 145)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(682, 235)
+        Me.GroupBox4.Size = New System.Drawing.Size(831, 235)
         Me.GroupBox4.TabIndex = 3
         Me.GroupBox4.TabStop = False
         '
@@ -237,14 +237,14 @@ Partial Class T010
         Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupBox5.Location = New System.Drawing.Point(3, 184)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(676, 48)
+        Me.GroupBox5.Size = New System.Drawing.Size(825, 48)
         Me.GroupBox5.TabIndex = 1
         Me.GroupBox5.TabStop = False
         '
         'btnEnd
         '
         Me.btnEnd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEnd.Location = New System.Drawing.Point(583, 19)
+        Me.btnEnd.Location = New System.Drawing.Point(732, 19)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(75, 23)
         Me.btnEnd.TabIndex = 4
@@ -254,7 +254,7 @@ Partial Class T010
         'btnClear
         '
         Me.btnClear.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnClear.Location = New System.Drawing.Point(485, 19)
+        Me.btnClear.Location = New System.Drawing.Point(634, 19)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(75, 23)
         Me.btnClear.TabIndex = 3
@@ -288,14 +288,14 @@ Partial Class T010
         Me.DataGridView1.Location = New System.Drawing.Point(3, 15)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 21
-        Me.DataGridView1.Size = New System.Drawing.Size(676, 217)
+        Me.DataGridView1.Size = New System.Drawing.Size(825, 217)
         Me.DataGridView1.TabIndex = 0
         '
         'T010
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(682, 380)
+        Me.ClientSize = New System.Drawing.Size(831, 380)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)

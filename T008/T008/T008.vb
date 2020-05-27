@@ -94,7 +94,7 @@ Public Class T008
     '--DataGridView CellClick処理    　    ----------
     '------------------------------------------------
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
-        If DataGridView1.Columns(e.ColumnIndex).Name = "詳細" Then
+        If DataGridView1.Columns(e.ColumnIndex).Name = "訂正" Then
             'DataGridView1の値の格納
             Dim strOrderNo As String = DataGridView1.Item(2, e.RowIndex).Value.ToString.Trim
             Dim strOrderMS As String = DataGridView1.Item(3, e.RowIndex).Value.ToString.Trim
@@ -208,12 +208,16 @@ Public Class T008
             strSQL &= "SELECT "
             strSQL &= " A.受注NO, "
             strSQL &= " A.受注先NO, "
-            strSQL &= " B.受注先名, "
+            strSQL &= " TRIM(B.受注先名) AS 受注先名, "
             strSQL &= " A.作業工程NO, "
-            strSQL &= " C.作業工程名, "
+            strSQL &= " TRIM(C.作業工程名) AS 作業工程名, "
             strSQL &= " A.受注数, "
             strSQL &= " A.受注日, "
             strSQL &= " A.最終更新者, "
+            strSQL &= " CASE "
+            strSQL &= "	 WHEN A.受注チェックフラグ = 1 THEN '●' "
+            strSQL &= "	 WHEN A.受注チェックフラグ = 0 THEN '-'  "
+            strSQL &= "	END AS 受注チェックフラグ,  "
             strSQL &= " A.更新日, "
             strSQL &= " A.登録日 "
             strSQL &= "FROM "
@@ -226,7 +230,12 @@ Public Class T008
             strSQL &= "AND A.作業工程NO = C.作業工程NO "
             strSQL &= "AND 受注日 BETWEEN "
             strSQL &= "'" & dtpOrderDateFrom.Text & "' AND '" & dtpOrderDateTo.Text & "' "
-
+            If chkOrderCheck.Checked = False Then
+                strSQL &= "AND A.受注チェックフラグ = 0 "
+            End If
+            strSQL &= "ORDER BY "
+            strSQL &= " A.受注NO "
+ 
             cd.CommandText = strSQL
             cd.Connection = Cn
             dtReader = cd.ExecuteReader
@@ -240,35 +249,53 @@ Public Class T008
                 daDataAdapter.Fill(dsDataset, "TABLE001")
                 DataGridView1.DataSource = dsDataset.Tables("TABLE001")
 
-                '１列目にチェックボタンを追加
-                Dim chkColumns As New DataGridViewCheckBoxColumn
-                DataGridView1.Columns.Insert(0, chkColumns)
 
-                '２列目に詳細ボタンを追加
-                Dim btnColumn As New DataGridViewButtonColumn
+                '//チェックがオフの場合は削除、訂正ボタンを追加する
+                If chkOrderCheck.Checked = False Then
+                    '//１列目にチェックボタンを追加
+                    Dim chkColumns As New DataGridViewCheckBoxColumn
+                    DataGridView1.Columns.Insert(0, chkColumns)
 
-                btnColumn.Name = "詳細"
-                btnColumn.HeaderText = "詳細"
-                btnColumn.Text = "詳細"
-                btnColumn.UseColumnTextForButtonValue = True
+                    '//２列目に訂正ボタンを追加
+                    Dim btnColumn As New DataGridViewButtonColumn
 
-                DataGridView1.Columns.Insert(1, btnColumn)
+                    DataGridView1.Columns.Insert(1, btnColumn)
+
+                    btnColumn.Name = "訂正"
+                    btnColumn.HeaderText = "訂正"
+                    btnColumn.Text = "訂正"
+                    btnColumn.UseColumnTextForButtonValue = True
+
+                    '文字列は全て編集不可
+                    For i = 2 To DataGridView1.ColumnCount - 1
+                        DataGridView1.Columns(i).ReadOnly = True
+                    Next
+
+                    '削除ボタン使用可能
+                    btnDelete.Enabled = True
+
+                Else
+                    '文字列は全て編集不可
+                    For i = 0 To DataGridView1.ColumnCount - 1
+                        DataGridView1.Columns(i).ReadOnly = True
+                    Next
+
+                    '削除ボタン使用不可
+                    btnDelete.Enabled = False
 
 
-                '文字列は全て編集不可
-                For i = 1 To 11
-                    DataGridView1.Columns(i).ReadOnly = True
-
-                Next
-
-                '名前列をトリム
-                For i = 0 To DataGridView1.RowCount - 1
-                    DataGridView1.Item(4, i).Value = DataGridView1.Item(4, i).Value.ToString.Trim
-                    DataGridView1.Item(6, i).Value = DataGridView1.Item(6, i).Value.ToString.Trim
-                Next
+                End If
 
                 'ヘッダーとすべてのセルの内容に合わせて、列の幅を自動調整する
                 DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+
+                '並び替えができないようにする
+                For Each c As DataGridViewColumn In DataGridView1.Columns
+                    c.SortMode = DataGridViewColumnSortMode.NotSortable
+                Next c
+
+                ' 2.カラムヘッダーを改行しない
+                DataGridView1.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False
 
                 Return True
 
@@ -432,6 +459,8 @@ Public Class T008
         DataGridView1.DataSource = Nothing
         DataGridView1.Columns.Clear()
 
+        btnDelete.Enabled = False
+
     End Sub
 
     '------------------------------------------------
@@ -504,17 +533,5 @@ Public Class T008
 
         End Try
     End Function
-
-
-
-
-
-
-
-
-
-
-
-
 
 End Class

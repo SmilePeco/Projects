@@ -19,7 +19,7 @@ Public Class T008_5
     '------------------------------------------------
     '--終了ボタン押下処理                  ----------
     '------------------------------------------------
-    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
+    Private Sub btnEnd_Click(sender As Object, e As EventArgs)
         '終了処理
         Me.Close()
     End Sub

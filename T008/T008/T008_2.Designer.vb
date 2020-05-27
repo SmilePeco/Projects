@@ -26,14 +26,14 @@ Partial Class T008_2
         Me.txtOrderMSNo = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.btnEnd = New System.Windows.Forms.Button()
+        Me.btnSearch = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -74,17 +74,6 @@ Partial Class T008_2
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.btnEnd)
-        Me.GroupBox3.Controls.Add(Me.btnSearch)
-        Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupBox3.Location = New System.Drawing.Point(3, 217)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(486, 55)
-        Me.GroupBox3.TabIndex = 0
-        Me.GroupBox3.TabStop = False
-        '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
@@ -98,6 +87,28 @@ Partial Class T008_2
         Me.DataGridView1.Size = New System.Drawing.Size(486, 202)
         Me.DataGridView1.TabIndex = 1
         '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.btnEnd)
+        Me.GroupBox3.Controls.Add(Me.btnSearch)
+        Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupBox3.Location = New System.Drawing.Point(3, 217)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(486, 55)
+        Me.GroupBox3.TabIndex = 0
+        Me.GroupBox3.TabStop = False
+        '
+        'btnEnd
+        '
+        Me.btnEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEnd.Location = New System.Drawing.Point(402, 19)
+        Me.btnEnd.Name = "btnEnd"
+        Me.btnEnd.Size = New System.Drawing.Size(75, 23)
+        Me.btnEnd.TabIndex = 1
+        Me.btnEnd.Text = "F2:終了"
+        Me.btnEnd.UseVisualStyleBackColor = True
+        '
         'btnSearch
         '
         Me.btnSearch.Location = New System.Drawing.Point(11, 19)
@@ -106,15 +117,6 @@ Partial Class T008_2
         Me.btnSearch.TabIndex = 0
         Me.btnSearch.Text = "F1:検索"
         Me.btnSearch.UseVisualStyleBackColor = True
-        '
-        'btnEnd
-        '
-        Me.btnEnd.Location = New System.Drawing.Point(402, 19)
-        Me.btnEnd.Name = "btnEnd"
-        Me.btnEnd.Size = New System.Drawing.Size(75, 23)
-        Me.btnEnd.TabIndex = 1
-        Me.btnEnd.Text = "F2:終了"
-        Me.btnEnd.UseVisualStyleBackColor = True
         '
         'T008_2
         '
@@ -129,8 +131,8 @@ Partial Class T008_2
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox3.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

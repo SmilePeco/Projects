@@ -39,7 +39,7 @@ Public Class T015
     '------------------------------------------------
     '--検索ボタン押下処理            　    ----------
     '------------------------------------------------
-    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs)
         '検索処理
         Call sSearch()
     End Sub
@@ -47,7 +47,7 @@ Public Class T015
     '------------------------------------------------
     '--クリアボタン押下処理          　    ----------
     '------------------------------------------------
-    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+    Private Sub btnClear_Click(sender As Object, e As EventArgs)
         'クリア処理
         Call sClear()
     End Sub
@@ -55,7 +55,7 @@ Public Class T015
     '------------------------------------------------
     '--終了ボタン押下処理            　    ----------
     '------------------------------------------------
-    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
+    Private Sub btnEnd_Click(sender As Object, e As EventArgs)
         '終了処理
         Me.Close()
     End Sub

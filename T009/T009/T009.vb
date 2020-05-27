@@ -517,7 +517,7 @@ Public Class T009
         chkClosedStock.Checked = False
 
         '臨時在庫はオフ
-        'chkClosedStock.Visible = False
+        chkClosedStock.Visible = False
 
     End Sub
 

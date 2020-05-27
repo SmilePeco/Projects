@@ -115,20 +115,13 @@ Public Class T012
     '--グリッド検索処理                    ----------
     '------------------------------------------------
     Public Sub sSearch()
-        Dim result As Boolean
         Me.ActiveControl = Nothing
         'グリッド初期化
         Call sDataGridView_Clear()
         'DB接続
         Call sDBConnect()
         '検索メイン処理
-        result = fMainSearch()
-        If result = True Then
-
-        Else
-            Call sDataGridView_Clear()
-
-        End If
+        Call fMainSearch()
 
     End Sub
 
@@ -146,7 +139,10 @@ Public Class T012
             strSQL &= "  出荷先NO, "
             strSQL &= "  作業工程NO, "
             strSQL &= "  生産数, "
-            strSQL &= "  生産完了フラグ, "
+            strSQL &= "  CASE "
+            strSQL &= "     WHEN 生産完了フラグ= 1 THEN '●' "
+            strSQL &= "	    WHEN 生産完了フラグ= 0 THEN '-' "
+            strSQL &= "	 END AS 生産完了フラグ, "
             strSQL &= "  最終更新者, "
             If rboCreateDate01.Checked = True Then
                 strSQL &= "  生産日 AS 生産予定日 "
