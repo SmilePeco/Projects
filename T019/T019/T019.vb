@@ -473,10 +473,13 @@ Public Class T019
                 strSQL = ""
                 strSQL &= "INSERT INTO ITEM_MS VALUES "
                 strSQL &= "( "
-                strSQL &= " '" & strCount & "', "
-                strSQL &= " '" & txtUpdateItemName.Text.Trim & "', "
-                strSQL &= " SYSDATETIME(), "
-                strSQL &= " SYSDATETIME()  "
+                strSQL &= " '" & strCount & "', " '//製品NO
+                strSQL &= " '" & txtUpdateItemName.Text.Trim & "', " '//製品名
+                strSQL &= " '', " '//部品1
+                strSQL &= " '', " '//部品2
+                strSQL &= " '', " '//部品3
+                strSQL &= " SYSDATETIME(), " '//更新日
+                strSQL &= " SYSDATETIME()  " '//登録日
                 strSQL &= ") "
                 'SQL実行
                 cd.CommandText = strSQL
@@ -858,7 +861,7 @@ Public Class T019
         Try
             strSQL = ""
             strSQL &= "SELECT "
-            strSQL &= " MAX(製品NO) AS 製品NO "
+            strSQL &= " COALESCE(MAX(製品NO),0) AS 製品NO "
             strSQL &= "FROM "
             strSQL &= " ITEM_MS "
             'SQL実行
