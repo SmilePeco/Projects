@@ -327,16 +327,17 @@ Public Class T001
                     '新規作成（INSERT INTO）
                     strSQL = ""
                     strSQL &= "INSERT INTO HUMAN_MS VALUES ( "
-                    strSQL &= txtHumanNo.Text.Trim & ", "
-                    strSQL &= "'" & txtName.Text.Trim & "', "
-                    strSQL &= "'" & txtPass.Text & "', "
+                    strSQL &= txtHumanNo.Text.Trim & ", " '//社員NO
+                    strSQL &= "'" & txtName.Text.Trim & "', " '//名前
+                    strSQL &= "'" & txtPass.Text & "', " '//パスワード
+                    strSQL &= " '', " '//更新担当者名
                     If chkAdminFLG.Checked = True Then
-                        strSQL &= "1, "
+                        strSQL &= "1, " '//管理者フラグ
                     Else
-                        strSQL &= "0, "
+                        strSQL &= "0, " '//管理者フラグ
                     End If
-                    strSQL &= " SYSDATETIME(), "
-                    strSQL &= " SYSDATETIME() "
+                    strSQL &= " SYSDATETIME(), " '//更新日
+                    strSQL &= " SYSDATETIME() " '//登録日
                     strSQL &= ") "
 
                     'SQLコマンド設定
